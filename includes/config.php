@@ -83,21 +83,37 @@
 
   function checkAdminSession($path = "http://localhost:90/ESP/" , $page = "login.php")
   {
-	// global $PATH_ADMIN;
-    // if(isset($loginRequire))
-    // {
-    //     if($loginRequire == true)
-    //     {
-            if (!(isset($_SESSION['adminID'])) || !(isset($_SESSION['adminName']))) 
+            if (!isset($_SESSION['user']))
             {
-                //header('Location:'. $path .'login.php');
-                header('Location:'. $path . $page);
-                //echo $_SESSION['adminID'];
-                //echo '<script> window.location.replace("login.php"); </script>';
+				header('Location:'. $path . $page);
             }
-    //     }
-    // }
+			if (!(isset($_SESSION['userType'])))
+			{
+				header('Location:'. $path . $page);
+			} 
+			if($_SESSION['userType'] != 'a')
+			{
+				header('Location:'. $path . $page);
+			}
   }
+
+//   function checkAdminSession($path = "http://localhost:90/ESP/" , $page = "login.php")
+//   {
+// 	// global $PATH_ADMIN;
+//     // if(isset($loginRequire))
+//     // {
+//     //     if($loginRequire == true)
+//     //     {
+//             if (!(isset($_SESSION['adminID'])) || !(isset($_SESSION['adminName']))) 
+//             {
+//                 //header('Location:'. $path .'login.php');
+//                 header('Location:'. $path . $page);
+//                 //echo $_SESSION['adminID'];
+//                 //echo '<script> window.location.replace("login.php"); </script>';
+//             }
+//     //     }
+//     // }
+//   }
 	//  ======================  End Function ============================
 	//  ====================== ============= ============================
 ?>
