@@ -35,10 +35,9 @@
     {
       //$logins = loginAdmin($username, $password);
       $logins = select("select * from webuser where email like '$email';");
-      var_dump($logins);
       if(count($logins) > 0)
       {
-        $userType = $logins[0]['userType'];
+        $userType = $logins[0]['usertype'];
         if($userType == 'a')
         {
             $admins = select("select * from admin where email like '$email' and password like '$password';");
