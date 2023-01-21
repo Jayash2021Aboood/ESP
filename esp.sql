@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2023 at 11:57 PM
+-- Generation Time: Jan 21, 2023 at 10:54 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 8.0.23
 
@@ -39,6 +39,22 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `email`, `password`) VALUES
 (1, 'admin@gmail.com', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL,
+  `engineer_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `detail` varchar(4000) DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `state` varchar(50) NOT NULL DEFAULT 'Draft'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -89,6 +105,53 @@ INSERT INTO `engineer` (`id`, `first_name`, `last_name`, `email`, `password`, `s
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
+  `engineer_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `rate` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `engineer_id` int(11) NOT NULL,
+  `service_type_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` double NOT NULL,
+  `detail` varchar(4000) NOT NULL,
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_type`
+--
+
+CREATE TABLE `service_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service_type`
+--
+
+INSERT INTO `service_type` (`id`, `name`) VALUES
+(1, 'General Service');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `webuser`
 --
 
@@ -119,6 +182,15 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_booking_engineer` (`engineer_id`),
+  ADD KEY `fk_booking_customer` (`customer_id`),
+  ADD KEY `fk_booking_service` (`service_id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -128,6 +200,28 @@ ALTER TABLE `customer`
 -- Indexes for table `engineer`
 --
 ALTER TABLE `engineer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_rating_engineer` (`engineer_id`),
+  ADD KEY `fk_rating_customer` (`customer_id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_service_service_type` (`service_type_id`),
+  ADD KEY `fk_service_engineer` (`engineer_id`);
+
+--
+-- Indexes for table `service_type`
+--
+ALTER TABLE `service_type`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -147,6 +241,12 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -159,10 +259,54 @@ ALTER TABLE `engineer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service_type`
+--
+ALTER TABLE `service_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `webuser`
 --
 ALTER TABLE `webuser`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `booking`
+--
+ALTER TABLE `booking`
+  ADD CONSTRAINT `fk_booking_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `fk_booking_engineer` FOREIGN KEY (`engineer_id`) REFERENCES `engineer` (`id`),
+  ADD CONSTRAINT `fk_booking_service` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`);
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `fk_rating_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `fk_rating_engineer` FOREIGN KEY (`engineer_id`) REFERENCES `engineer` (`id`);
+
+--
+-- Constraints for table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `fk_service_engineer` FOREIGN KEY (`engineer_id`) REFERENCES `engineer` (`id`),
+  ADD CONSTRAINT `fk_service_service_type` FOREIGN KEY (`service_type_id`) REFERENCES `service_type` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
