@@ -1,10 +1,19 @@
     <script data-cfasync="false"
-        src="<?php echo $PATH_ADMIN ?>/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        src="<?php echo $PATH_ADMIN ?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="<?php echo $PATH_ADMIN ?>js/bootstrap/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="<?php echo $PATH_ADMIN ?>js/scripts.js"></script>
     <script src="<?php echo $PATH_ADMIN ?>js/simple-datatables/simple-datatables.js" crossorigin="anonymous"></script>
     <script src="<?php echo $PATH_ADMIN ?>js/datatables/datatables-simple-demo.js"></script>
+
+    <!-- Start Include Charts Sections  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="<?php echo $PATH_ADMIN ?>assets/demo/chart-area-demo.js"></script>
+    <script src="<?php echo $PATH_ADMIN ?>assets/demo/chart-bar-demo.js"></script>
+    <script src="<?php echo $PATH_ADMIN ?>assets/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
+    <script src="<?php echo $PATH_ADMIN ?>js/litepicker.js"></script>
+
     <script>
 $(document).ready(function() {
     "use strict";
