@@ -27,23 +27,12 @@
 	$PATH_ADMIN_SCHOOL 	= $PATH_ADMIN . 'school/';
 
 	$PATH_ADMIN_ADMIN = $PATH_ADMIN . 'admin/';
-	$PATH_ADMIN_AUTHER = $PATH_ADMIN . 'auther/';
-	$PATH_ADMIN_BOOK = $PATH_ADMIN . 'book/';
-	$PATH_ADMIN_BORROWER = $PATH_ADMIN . 'borrower/';
-	$PATH_ADMIN_BORROWER_TYPE = $PATH_ADMIN . 'borrower_type/';
-	$PATH_ADMIN_CATEGORY = $PATH_ADMIN . 'categorie/';
-	$PATH_ADMIN_COLLEGE = $PATH_ADMIN . 'college/';
-	$PATH_ADMIN_DEPARTMENT = $PATH_ADMIN . 'department/';
-	$PATH_ADMIN_FINE = $PATH_ADMIN . 'fine/';
-	$PATH_ADMIN_JOBHOLDER = $PATH_ADMIN . 'jobholder/';
-	$PATH_ADMIN_LANGUAGE = $PATH_ADMIN . 'language/';
-	$PATH_ADMIN_LIBRARY = $PATH_ADMIN . 'library/';
-	$PATH_ADMIN_PROJECT = $PATH_ADMIN . 'project/';
-	$PATH_ADMIN_PUBLISHER = $PATH_ADMIN . 'publisher/';
-	$PATH_ADMIN_RESERVATION = $PATH_ADMIN . 'reservation/';
-	$PATH_ADMIN_STUDENT = $PATH_ADMIN . 'student/';
-	$PATH_ADMIN_UNIVERSITY = $PATH_ADMIN . 'university/';
-	$PATH_ADMIN_UNIVERSITY_COLLEGE = $PATH_ADMIN . 'university_college/';
+	$PATH_ADMIN_BOOKING = $PATH_ADMIN . 'booking/';
+	$PATH_ADMIN_CUSTOMER = $PATH_ADMIN . 'customer/';
+	$PATH_ADMIN_ENGINEER = $PATH_ADMIN . 'engineer/';
+	$PATH_ADMIN_RATING = $PATH_ADMIN . 'rating/';
+	$PATH_ADMIN_SERVICE = $PATH_ADMIN . 'service/';
+	$PATH_ADMIN_SERVICE_TYPE = $PATH_ADMIN . 'service_type/';
 	
 	$PATH_ADMIN_INCLUDES 			= $PATH_ADMIN . 'includes/';
 	$PATH_ADMIN_TEMPLATE 			= $PATH_ADMIN . 'template/';
