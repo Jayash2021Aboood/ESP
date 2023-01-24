@@ -2,11 +2,11 @@
 <?php
   session_start();
   include('../../includes/lib.php');
-  include_once('../../includes/admin.php');
+  include_once('../../includes/booking.php');
 
   checkAdminSession();
 
-  $pageTitle = "Admins";
+  $pageTitle = "Bookings";
 ?>
 
 <?php include('../../template/header.php'); ?>
@@ -21,7 +21,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="users"></i></div>
-                            Admin List
+                            Booking List
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -30,13 +30,13 @@
                             Manage Users
                         </a>
                         <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal"
-                            data-bs-target="#createAdminModal">
+                            data-bs-target="#createBookingModal">
                             <i class="me-1" data-feather="plus"></i>
-                            Create New Admin
+                            Create New Booking
                         </button>
                         <a class="btn btn-sm btn-light text-primary" href="create.php">
                             <i class="me-1" data-feather="plus"></i>
-                            Create New Admin
+                            Create New Booking
                         </a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         </div>
     </header>
     <!-- Main page content-->
-    <?php $all = getAllAdmins(); ?>
+    <?php $all = getAllBookings(); ?>
     <div class="container-fluid px-4">
         <div class="card">
             <div class="card-body">
@@ -52,16 +52,24 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Email</th>
-                            <th>Password</th>
+                            <th>Engineer</th>
+                            <th>Service</th>
+                            <th>Customer</th>
+                            <th>Detail</th>
+                            <th>EndDate</th>
+                            <th>State</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <!-- <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Email</th>
-                                            <th>Password</th>
+                                            <th>Engineer</th>
+                                            <th>Service</th>
+                                            <th>Customer</th>
+                                            <th>Detail</th>
+                                            <th>EndDate</th>
+                                            <th>State</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot> -->
@@ -77,7 +85,7 @@
                                             <td>
                                                 <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                                     type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#editAdminModal"><i
+                                                    data-bs-target="#editBookingModal"><i
                                                         data-feather="edit"></i></button>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i
                                                         data-feather="trash-2"></i></a>
@@ -91,8 +99,12 @@
 
                         <tr>
                                 <td> <?php echo($row['id']); ?> </td>
-                                    <td> <?php echo($row['email']); ?> </td>
-                                    <td> <?php echo($row['password']); ?> </td>
+                                    <td> <?php echo($row['engineer_id']); ?> </td>
+                                    <td> <?php echo($row['service_id']); ?> </td>
+                                    <td> <?php echo($row['customer_id']); ?> </td>
+                                    <td> <?php echo($row['detail']); ?> </td>
+                                    <td> <?php echo($row['end_date']); ?> </td>
+                                    <td> <?php echo($row['state']); ?> </td>
     
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
@@ -113,22 +125,22 @@
             </div>
         </div>
     </div>
-    <!-- Create Admin modal-->
-    <div class="modal fade" id="createAdminModal" tabindex="-1" role="dialog" aria-labelledby="createAdminModalLabel"
+    <!-- Create Booking modal-->
+    <div class="modal fade" id="createBookingModal" tabindex="-1" role="dialog" aria-labelledby="createBookingModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createAdminModalLabel">Create New Admin</h5>
+                    <h5 class="modal-title" id="createBookingModalLabel">Create New Booking</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formAdminName">Admin
+                            <label class="mb-1 small text-muted" for="formBookingName">Booking
                                 Name</label>
-                            <input class="form-control" id="formAdminName" type="text"
-                                placeholder="Enter Admin name..." />
+                            <input class="form-control" id="formBookingName" type="text"
+                                placeholder="Enter Booking name..." />
                         </div>
                     </form>
                 </div>
@@ -136,27 +148,27 @@
                     <button class="btn btn-danger-soft text-danger" type="button"
                         data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-primary-soft text-primary" type="button">Create New
-                        Admin</button>
+                        Booking</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Edit Admin modal-->
-    <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel"
+    <!-- Edit Booking modal-->
+    <div class="modal fade" id="editBookingModal" tabindex="-1" role="dialog" aria-labelledby="editBookingModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editAdminModalLabel">Edit Admin</h5>
+                    <h5 class="modal-title" id="editBookingModalLabel">Edit Booking</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formAdminName">Admin
+                            <label class="mb-1 small text-muted" for="formBookingName">Booking
                                 Name</label>
-                            <input class="form-control" id="formAdminName" type="text"
-                                placeholder="Enter Admin name..." value="Sales" />
+                            <input class="form-control" id="formBookingName" type="text"
+                                placeholder="Enter Booking name..." value="Sales" />
                         </div>
                     </form>
                 </div>

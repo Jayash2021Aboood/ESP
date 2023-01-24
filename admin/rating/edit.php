@@ -2,12 +2,12 @@
   session_start();
 
   include('../../includes/lib.php');
-  include_once('../../includes/admin.php');
+  include_once('../../includes/rating.php');
   checkAdminSession();
 
-  $pageTitle = "Edit Admin";
-  //$row = new Admin(null);
-   $id =  $email =  $password = "";
+  $pageTitle = "Edit Rating";
+  //$row = new Rating(null);
+   $id =  $engineer_id =  $customer_id =  $rate = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -19,14 +19,15 @@
     {
       $_SESSION["message"] = '';
       $id = $_GET['id'];
-      $result = getAdminById($id);
+      $result = getRatingById($id);
 
       if( count( $result ) > 0)
       {
         $row = $result[0];
         $id = $row['id'];
-        $email = $row['email'];
-        $password = $row['password'];
+        $engineer_id = $row['engineer_id'];
+        $customer_id = $row['customer_id'];
+        $rate = $row['rate'];
       }
       else
       {
@@ -45,34 +46,39 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') 
   {
-    if(isset($_POST['updateAdmin']))
+    if(isset($_POST['updateRating']))
     {
         $id = $_POST['id'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-      if( empty($email)){
-        $errors[] = "<li>Email is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Email is requierd.</li>";
+        $engineer_id = $_POST['engineer_id'];
+        $customer_id = $_POST['customer_id'];
+        $rate = $_POST['rate'];
+      if( empty($engineer_id)){
+        $errors[] = "<li>Engineer is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Engineer is requierd.</li>";
         }
-      if( empty($password)){
-        $errors[] = "<li>Password is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Password is requierd.</li>";
+      if( empty($customer_id)){
+        $errors[] = "<li>Customer is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
+        }
+      if( empty($rate)){
+        $errors[] = "<li>Rate is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Rate is requierd.</li>";
         }
       
       if(count($errors) == 0)
       {
 
-        $result = getAdminById($id);
+        $result = getRatingById($id);
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateAdmin( $id,  $email,  $password, );
+        $update = updateRating( $id,  $engineer_id,  $customer_id,  $rate, );
         if($update ==  true)
         {
   
-          $_SESSION["message"] = "Admin Updated successfuly!";
-          $_SESSION["success"] = "Admin Updated successfuly!";
-          header('Location:'. $PATH_ADMIN_ADMIN .'index.php');
+          $_SESSION["message"] = "Rating Updated successfuly!";
+          $_SESSION["success"] = "Rating Updated successfuly!";
+          header('Location:'. $PATH_ADMIN_RATING .'index.php');
           exit();
         }
         else
@@ -102,13 +108,13 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fa fa-school"></i></div>
-                            Edit Admin
+                            Edit Rating
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
                         <a class="btn btn-sm btn-light text-primary" href="index.php">
                             <i class="me-1" data-feather="arrow-left"></i>
-                            Back to Admins List
+                            Back to Ratings List
                         </a>
                     </div>
                 </div>
@@ -119,30 +125,36 @@
     <div class="container-xl px-4 mt-4">
         <div class="row">
             <div class="col-xl-12">
-                <!-- Admin details card-->
+                <!-- Rating details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Admin Details </div>
+                    <div class="card-header">Rating Details </div>
                     <div class="card-body">
                         <form action="" method="POST" enctype="multipart/form-data">
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <input type="hidden" name="id" id="id" value="<?php echo $id;?>" />
-                                <!-- Form Group (email)-->
+                                <!-- Form Group (engineer_id)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="email">Email</label>
-                                    <input class="form-control" id="email" name="email" type="text" placeholder="Email"
-                                        value="<?php echo $email;?>" required />
+                                    <label class="small mb-1" for="engineer_id">Engineer</label>
+                                    <input class="form-control" id="engineer_id" name="engineer_id" type="text" placeholder="Engineer"
+                                        value="<?php echo $engineer_id;?>" required />
                                 </div>
-                                <!-- Form Group (password)-->
+                                <!-- Form Group (customer_id)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password"
-                                        value="<?php echo $password;?>" required />
+                                    <label class="small mb-1" for="customer_id">Customer</label>
+                                    <input class="form-control" id="customer_id" name="customer_id" type="text" placeholder="Customer"
+                                        value="<?php echo $customer_id;?>" required />
+                                </div>
+                                <!-- Form Group (rate)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="rate">Rate</label>
+                                    <input class="form-control" id="rate" name="rate" type="text" placeholder="Rate"
+                                        value="<?php echo $rate;?>" required />
                                 </div>
  
                             </div>
                             <!-- Submit button-->
-                            <button name="updateAdmin" class="btn btn-success" type="submit">Save</button>
+                            <button name="updateRating" class="btn btn-success" type="submit">Save</button>
                             <a href="index.php" class="btn btn-danger" type="button">Back To List</a>
                         </form>
                     </div>

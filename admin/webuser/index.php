@@ -2,11 +2,11 @@
 <?php
   session_start();
   include('../../includes/lib.php');
-  include_once('../../includes/admin.php');
+  include_once('../../includes/webuser.php');
 
   checkAdminSession();
 
-  $pageTitle = "Admins";
+  $pageTitle = "WebUsers";
 ?>
 
 <?php include('../../template/header.php'); ?>
@@ -21,7 +21,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="users"></i></div>
-                            Admin List
+                            WebUser List
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -30,13 +30,13 @@
                             Manage Users
                         </a>
                         <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal"
-                            data-bs-target="#createAdminModal">
+                            data-bs-target="#createWebUserModal">
                             <i class="me-1" data-feather="plus"></i>
-                            Create New Admin
+                            Create New WebUser
                         </button>
                         <a class="btn btn-sm btn-light text-primary" href="create.php">
                             <i class="me-1" data-feather="plus"></i>
-                            Create New Admin
+                            Create New WebUser
                         </a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         </div>
     </header>
     <!-- Main page content-->
-    <?php $all = getAllAdmins(); ?>
+    <?php $all = getAllWebUsers(); ?>
     <div class="container-fluid px-4">
         <div class="card">
             <div class="card-body">
@@ -53,7 +53,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Email</th>
-                            <th>Password</th>
+                            <th>User Type </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -61,7 +61,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Email</th>
-                                            <th>Password</th>
+                                            <th>User Type </th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot> -->
@@ -77,7 +77,7 @@
                                             <td>
                                                 <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                                     type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#editAdminModal"><i
+                                                    data-bs-target="#editWebUserModal"><i
                                                         data-feather="edit"></i></button>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i
                                                         data-feather="trash-2"></i></a>
@@ -92,7 +92,7 @@
                         <tr>
                                 <td> <?php echo($row['id']); ?> </td>
                                     <td> <?php echo($row['email']); ?> </td>
-                                    <td> <?php echo($row['password']); ?> </td>
+                                    <td> <?php echo($row['usertype']); ?> </td>
     
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
@@ -113,22 +113,22 @@
             </div>
         </div>
     </div>
-    <!-- Create Admin modal-->
-    <div class="modal fade" id="createAdminModal" tabindex="-1" role="dialog" aria-labelledby="createAdminModalLabel"
+    <!-- Create WebUser modal-->
+    <div class="modal fade" id="createWebUserModal" tabindex="-1" role="dialog" aria-labelledby="createWebUserModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createAdminModalLabel">Create New Admin</h5>
+                    <h5 class="modal-title" id="createWebUserModalLabel">Create New WebUser</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formAdminName">Admin
+                            <label class="mb-1 small text-muted" for="formWebUserName">WebUser
                                 Name</label>
-                            <input class="form-control" id="formAdminName" type="text"
-                                placeholder="Enter Admin name..." />
+                            <input class="form-control" id="formWebUserName" type="text"
+                                placeholder="Enter WebUser name..." />
                         </div>
                     </form>
                 </div>
@@ -136,27 +136,27 @@
                     <button class="btn btn-danger-soft text-danger" type="button"
                         data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-primary-soft text-primary" type="button">Create New
-                        Admin</button>
+                        WebUser</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Edit Admin modal-->
-    <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalLabel"
+    <!-- Edit WebUser modal-->
+    <div class="modal fade" id="editWebUserModal" tabindex="-1" role="dialog" aria-labelledby="editWebUserModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editAdminModalLabel">Edit Admin</h5>
+                    <h5 class="modal-title" id="editWebUserModalLabel">Edit WebUser</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formAdminName">Admin
+                            <label class="mb-1 small text-muted" for="formWebUserName">WebUser
                                 Name</label>
-                            <input class="form-control" id="formAdminName" type="text"
-                                placeholder="Enter Admin name..." value="Sales" />
+                            <input class="form-control" id="formWebUserName" type="text"
+                                placeholder="Enter WebUser name..." value="Sales" />
                         </div>
                     </form>
                 </div>

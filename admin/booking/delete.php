@@ -2,12 +2,12 @@
 <?php
   session_start();
   include('../../includes/lib.php');
-  include_once('../../includes/admin.php');
+  include_once('../../includes/booking.php');
 
   checkAdminSession();
 
-  $pageTitle = "Delete Admin";
-  $row = new Admin(null);
+  $pageTitle = "Delete Booking";
+  $row = new Booking(null);
   include('../../template/header.php');
 
 
@@ -18,7 +18,7 @@
     {
       $_SESSION["message"] = ' Are You Sure Want to Delete? ';
       $id = $_GET['id'];
-      $result = getAdminById($id);
+      $result = getBookingById($id);
 
       if( count( $result ) > 0)
         $row = $result[0];
@@ -40,18 +40,18 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') 
   {
-    if(isset($_POST['deleteAdmin']))
+    if(isset($_POST['deleteBooking']))
     {
       if(isset($_GET['id']))
       {
         $id = $_POST['id'];
-        $delete = deleteAdmin($id);
+        $delete = deleteBooking($id);
         if($delete ==  true)
         {
   
-          $_SESSION["message"] = "Admin Deleted successfuly!";          
-          $_SESSION["success"] = "Admin Deleted successfuly!";          
-          header('Location:'. $PATH_ADMIN_ADMIN .'index.php');
+          $_SESSION["message"] = "Booking Deleted successfuly!";          
+          $_SESSION["success"] = "Booking Deleted successfuly!";          
+          header('Location:'. $PATH_ADMIN_BOOKING .'index.php');
           exit();
         }
         else
@@ -89,13 +89,13 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fa fa-school"></i></div>
-                            Delete Admin
+                            Delete Booking
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
                         <a class="btn btn-sm btn-light text-primary" href="index.php">
                             <i class="me-1" data-feather="arrow-left"></i>
-                            Back to Admins List
+                            Back to Bookings List
                         </a>
                     </div>
                 </div>
@@ -106,31 +106,55 @@
     <div class="container-xl px-4 mt-4">
         <div class="row">
             <div class="col-xl-12">
-                <!-- Admin details card-->
+                <!-- Booking details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Admin Details <span
+                    <div class="card-header">Booking Details <span
                             class="text-danger"><?php echo $_SESSION['message']; ?></span> </div>
                     <div class="card-body">
                         <form action="" method="POST" enctype="multipart/form-data">
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>" readonly />
-                                <!-- Form Group (email)-->
+                                <!-- Form Group (engineer_id)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="email">Email</label>
-                                    <input class="form-control" id="email" name="email" type="text" placeholder="Email"
-                                        value="<?php echo $row['email'];?>" readonly />
+                                    <label class="small mb-1" for="engineer_id">Engineer</label>
+                                    <input class="form-control" id="engineer_id" name="engineer_id" type="text" placeholder="Engineer"
+                                        value="<?php echo $row['engineer_id'];?>" readonly />
                                 </div>
-                                <!-- Form Group (password)-->
+                                <!-- Form Group (service_id)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password"
-                                        value="<?php echo $row['password'];?>" readonly />
+                                    <label class="small mb-1" for="service_id">Service</label>
+                                    <input class="form-control" id="service_id" name="service_id" type="text" placeholder="Service"
+                                        value="<?php echo $row['service_id'];?>" readonly />
+                                </div>
+                                <!-- Form Group (customer_id)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="customer_id">Customer</label>
+                                    <input class="form-control" id="customer_id" name="customer_id" type="text" placeholder="Customer"
+                                        value="<?php echo $row['customer_id'];?>" readonly />
+                                </div>
+                                <!-- Form Group (detail)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="detail">Detail</label>
+                                    <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
+                                        value="<?php echo $row['detail'];?>" readonly />
+                                </div>
+                                <!-- Form Group (end_date)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="end_date">EndDate</label>
+                                    <input class="form-control" id="end_date" name="end_date" type="text" placeholder="EndDate"
+                                        value="<?php echo $row['end_date'];?>" readonly />
+                                </div>
+                                <!-- Form Group (state)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="state">State</label>
+                                    <input class="form-control" id="state" name="state" type="text" placeholder="State"
+                                        value="<?php echo $row['state'];?>" readonly />
                                 </div>
  
                             </div>
                             <!-- Submit button-->
-                            <button name="deleteAdmin" class="btn btn-danger" type="submit">Delete</button>
+                            <button name="deleteBooking" class="btn btn-danger" type="submit">Delete</button>
                             <a href="index.php" class="btn btn-primary" type="button">Back To List</a>
                         </form>
                     </div>
