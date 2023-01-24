@@ -1,0 +1,59 @@
+#  ============================ Create Admin Webstite ============================
+    1- Dashboard
+    2- Service Type 
+        a- add, edit delete display all service types.
+    3- Engineer page.
+        a- dispaly engineers.
+        b- accept or reject engineer.
+        c- show engineer details.
+    4- Customer page.
+        a- dispaly customers.
+        b- accept or reject customer.
+        c- show customer details.
+    5- Service.
+        a- dispaly All Enginers Services.
+        b- show service details.
+    6- Booking.
+        a- Show all booking Transactions.
+        b- transactions reports  .
+    7- Profile page
+    8- Rating Page 
+        a- show all ratings
+    9- payment page
+        a- show all payment .
+        b- paymnets reports.
+#Create customer Website
+    1- Home page
+    2- AboutUs page
+    3- FAQ page
+    4- Service page
+    5- Service Type page
+    6- Engineer page
+        a- Rating Engineer
+        b- Show Engineer rate
+    7- profile page.
+    8- MyBooking page.
+        a- AcceptOrReject booking.
+        b- Tracking booking Opreation.
+    9- Payment Page.
+
+
+
+#  ============================ Create Enginner Webstite ============================
+    1- Dashboard
+        a- include my rate
+        b- include new booking 
+        c- include returned notes 
+    2- Service.
+    3- MyBooking.
+        a- AcceptOrReject booking.
+        b- Tracking booking Opreation.
+    4- Profile page
+    
+
+# ====================  All Website  
+    1- sign in 
+    2- signup 
+    3- profile
+    4- create account.
+    5- logout
