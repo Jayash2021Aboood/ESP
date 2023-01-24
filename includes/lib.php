@@ -78,5 +78,14 @@ function loginAdmin($username, $password)
 	return select("SELECT * FROM admin WHERE username LIKE '$username' AND password LIKE '$password'");
 }
 
+// ====================================================
+// ====================================================
+// ====================  Addtional Method ==============
+
+// دالة لجلب الخدمات اعتماد على نوع الحدث
+function getAllServicesByTypeID($service_type_id)
+{
+	return selectByCondition("*","service","where  service_type_id like '$service_type_id'");
+}
 
 ?>
