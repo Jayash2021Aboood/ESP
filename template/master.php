@@ -28,7 +28,7 @@
     <?php include_once(DIR_ADMIN_TEMPLATE . 'header.php'); ?>
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed bg-white">
 
     <?php include_once(DIR_ADMIN_TEMPLATE . 'navbar.php'); ?>
 
