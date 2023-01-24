@@ -229,6 +229,7 @@
         <div id="layoutSidenav_nav">
             <nav class="sidenav shadow-right sidenav-light">
                 <div class="sidenav-menu">
+
                     <div class="nav accordion" id="accordionSidenav">
                         <!-- Sidenav Menu Heading (Account)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
@@ -580,14 +581,22 @@
                             Tables
                         </a>
                     </div>
+
                 </div>
-                <!-- Sidenav Footer-->
+
+                <?php
+                    if(isLogin())
+                    {
+                ?>
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Logged in as:</div>
-                        <div class="sidenav-footer-title"><?php echo $_SESSION['user']; ?></div>
+                        <div class="sidenav-footer-title"><?php  echo isLogin(); ?></div>
                     </div>
                 </div>
+                <?php }  ?>
+                <!-- Sidenav Footer-->
+
             </nav>
         </div>
         <div id="layoutSidenav_content">
