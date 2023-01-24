@@ -7,7 +7,16 @@
         <!-- * * Tip * * You can use text or an image for your navbar brand.-->
         <!-- * * * * * * When using an image, we recommend the SVG format.-->
         <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a>
+        <?php 
+            $mainPage = $PATH_SERVER;
+            if(isAdmin())
+                $mainPage = $PATH_ADMIN;
+            if(isEngineer())
+                $mainPage = $PATH_ENGINEER;
+            if(isCustomer())
+                $mainPage = $PATH_CUSTOMER;
+         ?>
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="<?php echo $mainPage; ?>">ESP</a>
         <!-- Navbar Search Input-->
         <!-- * * Note: * * Visible only on and above the lg breakpoint-->
         <form class="form-inline me-auto d-none d-lg-block me-3">
@@ -194,6 +203,7 @@
                     <a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
                 </div>
             </li>
+            <?php if(isLogin()){ ?>
             <!-- User Dropdown-->
             <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
@@ -207,9 +217,10 @@
                             src="<?php echo $PATH_SERVER ?>assets/img/illustrations/profiles/profile-1.png" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">Valerie Luna</div>
-                            <div class="dropdown-user-details-email"><a href="/cdn-cgi/l/email-protection"
-                                    class="__cf_email__"
-                                    data-cfemail="1a6c766f747b5a7b757634797577">[email&#160;protected]</a></div>
+                            <div class="dropdown-user-details-email">
+                                <a href="/cdn-cgi/l/email-protection"><?php echo getLoginEmail();?>
+                                </a>
+                            </div>
                         </div>
                     </h6>
                     <div class="dropdown-divider"></div>
@@ -223,6 +234,8 @@
                     </a>
                 </div>
             </li>
+
+            <?php }?>
         </ul>
     </nav>
     <div id="layoutSidenav">
@@ -230,6 +243,9 @@
             <nav class="sidenav shadow-right sidenav-light">
                 <div class="sidenav-menu">
                     <div class="nav accordion" id="accordionSidenav">
+
+                        <?php if(isLogin()){ ?>
+                        <?php if(isAdmin()){ ?>
                         <!-- Sidenav Menu Heading (Account)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
                         <div class="sidenav-menu-heading d-sm-none">Account</div>
@@ -298,10 +314,120 @@
                             Admin
                         </a>
 
+                        <?php }else if(isEngineer()){ ?>
+
+                        <?php }else if(isCustomer()){ ?>
+                        <!-- Sidenav Menu Heading (Account)-->
+                        <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                        <div class="sidenav-menu-heading d-sm-none">Account</div>
+                        <!-- Sidenav Link (Alerts)-->
+                        <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                        <a class="nav-link d-sm-none" href="#!">
+                            <div class="nav-link-icon"><i data-feather="bell"></i></div>
+                            Alerts
+                            <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
+                        </a>
+                        <!-- Sidenav Link (Messages)-->
+                        <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                        <a class="nav-link d-sm-none" href="#!">
+                            <div class="nav-link-icon"><i data-feather="mail"></i></div>
+                            Messages
+                            <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
+                        </a>
+                        <!-- Sidenav Menu Heading (Core)-->
+                        <div class="sidenav-menu-heading">Core</div>
+
+                        <!-- Sidenav Accordion (Dashboard)-->
+                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                            data-bs-target="#collapseDashboards" aria-expanded="false"
+                            aria-controls="collapseDashboards">
+                            <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                            Dashboards
+                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                <a class="nav-link" href="dashboard-1.html">
+                                    Default
+                                    <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
+                                </a>
+                                <a class="nav-link" href="dashboard-2.html">Multipurpose</a>
+                                <a class="nav-link" href="dashboard-3.html">Affiliate</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_BOOKING; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Booking
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_RATING; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Rating
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_CUSTOMER; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Customer
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_ENGINEER; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Engineer
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_SERVICE; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Service
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_SERVICE_TYPE; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Service Type
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN_ADMIN; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Admin
+                        </a>
+
+                        <?php } ?>
+
+                        <?php }else{ ?>
+
+                        <a class="nav-link" href="<?php echo $PATH_SERVER;?>index.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Home
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER;?>service_type.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Categories
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER;?>service_list.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Services
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER;?>engineer.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Engineer
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER; ?>faq.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            FAQ
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER; ?>about_us.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            About Us
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER; ?>login.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Login
+                        </a>
+                        <?php } ?>
+
+
 
 
                     </div>
                 </div>
+                <?php
+                    if(isLogin())
+                    {
+                ?>
                 <!-- Sidenav Footer-->
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
@@ -309,6 +435,7 @@
                         <div class="sidenav-footer-title"><?php echo $_SESSION['user']; ?></div>
                     </div>
                 </div>
+                <?php } ?>
             </nav>
         </div>
         <div id="layoutSidenav_content">
