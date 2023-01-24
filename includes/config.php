@@ -86,6 +86,38 @@
 			}
   }
 
+  function isLogin()
+  {
+	if(isset($_SESSION['user']))
+	{
+		if(isset($_SESSION['userType']))
+		{
+			if($_SESSION['userType'] == 'a' || $_SESSION['userType'] == 'c' || $_SESSION['userType'] == 'e')
+			{
+				return true;
+			}
+		}
+	}
+	return false;	
+  }
+
+  function getLoginType()
+  {
+	if(isLogin())
+	{
+		return $_SESSION['userType'];
+	}
+	else
+	{
+		return null;
+	}
+  }
+
+  function isAdmin() { if(getLoginType() == 'a') return true; }
+  function isEngineer() { if(getLoginType() == 'e') return true; }
+  function isCustomer() { if(getLoginType() == 'c') return true; }
+  function getLoginEmail() { return $_SESSION['user'] ;}
+
 //   function checkAdminSession($path = "http://localhost:90/ESP/" , $page = "login.php")
 //   {
 // 	// global $PATH_ADMIN;
