@@ -3,11 +3,6 @@
 include("config.php");
 include('myFunctions.php');
 
-include('admin.php');
-include('customer.php');
-include('engineer.php');
-include('webuser.php');
-
 
 
 
@@ -82,10 +77,38 @@ function loginAdmin($username, $password)
 // ====================================================
 // ====================  Addtional Method ==============
 
-// دالة لجلب الخدمات اعتماد على نوع الحدث
+// دالة لجلب الخدمات اعتماد على نوع الخدمة
 function getAllServicesByTypeID($service_type_id)
 {
 	return selectByCondition("*","service","where  service_type_id like '$service_type_id'");
+}
+
+// دالة لجلب الخدمات اعتماد على نوع الخدمة
+function getAllServicesByEngineerID($engineer_id)
+{
+	return selectByCondition("*","service","where  engineer_id like '$engineer_id'");
+}
+
+function getAllEngineersWithRatesAndServiceTotals($engineer_id = null)
+{
+    if(isset( $engineer_id) && !empty($engineer_id))
+    {
+    return select(' SELECT e.* , COUNT(s.id) as total_service, SUM(r.rate)/ COUNT(r.id) as total_rate
+                    FROM engineer AS e
+                    LEFT JOIN service AS s ON e.id = s.engineer_id
+                    LEFT JOIN rating AS r ON e.id = r.engineer_id
+                    WHERE e.id = '.$engineer_id.'
+                    GROUP BY e.id;');
+    }
+    else
+    {
+    return select(' SELECT e.* , COUNT(s.id) as total_service, SUM(r.rate)/ COUNT(r.id) as total_rate
+                    FROM engineer AS e
+                    LEFT JOIN service AS s ON e.id = s.engineer_id
+                    LEFT JOIN rating AS r ON e.id = r.engineer_id
+                    GROUP BY e.id;');
+    }
+
 }
 
 ?>
