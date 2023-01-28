@@ -4,6 +4,8 @@
   $pageTitle = "Signin as Customer";
 
   include('includes/lib.php');
+  include('includes/webuser.php');
+  include('includes/customer.php');
    
   $errors = array();
 
@@ -84,10 +86,6 @@
   ?>
 
 <?php include('template/header.php'); ?>
-
-
-
-
 
 <?php include('template/startNavbar.php'); ?>
 
