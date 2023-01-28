@@ -20,5 +20,21 @@ function uploadImage($filedName, $dirctoryPath)
   }
 
 
+  function getRateColor($rate)
+  {
+    if(!isset($rate)) return "danger";
+    if($rate > 75){
+      return "success";
+    }
+    else if($rate > 50){
+      return "primary";
+    }
+    else if($rate > 25){
+      return "warning";
+    }
+    else{
+      return "danger";
+    }
+  }
 
   ?>
