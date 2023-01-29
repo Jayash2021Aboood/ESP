@@ -56,6 +56,9 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Password</th>
+                            <th>Phone</th>
+                            <th>Card Number</th>
+                            <th>State</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -66,6 +69,9 @@
                                             <th>Last Name</th>
                                             <th>Email</th>
                                             <th>Password</th>
+                                            <th>Phone</th>
+                                            <th>Card Number</th>
+                                            <th>State</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot> -->
@@ -99,6 +105,9 @@
                                     <td> <?php echo($row['last_name']); ?> </td>
                                     <td> <?php echo($row['email']); ?> </td>
                                     <td> <?php echo($row['password']); ?> </td>
+                                    <td> <?php echo($row['phone']); ?> </td>
+                                    <td> <?php echo($row['card_number']); ?> </td>
+                                    <td> <?php echo($row['state']); ?> </td>
     
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"

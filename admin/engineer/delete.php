@@ -157,6 +157,18 @@
                                     <input class="form-control" id="date_of_birth" name="date_of_birth" type="text" placeholder="Date of Birth"
                                         value="<?php echo $row['date_of_birth'];?>" readonly />
                                 </div>
+                                <!-- Form Group (phone)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="phone">Phone</label>
+                                    <input class="form-control" id="phone" name="phone" type="text" placeholder="Phone"
+                                        value="<?php echo $row['phone'];?>" readonly />
+                                </div>
+                                <!-- Form Group (state)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="state">State</label>
+                                    <input class="form-control" id="state" name="state" type="text" placeholder="State"
+                                        value="<?php echo $row['state'];?>" readonly />
+                                </div>
  
                             </div>
                             <!-- Submit button-->

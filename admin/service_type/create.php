@@ -21,15 +21,22 @@
 
       $name = $_POST['name'];
 
+      $detail = $_POST['detail'];
+
       if( empty($name)){
         $errors[] = "<li>Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>Name is requierd.</li>";
+        }
+      if( empty($detail)){
+        $errors[] = "<li>Detail is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Detail is requierd.</li>";
         }
   
       if(count($errors) == 0)
       {
         $add = addServiceType(
                                     $name,
+                                    $detail,
                                     );
         if($add ==  true)
         {
@@ -92,6 +99,12 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="name">Name</label>
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Name"
+                                        value="" required  />
+                                </div>
+                                <!-- Form Group (detail)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="detail">Detail</label>
+                                    <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
                                         value="" required  />
                                 </div>
                             </div>

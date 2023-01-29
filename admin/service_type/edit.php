@@ -7,7 +7,7 @@
 
   $pageTitle = "Edit ServiceType";
   //$row = new ServiceType(null);
-   $id =  $name = "";
+   $id =  $name =  $detail = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -26,6 +26,7 @@
         $row = $result[0];
         $id = $row['id'];
         $name = $row['name'];
+        $detail = $row['detail'];
       }
       else
       {
@@ -48,9 +49,14 @@
     {
         $id = $_POST['id'];
         $name = $_POST['name'];
+        $detail = $_POST['detail'];
       if( empty($name)){
         $errors[] = "<li>Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>Name is requierd.</li>";
+        }
+      if( empty($detail)){
+        $errors[] = "<li>Detail is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Detail is requierd.</li>";
         }
       
       if(count($errors) == 0)
@@ -60,7 +66,7 @@
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateServiceType( $id,  $name, );
+        $update = updateServiceType( $id,  $name,  $detail, );
         if($update ==  true)
         {
   
@@ -126,6 +132,12 @@
                                     <label class="small mb-1" for="name">Name</label>
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Name"
                                         value="<?php echo $name;?>" required />
+                                </div>
+                                <!-- Form Group (detail)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="detail">Detail</label>
+                                    <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
+                                        value="<?php echo $detail;?>" required />
                                 </div>
  
                             </div>

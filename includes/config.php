@@ -86,6 +86,22 @@
 			}
   }
 
+  function checkCustomerSession($path = "http://localhost:90/ESP/" , $page = "login.php")
+  {
+            if (!isset($_SESSION['user']))
+            {
+				header('Location:'. $path . $page);
+            }
+			if (!(isset($_SESSION['userType'])))
+			{
+				header('Location:'. $path . $page);
+			} 
+			if($_SESSION['userType'] != 'c')
+			{
+				header('Location:'. $path . $page);
+			}
+  }
+
   function isLogin()
   {
 	if(isset($_SESSION['user']))

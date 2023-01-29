@@ -62,7 +62,9 @@
                             <!-- <div class="ms-2"><i class="fas fa-dollar-sign fa-2x text-gray-200"></i></div> -->
                         </div>
                         <div>
-                            <a class="btn btn-primary mt-2" href=""> Book now </a>
+                            <a class="btn btn-primary mt-2"
+                                href="<?php echo $PATH_CUSTOMER; ?>service.php?id=<?php echo $row['id']; ?>"> Book now
+                            </a>
                         </div>
                     </div>
                 </div>

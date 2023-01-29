@@ -7,6 +7,7 @@ class ServiceType
 {
 	public $id;
 	public $name;
+	public $detail;
 
 	function __construct($row)
 	{
@@ -19,6 +20,7 @@ class ServiceType
 		{
 			$this->id = $row[0];
 			$this->name = $row[1];
+			$this->detail = $row[2];
 		}
 	}
 
@@ -39,18 +41,19 @@ function getServiceTypeByName($search)
 	return select("SELECT * FROM service_type WHERE name like '%$search%' and active = 1");
 }
 
-function addServiceType( $name)
+function addServiceType( $name, $detail)
 {
     $sql = 
 		"INSERT INTO service_type VALUES(null,
-'$name')";	return query($sql);
+'$name','$detail')";	return query($sql);
 }
 
-function updateServiceType( $id, $name)
+function updateServiceType( $id, $name, $detail)
 {
     $sql = 
 		"UPDATE service_type SET 
 		name = '$name'
+,		detail = '$detail'
 		WHERE id = $id ";
     return query($sql);
 }

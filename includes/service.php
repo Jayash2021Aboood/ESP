@@ -75,3 +75,5 @@ function deleteService($id)
      return query("DELETE FROM service WHERE id = $id");
 }
 ?>
+
+

@@ -2,11 +2,11 @@
 <?php
   session_start();
   include('../../includes/lib.php');
-  include_once('../../includes/service_type.php');
+  include_once('../../includes/booking_note.php');
 
   checkAdminSession();
 
-  $pageTitle = "ServiceTypes";
+  $pageTitle = "BookingNotes";
 ?>
 
 <?php include('../../template/header.php'); ?>
@@ -21,7 +21,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="users"></i></div>
-                            ServiceType List
+                            BookingNote List
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -30,13 +30,13 @@
                             Manage Users
                         </a>
                         <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal"
-                            data-bs-target="#createServiceTypeModal">
+                            data-bs-target="#createBookingNoteModal">
                             <i class="me-1" data-feather="plus"></i>
-                            Create New ServiceType
+                            Create New BookingNote
                         </button>
                         <a class="btn btn-sm btn-light text-primary" href="create.php">
                             <i class="me-1" data-feather="plus"></i>
-                            Create New ServiceType
+                            Create New BookingNote
                         </a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         </div>
     </header>
     <!-- Main page content-->
-    <?php $all = getAllServiceTypes(); ?>
+    <?php $all = getAllBookingNotes(); ?>
     <div class="container-fluid px-4">
         <div class="card">
             <div class="card-body">
@@ -52,16 +52,20 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Detail</th>
+                            <th>Booking</th>
+                            <th>Engineer</th>
+                            <th>Customer</th>
+                            <th>Note</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <!-- <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Detail</th>
+                                            <th>Booking</th>
+                                            <th>Engineer</th>
+                                            <th>Customer</th>
+                                            <th>Note</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot> -->
@@ -77,7 +81,7 @@
                                             <td>
                                                 <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                                     type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#editServiceTypeModal"><i
+                                                    data-bs-target="#editBookingNoteModal"><i
                                                         data-feather="edit"></i></button>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i
                                                         data-feather="trash-2"></i></a>
@@ -91,8 +95,10 @@
 
                         <tr>
                                 <td> <?php echo($row['id']); ?> </td>
-                                    <td> <?php echo($row['name']); ?> </td>
-                                    <td> <?php echo($row['detail']); ?> </td>
+                                    <td> <?php echo($row['booking_id']); ?> </td>
+                                    <td> <?php echo($row['engineer_id']); ?> </td>
+                                    <td> <?php echo($row['customer_id']); ?> </td>
+                                    <td> <?php echo($row['note']); ?> </td>
     
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
@@ -113,22 +119,22 @@
             </div>
         </div>
     </div>
-    <!-- Create ServiceType modal-->
-    <div class="modal fade" id="createServiceTypeModal" tabindex="-1" role="dialog" aria-labelledby="createServiceTypeModalLabel"
+    <!-- Create BookingNote modal-->
+    <div class="modal fade" id="createBookingNoteModal" tabindex="-1" role="dialog" aria-labelledby="createBookingNoteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createServiceTypeModalLabel">Create New ServiceType</h5>
+                    <h5 class="modal-title" id="createBookingNoteModalLabel">Create New BookingNote</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formServiceTypeName">ServiceType
+                            <label class="mb-1 small text-muted" for="formBookingNoteName">BookingNote
                                 Name</label>
-                            <input class="form-control" id="formServiceTypeName" type="text"
-                                placeholder="Enter ServiceType name..." />
+                            <input class="form-control" id="formBookingNoteName" type="text"
+                                placeholder="Enter BookingNote name..." />
                         </div>
                     </form>
                 </div>
@@ -136,27 +142,27 @@
                     <button class="btn btn-danger-soft text-danger" type="button"
                         data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-primary-soft text-primary" type="button">Create New
-                        ServiceType</button>
+                        BookingNote</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Edit ServiceType modal-->
-    <div class="modal fade" id="editServiceTypeModal" tabindex="-1" role="dialog" aria-labelledby="editServiceTypeModalLabel"
+    <!-- Edit BookingNote modal-->
+    <div class="modal fade" id="editBookingNoteModal" tabindex="-1" role="dialog" aria-labelledby="editBookingNoteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editServiceTypeModalLabel">Edit ServiceType</h5>
+                    <h5 class="modal-title" id="editBookingNoteModalLabel">Edit BookingNote</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-0">
-                            <label class="mb-1 small text-muted" for="formServiceTypeName">ServiceType
+                            <label class="mb-1 small text-muted" for="formBookingNoteName">BookingNote
                                 Name</label>
-                            <input class="form-control" id="formServiceTypeName" type="text"
-                                placeholder="Enter ServiceType name..." value="Sales" />
+                            <input class="form-control" id="formBookingNoteName" type="text"
+                                placeholder="Enter BookingNote name..." value="Sales" />
                         </div>
                     </form>
                 </div>

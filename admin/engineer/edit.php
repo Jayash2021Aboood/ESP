@@ -7,7 +7,7 @@
 
   $pageTitle = "Edit Engineer";
   //$row = new Engineer(null);
-   $id =  $first_name =  $last_name =  $email =  $password =  $specialty =  $cv =  $date_of_birth = "";
+   $id =  $first_name =  $last_name =  $email =  $password =  $specialty =  $cv =  $date_of_birth =  $phone =  $state = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -32,6 +32,8 @@
         $specialty = $row['specialty'];
         $cv = $row['cv'];
         $date_of_birth = $row['date_of_birth'];
+        $phone = $row['phone'];
+        $state = $row['state'];
       }
       else
       {
@@ -60,6 +62,8 @@
         $specialty = $_POST['specialty'];
         $cv = $_POST['cv'];
         $date_of_birth = $_POST['date_of_birth'];
+        $phone = $_POST['phone'];
+        $state = $_POST['state'];
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>First Name is requierd.</li>";
@@ -88,6 +92,14 @@
         $errors[] = "<li>Date of Birth is requierd.</li>";
         $_SESSION["fail"] .= "<li>Date of Birth is requierd.</li>";
         }
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
+        }
+      if( empty($state)){
+        $errors[] = "<li>State is requierd.</li>";
+        $_SESSION["fail"] .= "<li>State is requierd.</li>";
+        }
       
       if(count($errors) == 0)
       {
@@ -96,7 +108,7 @@
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateEngineer( $id,  $first_name,  $last_name,  $email,  $password,  $specialty,  $cv,  $date_of_birth, );
+        $update = updateEngineer( $id,  $first_name,  $last_name,  $email,  $password,  $specialty,  $cv,  $date_of_birth,  $phone,  $state, );
         if($update ==  true)
         {
   
@@ -198,6 +210,18 @@
                                     <label class="small mb-1" for="date_of_birth">Date of Birth</label>
                                     <input class="form-control" id="date_of_birth" name="date_of_birth" type="text" placeholder="Date of Birth"
                                         value="<?php echo $date_of_birth;?>" required />
+                                </div>
+                                <!-- Form Group (phone)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="phone">Phone</label>
+                                    <input class="form-control" id="phone" name="phone" type="text" placeholder="Phone"
+                                        value="<?php echo $phone;?>" required />
+                                </div>
+                                <!-- Form Group (state)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="state">State</label>
+                                    <input class="form-control" id="state" name="state" type="text" placeholder="State"
+                                        value="<?php echo $state;?>" required />
                                 </div>
  
                             </div>

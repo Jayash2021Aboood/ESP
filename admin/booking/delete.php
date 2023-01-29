@@ -133,6 +133,24 @@
                                     <input class="form-control" id="customer_id" name="customer_id" type="text" placeholder="Customer"
                                         value="<?php echo $row['customer_id'];?>" readonly />
                                 </div>
+                                <!-- Form Group (card_number)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="card_number">Card Number</label>
+                                    <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
+                                        value="<?php echo $row['card_number'];?>" readonly />
+                                </div>
+                                <!-- Form Group (service_price)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="service_price">Service Price</label>
+                                    <input class="form-control" id="service_price" name="service_price" type="text" placeholder="Service Price"
+                                        value="<?php echo $row['service_price'];?>" readonly />
+                                </div>
+                                <!-- Form Group (paid_price)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="paid_price">Paid Price</label>
+                                    <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
+                                        value="<?php echo $row['paid_price'];?>" readonly />
+                                </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="detail">Detail</label>

@@ -33,6 +33,10 @@
 
       $date_of_birth = $_POST['date_of_birth'];
 
+      $phone = $_POST['phone'];
+
+      $state = $_POST['state'];
+
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>First Name is requierd.</li>";
@@ -61,6 +65,14 @@
         $errors[] = "<li>Date of Birth is requierd.</li>";
         $_SESSION["fail"] .= "<li>Date of Birth is requierd.</li>";
         }
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
+        }
+      if( empty($state)){
+        $errors[] = "<li>State is requierd.</li>";
+        $_SESSION["fail"] .= "<li>State is requierd.</li>";
+        }
   
       if(count($errors) == 0)
       {
@@ -72,6 +84,8 @@
                                     $specialty,
                                     $cv,
                                     $date_of_birth,
+                                    $phone,
+                                    $state,
                                     );
         if($add ==  true)
         {
@@ -170,6 +184,18 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="date_of_birth">Date of Birth</label>
                                     <input class="form-control" id="date_of_birth" name="date_of_birth" type="text" placeholder="Date of Birth"
+                                        value="" required  />
+                                </div>
+                                <!-- Form Group (phone)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="phone">Phone</label>
+                                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone"
+                                        value="" required  />
+                                </div>
+                                <!-- Form Group (state)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="state">State</label>
+                                    <input class="form-control" id="state" name="state" type="text" placeholder="State"
                                         value="" required  />
                                 </div>
                             </div>

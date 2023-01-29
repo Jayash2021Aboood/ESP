@@ -7,7 +7,7 @@
 
   $pageTitle = "Edit Booking";
   //$row = new Booking(null);
-   $id =  $engineer_id =  $service_id =  $customer_id =  $detail =  $end_date =  $state = "";
+   $id =  $engineer_id =  $service_id =  $customer_id =  $card_number =  $service_price =  $paid_price =  $detail =  $end_date =  $state = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -28,6 +28,9 @@
         $engineer_id = $row['engineer_id'];
         $service_id = $row['service_id'];
         $customer_id = $row['customer_id'];
+        $card_number = $row['card_number'];
+        $service_price = $row['service_price'];
+        $paid_price = $row['paid_price'];
         $detail = $row['detail'];
         $end_date = $row['end_date'];
         $state = $row['state'];
@@ -55,6 +58,9 @@
         $engineer_id = $_POST['engineer_id'];
         $service_id = $_POST['service_id'];
         $customer_id = $_POST['customer_id'];
+        $card_number = $_POST['card_number'];
+        $service_price = $_POST['service_price'];
+        $paid_price = $_POST['paid_price'];
         $detail = $_POST['detail'];
         $end_date = $_POST['end_date'];
         $state = $_POST['state'];
@@ -69,6 +75,18 @@
       if( empty($customer_id)){
         $errors[] = "<li>Customer is requierd.</li>";
         $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
+        }
+      if( empty($card_number)){
+        $errors[] = "<li>Card Number is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
+        }
+      if( empty($service_price)){
+        $errors[] = "<li>Service Price is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Service Price is requierd.</li>";
+        }
+      if( empty($paid_price)){
+        $errors[] = "<li>Paid Price is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Paid Price is requierd.</li>";
         }
       if( empty($detail)){
         $errors[] = "<li>Detail is requierd.</li>";
@@ -90,7 +108,7 @@
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateBooking( $id,  $engineer_id,  $service_id,  $customer_id,  $detail,  $end_date,  $state, );
+        $update = updateBooking( $id,  $engineer_id,  $service_id,  $customer_id,  $card_number,  $service_price,  $paid_price,  $detail,  $end_date,  $state, );
         if($update ==  true)
         {
   
@@ -168,6 +186,24 @@
                                     <label class="small mb-1" for="customer_id">Customer</label>
                                     <input class="form-control" id="customer_id" name="customer_id" type="text" placeholder="Customer"
                                         value="<?php echo $customer_id;?>" required />
+                                </div>
+                                <!-- Form Group (card_number)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="card_number">Card Number</label>
+                                    <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
+                                        value="<?php echo $card_number;?>" required />
+                                </div>
+                                <!-- Form Group (service_price)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="service_price">Service Price</label>
+                                    <input class="form-control" id="service_price" name="service_price" type="text" placeholder="Service Price"
+                                        value="<?php echo $service_price;?>" required />
+                                </div>
+                                <!-- Form Group (paid_price)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="paid_price">Paid Price</label>
+                                    <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
+                                        value="<?php echo $paid_price;?>" required />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">

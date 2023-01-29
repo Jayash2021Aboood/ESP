@@ -24,6 +24,11 @@
 
       $confirm_password = $_POST['confirm_password'];
 
+      $phone = $_POST['phone'];
+
+      $card_number = $_POST['card_number'];
+
+
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>First Name is requierd.</li>";
@@ -50,25 +55,39 @@
         $errors[] = "<li>passwords must be matched </li>";
         $_SESSION["fail"] .= "<li>passwords must be matched </li>";
         }
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
+        }
+      if( empty($card_number)){
+        $errors[] = "<li>Card Number is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
+        }
       if(count($errors) == 0)
       {
         
         $webUser = addWebUser($email,'c');
         if($webUser == true)
         {
-            $add = addCustomer( $first_name, $last_name, $email, $password);
+            $add = addCustomer( $first_name, $last_name, $email, $password, $phone, $card_number, 'request');
             if($add ==  true)
             {
                 $customers = select("select * from customer where email like '$email' and password like '$password';");
                 if(count($customers) > 0)
                 {
+                    if($customers[0]['state'] != 'accept'){
+                        $_SESSION["message"] = "create account successfuly wait for admin to accept your account";
+                        $_SESSION["success"] = "create account successfuly wait for admin to accept your account";
+                        header('Location: index.php');
+                        exit();
+                    }
                     $_SESSION["userID"] = $customers[0]['id'];
                     $_SESSION["user"] = $email;
                     $_SESSION["userType"] = 'c';
                     $_SESSION['success'] = "Welcome ".$customers[0]['first_name'] ." ". $customers[0]['last_name'] ;
-                    
                     header('Location: customer/index.php');
-                    exit();
+                    exit();                    
+
                 }
             }
             else
@@ -144,6 +163,25 @@
                                             Password</label>
                                         <input class="form-control" id="inputConfirmPassword" type="password"
                                             placeholder="Confirm password" name="confirm_password" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3">
+                                <div class="col-md-6">
+                                    <!-- Form Group (phone)-->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputPhone">Phone</label>
+                                        <input class="form-control" id="inputPhone" name="phone" type="tel"
+                                            placeholder="Enter phone " required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Form Group (card number)-->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputCardNumber">Card Number</label>
+                                        <input class="form-control" id="inputCardNumber" name="card_number" type="text"
+                                            placeholder="Enter card number" required />
                                     </div>
                                 </div>
                             </div>

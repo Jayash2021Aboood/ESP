@@ -57,3 +57,23 @@
     3- profile
     4- create account.
     5- logout
+
+
+
+# =================== State for customer
+    1- request
+    2- accept
+    3- reject
+
+# =================== State for engineer
+    1- request
+    2- accept
+    3- reject
+
+
+# =================== State for booking
+    1- request
+    2- reject
+    3- working
+    4- engineerDone
+    5- done

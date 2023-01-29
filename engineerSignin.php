@@ -2,6 +2,8 @@
   session_start();
   $pageTitle = "Signin as Engineer";
   include('includes/lib.php');
+  include('includes/webuser.php');
+  include('includes/engineer.php');
    
   $errors = array();
 
@@ -25,6 +27,8 @@
       $cv = uploadImage('cv',DIR_PHOTOES);
 
       $date_of_birth = $_POST['date_of_birth'];
+
+      $phone = $_POST['phone'];
 
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
@@ -68,18 +72,31 @@
         $_SESSION["fail"] .= "<li>date_of_birth is requierd.</li>";
         }
 
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
+        }
+        
       if(count($errors) == 0)
       {
         
         $webUser = addWebUser($email,'e');
         if($webUser == true)
         {
-            $add = addEngineer( $first_name, $last_name, $email, $password, $specialty, $cv, $date_of_birth);
+            $add = addEngineer( $first_name, $last_name, $email, $password, $specialty, $cv, $date_of_birth, $phone, 'request');
             if($add ==  true)
             {
                 $engineers = select("select * from engineer where email like '$email' and password like '$password';");
                 if(count($engineers) > 0)
                 {
+
+                    if($engineers[0]['state'] != 'accept'){
+                        $_SESSION["message"] = "create account successfuly wait for admin to accept your account";
+                        $_SESSION["success"] = "create account successfuly wait for admin to accept your account";
+                        header('Location: index.php');
+                        exit();
+                    }
+
                     $_SESSION["userID"] = $engineers[0]['id'];
                     $_SESSION["user"] = $email;
                     $_SESSION["userType"] = 'e';
@@ -187,6 +204,14 @@
                                     <label class="small mb-1" for="date_of_birth">Date of Birth</label>
                                     <input class="form-control" id="date_of_birth" name="date_of_birth" type="Date"
                                         placeholder="Date of Birth" value="" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Form Group (phone)-->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputPhone">Phone</label>
+                                        <input class="form-control" id="inputPhone" name="phone" type="tel"
+                                            placeholder="Enter phone " required />
+                                    </div>
                                 </div>
                             </div>
                             <!-- Form Group (create account submit)-->

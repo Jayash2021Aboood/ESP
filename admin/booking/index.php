@@ -55,6 +55,9 @@
                             <th>Engineer</th>
                             <th>Service</th>
                             <th>Customer</th>
+                            <th>Card Number</th>
+                            <th>Service Price</th>
+                            <th>Paid Price</th>
                             <th>Detail</th>
                             <th>EndDate</th>
                             <th>State</th>
@@ -67,6 +70,9 @@
                                             <th>Engineer</th>
                                             <th>Service</th>
                                             <th>Customer</th>
+                                            <th>Card Number</th>
+                                            <th>Service Price</th>
+                                            <th>Paid Price</th>
                                             <th>Detail</th>
                                             <th>EndDate</th>
                                             <th>State</th>
@@ -102,6 +108,9 @@
                                     <td> <?php echo($row['engineer_id']); ?> </td>
                                     <td> <?php echo($row['service_id']); ?> </td>
                                     <td> <?php echo($row['customer_id']); ?> </td>
+                                    <td> <?php echo($row['card_number']); ?> </td>
+                                    <td> <?php echo($row['service_price']); ?> </td>
+                                    <td> <?php echo($row['paid_price']); ?> </td>
                                     <td> <?php echo($row['detail']); ?> </td>
                                     <td> <?php echo($row['end_date']); ?> </td>
                                     <td> <?php echo($row['state']); ?> </td>

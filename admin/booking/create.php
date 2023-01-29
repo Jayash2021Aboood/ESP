@@ -28,6 +28,12 @@
 
       $customer_id = $_POST['customer_id'];
 
+      $card_number = $_POST['card_number'];
+
+      $service_price = $_POST['service_price'];
+
+      $paid_price = $_POST['paid_price'];
+
       $detail = $_POST['detail'];
 
       $end_date = $_POST['end_date'];
@@ -45,6 +51,18 @@
       if( empty($customer_id)){
         $errors[] = "<li>Customer is requierd.</li>";
         $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
+        }
+      if( empty($card_number)){
+        $errors[] = "<li>Card Number is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
+        }
+      if( empty($service_price)){
+        $errors[] = "<li>Service Price is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Service Price is requierd.</li>";
+        }
+      if( empty($paid_price)){
+        $errors[] = "<li>Paid Price is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Paid Price is requierd.</li>";
         }
       if( empty($detail)){
         $errors[] = "<li>Detail is requierd.</li>";
@@ -65,6 +83,9 @@
                                     $engineer_id,
                                     $service_id,
                                     $customer_id,
+                                    $card_number,
+                                    $service_price,
+                                    $paid_price,
                                     $detail,
                                     $end_date,
                                     $state,
@@ -158,6 +179,24 @@
                                         </option>
                                         <?php }?>
                                     </select>
+                                </div>
+                                <!-- Form Group (card_number)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="card_number">Card Number</label>
+                                    <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
+                                        value="" required  />
+                                </div>
+                                <!-- Form Group (service_price)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="service_price">Service Price</label>
+                                    <input class="form-control" id="service_price" name="service_price" type="text" placeholder="Service Price"
+                                        value="" required  />
+                                </div>
+                                <!-- Form Group (paid_price)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="paid_price">Paid Price</label>
+                                    <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
+                                        value="" required  />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">

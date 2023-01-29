@@ -26,11 +26,15 @@ if (isset($_SESSION['user']))
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if( empty($email))
-      $errors[] = "Email is requierd.";
+    if( !isset($_POST['email'])){
+        $errors[] = "Email is requierd.";
+        $_SESSION["fail"] = "Email is requierd.";
+    }
 
-    if( empty($password))
-      $errors[] = "Passowrd is requierd.";
+    if( !isset($_POST['email'])){
+        $errors[] = "Passowrd is requierd.";
+        $_SESSION["fail"] = "Passowrd is requierd.";
+    }
     
     if(count($errors) == 0)
     {
@@ -56,11 +60,27 @@ if (isset($_SESSION['user']))
             $engineers = select("select * from engineer where email like '$email' and password like '$password';");
             if(count($engineers) > 0)
             {
-                $_SESSION["userID"] = $engineers[0]['id'];
-                $_SESSION["user"] = $email;
-                $_SESSION["userType"] = 'e';
-                $_SESSION['success'] = "Welcome ".$engineers[0]['first_name'] ." ". $engineers[0]['last_name'] ;
-                header('Location: engineer/index.php');
+
+                if($engineers[0]['state'] == 'reject'){
+                    $_SESSION["message"] = "your account has been rejected ... contact to adminstrator";
+                    $_SESSION["fail"] = "your account has been rejected ... contact to adminstrator";
+                    header('Location: login.php');
+                    exit();
+                }
+                else if($engineers[0]['state'] == 'request'){
+                    $_SESSION["message"] = "your account not accepted Yet ... contact to adminstrator";
+                    $_SESSION["fail"] = "your account not accepted Yet ... contact to adminstrator";
+                    header('Location: login.php');
+                    exit();
+                }
+                else if($engineers[0]['state'] == 'accept')
+                {
+                    $_SESSION["userID"] = $engineers[0]['id'];
+                    $_SESSION["user"] = $email;
+                    $_SESSION["userType"] = 'e';
+                    $_SESSION['success'] = "Welcome ".$engineers[0]['first_name'] ." ". $engineers[0]['last_name'] ;
+                    header('Location: engineer/index.php');
+                }
             }
         }
         else if($userType == 'c')
@@ -68,11 +88,26 @@ if (isset($_SESSION['user']))
             $customers = select("select * from customer where email like '$email' and password like '$password';");
             if(count($customers) > 0)
             {
-                $_SESSION["userID"] = $customers[0]['id'];
-                $_SESSION["user"] = $email;
-                $_SESSION["userType"] = 'c';
-                $_SESSION['success'] = "Welcome ".$customers[0]['first_name'] ." ". $customers[0]['last_name'] ;
-                header('Location: customer/index.php');
+                if($customers[0]['state'] == 'reject'){
+                    $_SESSION["message"] = "your account has been rejected ... contact to adminstrator";
+                    $_SESSION["fail"] = "your account has been rejected ... contact to adminstrator";
+                    header('Location: login.php');
+                    exit();
+                }
+                else if($customers[0]['state'] == 'request'){
+                    $_SESSION["message"] = "your account not accepted Yet ... contact to adminstrator";
+                    $_SESSION["fail"] = "your account not accepted Yet ... contact to adminstrator";
+                    header('Location: login.php');
+                    exit();
+                }
+                else if($customers[0]['state'] == 'accept')
+                {
+                    $_SESSION["userID"] = $customers[0]['id'];
+                    $_SESSION["user"] = $email;
+                    $_SESSION["userType"] = 'c';
+                    $_SESSION['success'] = "Welcome ".$customers[0]['first_name'] ." ". $customers[0]['last_name'] ;
+                    header('Location: customer/index.php');
+                }
             }
         }
       }

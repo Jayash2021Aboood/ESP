@@ -13,6 +13,8 @@ class Engineer
 	public $specialty;
 	public $cv;
 	public $date_of_birth;
+	public $phone;
+	public $state;
 
 	function __construct($row)
 	{
@@ -31,6 +33,8 @@ class Engineer
 			$this->specialty = $row[5];
 			$this->cv = $row[6];
 			$this->date_of_birth = $row[7];
+			$this->phone = $row[8];
+			$this->state = $row[9];
 		}
 	}
 
@@ -51,14 +55,14 @@ function getEngineerByName($search)
 	return select("SELECT * FROM engineer WHERE name like '%$search%' and active = 1");
 }
 
-function addEngineer( $first_name, $last_name, $email, $password, $specialty, $cv, $date_of_birth)
+function addEngineer( $first_name, $last_name, $email, $password, $specialty, $cv, $date_of_birth, $phone, $state)
 {
     $sql = 
 		"INSERT INTO engineer VALUES(null,
-'$first_name','$last_name','$email','$password','$specialty','$cv','$date_of_birth')";	return query($sql);
+'$first_name','$last_name','$email','$password','$specialty','$cv','$date_of_birth','$phone','$state')";	return query($sql);
 }
 
-function updateEngineer( $id, $first_name, $last_name, $email, $password, $specialty, $cv, $date_of_birth)
+function updateEngineer( $id, $first_name, $last_name, $email, $password, $specialty, $cv, $date_of_birth, $phone, $state)
 {
     $sql = 
 		"UPDATE engineer SET 
@@ -69,6 +73,8 @@ function updateEngineer( $id, $first_name, $last_name, $email, $password, $speci
 ,		specialty = '$specialty'
 ,		cv = '$cv'
 ,		date_of_birth = '$date_of_birth'
+,		phone = '$phone'
+,		state = '$state'
 		WHERE id = $id ";
     return query($sql);
 }
@@ -78,5 +84,3 @@ function deleteEngineer($id)
      return query("DELETE FROM engineer WHERE id = $id");
 }
 ?>
-
-

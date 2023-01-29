@@ -46,7 +46,7 @@
                 <div class="card">
                     <div class="card-body text-center pt-5 pb-5">
                         <h3 class="mb-4"><?php echo $row['name']; ?></h3>
-                        <p class="mb-4"><?php echo $row['details']; ?></p>
+                        <p class="mb-4"><?php echo $row['detail']; ?></p>
                         <a href="service_list.php?service_type_id=<?php echo $row['id']; ?>"
                             class="btn btn-primary">Show
                             Service </a>

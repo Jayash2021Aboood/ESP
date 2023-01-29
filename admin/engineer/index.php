@@ -59,6 +59,8 @@
                             <th>Specialty</th>
                             <th>CV</th>
                             <th>Date of Birth</th>
+                            <th>Phone</th>
+                            <th>State</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -72,6 +74,8 @@
                                             <th>Specialty</th>
                                             <th>CV</th>
                                             <th>Date of Birth</th>
+                                            <th>Phone</th>
+                                            <th>State</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot> -->
@@ -108,6 +112,8 @@
                                     <td> <?php echo($row['specialty']); ?> </td>
                                     <td> <?php echo($row['cv']); ?> </td>
                                     <td> <?php echo($row['date_of_birth']); ?> </td>
+                                    <td> <?php echo($row['phone']); ?> </td>
+                                    <td> <?php echo($row['state']); ?> </td>
     
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
