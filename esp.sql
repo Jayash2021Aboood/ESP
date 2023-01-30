@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2023 at 10:54 PM
+-- Generation Time: Jan 30, 2023 at 12:23 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 8.0.23
 
@@ -51,9 +51,33 @@ CREATE TABLE `booking` (
   `engineer_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
+  `card_number` varchar(50) NOT NULL,
+  `service_price` double NOT NULL,
+  `paid_price` double NOT NULL,
   `detail` varchar(4000) DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `state` varchar(50) NOT NULL DEFAULT 'Draft'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `engineer_id`, `service_id`, `customer_id`, `card_number`, `service_price`, `paid_price`, `detail`, `end_date`, `state`) VALUES
+(1, 1, 1, 6, '098765876543', 80, 80, 'asdfg', '2023-01-29', 'request');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_note`
+--
+
+CREATE TABLE `booking_note` (
+  `id` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `engineer_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -67,16 +91,23 @@ CREATE TABLE `customer` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `card_number` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'test', 'customer', 'customer@gmail.com', 'customer'),
-(2, 'maryam', 'maryam', 'maryam@gmail.com', '123');
+INSERT INTO `customer` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `state`, `card_number`) VALUES
+(1, 'test', 'customer', 'customer@gmail.com', 'customer', '', '', ''),
+(2, 'maryam', 'maryam', 'maryam@gmail.com', '123', '', '', ''),
+(3, 'asdf', 'asd', 'as@gmial.com', 'asd', '', '', ''),
+(4, 'asdf', 'as', 'as@gmail.oxs', 'as', '', '', ''),
+(5, 'asd', 'asd', 'asd@gmail.com', 'asd', '', '', ''),
+(6, 'e', 'e', 'e@gmail.com', 'e', '098765432', 'accept', '098765876543');
 
 -- --------------------------------------------------------
 
@@ -92,15 +123,19 @@ CREATE TABLE `engineer` (
   `password` varchar(255) NOT NULL,
   `specialty` varchar(255) NOT NULL,
   `cv` varchar(255) NOT NULL,
-  `date_of_birth` date NOT NULL
+  `date_of_birth` date NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `engineer`
 --
 
-INSERT INTO `engineer` (`id`, `first_name`, `last_name`, `email`, `password`, `specialty`, `cv`, `date_of_birth`) VALUES
-(1, 'ftoom', 'ftoom', 'ftoom@gmail.com', '123', 'Building Engineer', 'BFD_ESP.pdf', '2000-06-13');
+INSERT INTO `engineer` (`id`, `first_name`, `last_name`, `email`, `password`, `specialty`, `cv`, `date_of_birth`, `phone`, `state`) VALUES
+(1, 'ftoom', 'ftoom', 'ftoom@gmail.com', '123', 'Building Engineer', 'BFD_ESP.pdf', '2000-06-13', '', ''),
+(2, 'Naser', 'Naser', 'Naser@gmail.com', '123', 'Sevil Engineer', '', '2000-06-13', '', ''),
+(3, 'asdfg', 'asdfg', 'asdfg@gmail.com', 'asdfg', 'asdfg', '3 Classes and other Concepts (1).pdf', '2023-01-29', '08765544333', 'accept');
 
 -- --------------------------------------------------------
 
@@ -114,6 +149,16 @@ CREATE TABLE `rating` (
   `customer_id` int(11) NOT NULL,
   `rate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `engineer_id`, `customer_id`, `rate`) VALUES
+(1, 1, 1, 23),
+(2, 1, 2, 11),
+(3, 1, 1, 100),
+(4, 2, 2, 97);
 
 -- --------------------------------------------------------
 
@@ -131,6 +176,13 @@ CREATE TABLE `service` (
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `engineer_id`, `service_type_id`, `name`, `price`, `detail`, `image`) VALUES
+(1, 1, 1, 'Drawing Building House', 80, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam numquam excepturi, magni aperiam dolorem consectetur ratione blanditiis repudiandae neque inventore pariatur impedit quis eos illo reprehenderit velit et sed ea?', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -139,15 +191,18 @@ CREATE TABLE `service` (
 
 CREATE TABLE `service_type` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `detail` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `service_type`
 --
 
-INSERT INTO `service_type` (`id`, `name`) VALUES
-(1, 'General Service');
+INSERT INTO `service_type` (`id`, `name`, `detail`) VALUES
+(1, 'General Service', ''),
+(2, 'Drawing Diagrams', ''),
+(3, 'Full Study', 'You can Write Any Description Here');
 
 -- --------------------------------------------------------
 
@@ -169,7 +224,14 @@ INSERT INTO `webuser` (`id`, `email`, `usertype`) VALUES
 (1, 'admin@gmail.com', 'a'),
 (2, 'customer@gmail.com', 'c'),
 (3, 'maryam@gmail.com', 'c'),
-(4, 'ftoom@gmail.com', 'e');
+(4, 'ftoom@gmail.com', 'e'),
+(5, 'as@gmial.com', 'c'),
+(6, 'as@gmial.com', 'c'),
+(7, 'as@gmial.com', 'c'),
+(8, 'as@gmail.oxs', 'c'),
+(9, 'asd@gmail.com', 'c'),
+(10, 'asdfg@gmail.com', 'e'),
+(11, 'e@gmail.com', 'c');
 
 --
 -- Indexes for dumped tables
@@ -189,6 +251,15 @@ ALTER TABLE `booking`
   ADD KEY `fk_booking_engineer` (`engineer_id`),
   ADD KEY `fk_booking_customer` (`customer_id`),
   ADD KEY `fk_booking_service` (`service_id`);
+
+--
+-- Indexes for table `booking_note`
+--
+ALTER TABLE `booking_note`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_booking_note_booking` (`booking_id`),
+  ADD KEY `fk_booking_note_customer` (`customer_id`),
+  ADD KEY `fk_booking_note_engineer` (`engineer_id`);
 
 --
 -- Indexes for table `customer`
@@ -244,43 +315,49 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `booking_note`
+--
+ALTER TABLE `booking_note`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `engineer`
 --
 ALTER TABLE `engineer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `service_type`
 --
 ALTER TABLE `service_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `webuser`
 --
 ALTER TABLE `webuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -293,6 +370,14 @@ ALTER TABLE `booking`
   ADD CONSTRAINT `fk_booking_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   ADD CONSTRAINT `fk_booking_engineer` FOREIGN KEY (`engineer_id`) REFERENCES `engineer` (`id`),
   ADD CONSTRAINT `fk_booking_service` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`);
+
+--
+-- Constraints for table `booking_note`
+--
+ALTER TABLE `booking_note`
+  ADD CONSTRAINT `fk_booking_note_booking` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`),
+  ADD CONSTRAINT `fk_booking_note_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `fk_booking_note_engineer` FOREIGN KEY (`engineer_id`) REFERENCES `engineer` (`id`);
 
 --
 -- Constraints for table `rating`
