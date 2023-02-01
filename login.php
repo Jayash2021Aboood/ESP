@@ -26,14 +26,14 @@ if (isset($_SESSION['user']))
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if( !isset($_POST['email'])){
+    if( !(isset($_POST['email']) && !empty($_POST['email']) )){
         $errors[] = "Email is requierd.";
-        $_SESSION["fail"] = "Email is requierd.";
+        //$_SESSION["fail"] = "Email is requierd.";
     }
 
-    if( !isset($_POST['email'])){
+    if( !(isset($_POST['password']) && !empty($_POST['password']) )){
         $errors[] = "Passowrd is requierd.";
-        $_SESSION["fail"] = "Passowrd is requierd.";
+        //$_SESSION["fail"] = "Passowrd is requierd.";
     }
     
     if(count($errors) == 0)
@@ -121,9 +121,20 @@ if (isset($_SESSION['user']))
     }
     else
     {
-        $_SESSION["message"] = "We cant found any acount for this email.";
-        $_SESSION["fail"] = "We cant found any acount for this email.";
-        $errors[] = "We cant found any acount for this email.";
+        foreach($errors as $error)
+        {
+            if( !(isset($_SESSION["fail"]) && !empty($_SESSION["fail"]) ))
+            {
+                $_SESSION["fail"] = $error;
+            }
+            else
+            {
+                $_SESSION["fail"] .= "</br>$error";
+            }
+        }
+        //$_SESSION["message"] = "We cant found any acount for this email.";
+        // $_SESSION["fail"] = "We cant found any acount for this email.";
+        // $errors[] = "We cant found any acount for this email.";
     }
 
   }
