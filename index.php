@@ -18,8 +18,8 @@
         style="background-image: url('assets/img/demo/demo-ocean-lg.jpg'); min-height: 500px; height: 500px;">
         <div class="container-xl pt-10  px-4">
             <div class="text-center  z-1">
-                <h1 class="text-white">Welcome to SB Admin Pro</h1>
-                <p class="lead mb-0 text-white-50">A professionally designed admin panel template built with Bootstrap 5
+                <h1 class="text-white">Welcome to Engineer Services Provider</h1>
+                <p class="lead mb-0 text-white-50">A passion to deliver the best
                 </p>
             </div>
         </div>
