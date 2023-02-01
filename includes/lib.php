@@ -111,4 +111,24 @@ function getAllEngineersWithRatesAndServiceTotals($engineer_id = null)
 
 }
 
+function getAllBookingsWithDetails($customer_id = null)
+{
+    if(isset( $customer_id) && !empty($customer_id))
+    {
+        return select(' SELECT b.* , s.name as service, CONCAT( e.first_name,\' \',e.last_name)  as engineer
+                        FROM booking AS b
+                        LEFT JOIN service AS s ON s.id = b.service_id
+                        LEFT JOIN engineer AS e ON e.id = b.engineer_id
+                        WHERE b.customer_id = '.$customer_id.'
+                        ;');
+    }
+    else
+    {
+        return select(' SELECT b.* , s.name as service, CONCAT( e.first_name,\' \',e.last_name)  as engineer
+                        FROM booking AS b
+                        LEFT JOIN service AS s ON s.id = b.service_id
+                        LEFT JOIN engineer AS e ON e.id = b.engineer_id;');
+    }
+}
+
 ?>
