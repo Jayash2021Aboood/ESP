@@ -75,5 +75,22 @@
     1- request
     2- reject
     3- working
-    4- engineerDone
+    4- ready
     5- done
+
+
+    New Task:
+    1- Remove State From Customer.
+    2- Update Engineer Display Page In Customer Site.
+        a: make Date Of Grade Column.
+        a: add column ( Experiance Years, 6 images, )
+        a: update Data 
+        b: adding 6 images in Engineer Screen.
+    3- Remove Payment From Service.
+    4- Service Screen Input Screens From Type Text Area.
+    5- Fixing Login Screen.
+    6- fixng altert screens.
+    7- admin Dashboard .
+    8- enginer dashboard.
+    9- adding booking details screens for engineer Site.
+    
