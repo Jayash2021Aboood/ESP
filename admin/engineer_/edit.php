@@ -172,58 +172,66 @@
                                 <!-- Form Group (first_name)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="first_name">First Name</label>
-                                    <input class="form-control" id="first_name" name="first_name" type="text" placeholder="First Name"
-                                        value="<?php echo $first_name;?>" required />
+                                    <input class="form-control" id="first_name" name="first_name" type="text"
+                                        placeholder="First Name" value="<?php echo $first_name;?>" required />
                                 </div>
                                 <!-- Form Group (last_name)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="last_name">Last Name</label>
-                                    <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Last Name"
-                                        value="<?php echo $last_name;?>" required />
+                                    <input class="form-control" id="last_name" name="last_name" type="text"
+                                        placeholder="Last Name" value="<?php echo $last_name;?>" required />
                                 </div>
                                 <!-- Form Group (email)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
-                                    <input class="form-control" id="email" name="email" type="email" placeholder="Email"
+                                    <input class="form-control" id="email" name="email" type="text" placeholder="Email"
                                         value="<?php echo $email;?>" required />
                                 </div>
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
-                                        value="<?php echo $password;?>" required />
+                                    <input class="form-control" id="password" name="password" type="text"
+                                        placeholder="Password" value="<?php echo $password;?>" required />
                                 </div>
                                 <!-- Form Group (specialty)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="specialty">Specialty</label>
-                                    <input class="form-control" id="specialty" name="specialty" type="text" placeholder="Specialty"
-                                        value="<?php echo $specialty;?>" required />
+                                    <input class="form-control" id="specialty" name="specialty" type="text"
+                                        placeholder="Specialty" value="<?php echo $specialty;?>" required />
                                 </div>
                                 <!-- Form Group (cv)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="cv">CV</label>
-                                    <input class="form-control" id="cv" name="cv" type="file" placeholder="CV"
+                                    <input class="form-control" id="cv" name="cv" type="text" placeholder="CV"
                                         value="<?php echo $cv;?>" required />
                                 </div>
                                 <!-- Form Group (date_of_birth)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="date_of_birth">Date of Birth</label>
-                                    <input class="form-control" id="date_of_birth" name="date_of_birth" type="date" placeholder="Date of Birth"
-                                        value="<?php echo $date_of_birth;?>" required />
+                                    <input class="form-control" id="date_of_birth" name="date_of_birth" type="text"
+                                        placeholder="Date of Birth" value="<?php echo $date_of_birth;?>" required />
                                 </div>
                                 <!-- Form Group (phone)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="phone">Phone</label>
-                                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone"
+                                    <input class="form-control" id="phone" name="phone" type="text" placeholder="Phone"
                                         value="<?php echo $phone;?>" required />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="state">State</label>
-                                    <input class="form-control" id="state" name="state" type="text" placeholder="State"
-                                        value="<?php echo $state;?>" required />
+                                    <select class="form-select" name="state" id="state" required>
+                                        <option <?php if($state == "request") echo "selected";?> value="request">Request
+                                        </option>
+                                        <option <?php if($state == "reject") echo "selected";?> value="reject"> Reject
+                                        </option>
+                                        <option <?php if($state == "accept") echo "selected";?> value="accept"> Accept
+                                        </option>
+                                    </select>
+                                    <!-- <input class="form-control" id="state" name="state" type="text" placeholder="State"
+                                        value="<?php //echo $state;?>" required /> -->
                                 </div>
- 
+
                             </div>
                             <!-- Submit button-->
                             <button name="updateEngineer" class="btn btn-success" type="submit">Save</button>
@@ -238,4 +246,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-

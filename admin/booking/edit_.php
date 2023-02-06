@@ -4,8 +4,6 @@
   include('../../includes/lib.php');
   include_once('../../includes/booking.php');
   include_once('../../includes/engineer.php');
-  include_once('../../includes/service.php');
-  include_once('../../includes/customer.php');
   checkAdminSession();
 
   $pageTitle = "Edit Booking";
@@ -172,68 +170,69 @@
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <input type="hidden" name="id" id="id" value="<?php echo $id;?>" />
+
+                                <!-- Form Group (engineer_id)-->
+                                <!-- <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="engineer_id">Engineer</label>
+                                    <input class="form-control" id="engineer_id" name="engineer_id" type="text" placeholder="Engineer"
+                                        value="<?php //echo $engineer_id;?>" required />
+                                </div> -->
+
                                 <!-- Form Group (engineer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="engineer_id">Engineer</label>
                                     <select class="form-select" name="engineer_id" id="engineer_id" required>
                                         <option disabled value="">Select a Engineer:</option>
                                         <?php foreach(getAllEngineers() as $Engineer) { ?>
-                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?> value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
+                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?>
+                                            value="<?php echo $Engineer['id']; ?>">
+                                            <?php echo $Engineer['first_name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
                                 </div>
+
                                 <!-- Form Group (service_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="service_id">Service</label>
-                                    <select class="form-select" name="service_id" id="service_id" required>
-                                        <option disabled value="">Select a Service:</option>
-                                        <?php foreach(getAllServices() as $Service) { ?>
-                                        <option <?php if($service_id == $Service['id']) echo "selected" ?> value="<?php echo $Service['id']; ?>"> <?php echo $Service['name']; ?>
-                                        </option>
-                                        <?php }?>
-                                    </select>
+                                    <input class="form-control" id="service_id" name="service_id" type="text"
+                                        placeholder="Service" value="<?php echo $service_id;?>" required />
                                 </div>
                                 <!-- Form Group (customer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="customer_id">Customer</label>
-                                    <select class="form-select" name="customer_id" id="customer_id" required>
-                                        <option disabled value="">Select a Customer:</option>
-                                        <?php foreach(getAllCustomers() as $Customer) { ?>
-                                        <option <?php if($customer_id == $Customer['id']) echo "selected" ?> value="<?php echo $Customer['id']; ?>"> <?php echo $Customer['first_name']; ?>
-                                        </option>
-                                        <?php }?>
-                                    </select>
+                                    <input class="form-control" id="customer_id" name="customer_id" type="text"
+                                        placeholder="Customer" value="<?php echo $customer_id;?>" required />
                                 </div>
                                 <!-- Form Group (card_number)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="card_number">Card Number</label>
-                                    <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
-                                        value="<?php echo $card_number;?>" required />
+                                    <input class="form-control" id="card_number" name="card_number" type="text"
+                                        placeholder="Card Number" value="<?php echo $card_number;?>" required />
                                 </div>
                                 <!-- Form Group (service_price)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="service_price">Service Price</label>
-                                    <input class="form-control" id="service_price" name="service_price" type="text" placeholder="Service Price"
-                                        value="<?php echo $service_price;?>" required />
+                                    <input class="form-control" id="service_price" name="service_price" type="text"
+                                        placeholder="Service Price" value="<?php echo $service_price;?>" required />
                                 </div>
                                 <!-- Form Group (paid_price)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="paid_price">Paid Price</label>
-                                    <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
-                                        value="<?php echo $paid_price;?>" required />
+                                    <input class="form-control" id="paid_price" name="paid_price" type="text"
+                                        placeholder="Paid Price" value="<?php echo $paid_price;?>" required />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="detail">Detail</label>
-                                    <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
-                                        value="<?php echo $detail;?>" required />
+                                    <input class="form-control" id="detail" name="detail" type="text"
+                                        placeholder="Detail" value="<?php echo $detail;?>" required />
                                 </div>
                                 <!-- Form Group (end_date)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="end_date">EndDate</label>
-                                    <input class="form-control" id="end_date" name="end_date" type="text" placeholder="EndDate"
-                                        value="<?php echo $end_date;?>" required />
+                                    <input class="form-control" id="end_date" name="end_date" type="text"
+                                        placeholder="EndDate" value="<?php echo $end_date;?>" required />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">
@@ -241,7 +240,7 @@
                                     <input class="form-control" id="state" name="state" type="text" placeholder="State"
                                         value="<?php echo $state;?>" required />
                                 </div>
- 
+
                             </div>
                             <!-- Submit button-->
                             <button name="updateBooking" class="btn btn-success" type="submit">Save</button>
@@ -256,4 +255,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
