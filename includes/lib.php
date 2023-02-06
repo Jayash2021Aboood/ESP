@@ -47,7 +47,7 @@ function insert($statment)
 {
     global $mysqlilink;
     $query = $statment;
-    return  mysqli_query($mysqlilink,$query) or die('<center><div>wrong in connect with server</div>'.mysqli_error($mysqlilink)."</center>");;
+    return  mysqli_query($mysqlilink,$query) or die('<center><div>wrong in connect with server</div>'.mysqli_error($mysqlilink)."</center>".'<p>'.$statment.'</p>' );
 
 }
 
@@ -55,7 +55,7 @@ function query($statment)
 {
     global $mysqlilink;
     $query = $statment;
-    $result =  mysqli_query($mysqlilink,$query);
+    $result =  mysqli_query($mysqlilink,$query) or die('<center><div>wrong in connect with server</div>'.mysqli_error($mysqlilink)."</center>".'<p>'.$statment.'</p>' );
 	
 	if($result == false)
 		echo mysqli_error($mysqlilink);
@@ -131,4 +131,9 @@ function getAllBookingsWithDetails($customer_id = null)
     }
 }
 
+
+function getAllBookingNote($booking_id)
+{
+    return select("SELECT * FROM booking_note WHERE booking_id = $booking_id;");
+}
 ?>
