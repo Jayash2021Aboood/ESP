@@ -59,7 +59,8 @@
                         <?php foreach($all as $row) {?>
                         <tr>
                             <td>
-                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark"
+                                    href="booking_details.php?id=<?php echo($row['id']); ?>"><i
                                         data-feather="eye"></i></a>
                                 <?php echo($row['id']); ?>
                             </td>
@@ -73,7 +74,7 @@
                                         echo /*html*/'<span class="badge bg-red-soft text-red">'.$row['state'].'</span>';
                                     else if($row['state'] == 'working')
                                         echo /*html*/'<span class="badge bg-purple-soft text-purple">'.$row['state'].'</span>';
-                                    else if($row['state'] == 'engineerDone')
+                                    else if($row['state'] == 'ready')
                                         echo /*html*/'<span class="badge bg-blue-soft text-blue">'.$row['state'].'</span>';
                                     else if($row['state'] == 'done')
                                         echo /*html*/'<span class="badge bg-green-soft text-green">'.$row['state'].'</span>';
