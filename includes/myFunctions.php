@@ -37,4 +37,21 @@ function uploadImage($filedName, $dirctoryPath)
     }
   }
 
+  function redirectToReferer($error = null)
+  {
+    if(isset($error))
+    {
+      if(empty($_SESSION['fail']))
+      {
+        $_SESSION['fail'] = $error;
+      }
+      else{
+        $_SESSION['fail'] .= $error;
+      }
+    }
+     
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+  }
+
   ?>
