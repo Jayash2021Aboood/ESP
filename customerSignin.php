@@ -17,6 +17,8 @@
       $first_name = $_POST['first_name'];
 
       $last_name = $_POST['last_name'];
+      
+      $phone = $_POST['phone'];
 
       $email = $_POST['email'];
 
@@ -24,9 +26,6 @@
 
       $confirm_password = $_POST['confirm_password'];
 
-      $phone = $_POST['phone'];
-
-      $card_number = $_POST['card_number'];
 
 
       if( empty($first_name)){
@@ -36,6 +35,10 @@
       if( empty($last_name)){
         $errors[] = "<li>Last Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>Last Name is requierd.</li>";
+        }
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
         }
       if( empty($email)){
         $errors[] = "<li>Email is requierd.</li>";
@@ -55,39 +58,30 @@
         $errors[] = "<li>passwords must be matched </li>";
         $_SESSION["fail"] .= "<li>passwords must be matched </li>";
         }
-      if( empty($phone)){
-        $errors[] = "<li>Phone is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
-        }
-      if( empty($card_number)){
-        $errors[] = "<li>Card Number is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
-        }
+
+        
       if(count($errors) == 0)
       {
         
         $webUser = addWebUser($email,'c');
         if($webUser == true)
         {
-            $add = addCustomer( $first_name, $last_name, $email, $password, $phone, $card_number, 'request');
+            $add = addCustomer( $first_name, $last_name, $phone, $email, $password);
             if($add ==  true)
             {
                 $customers = select("select * from customer where email like '$email' and password like '$password';");
                 if(count($customers) > 0)
                 {
-                    if($customers[0]['state'] != 'accept'){
-                        $_SESSION["message"] = "create account successfuly wait for admin to accept your account";
-                        $_SESSION["success"] = "create account successfuly wait for admin to accept your account";
-                        header('Location: index.php');
-                        exit();
-                    }
                     $_SESSION["userID"] = $customers[0]['id'];
                     $_SESSION["user"] = $email;
                     $_SESSION["userType"] = 'c';
                     $_SESSION['success'] = "Welcome ".$customers[0]['first_name'] ." ". $customers[0]['last_name'] ;
                     header('Location: customer/index.php');
                     exit();                    
-
+                }
+                else
+                {
+                    redirectToReferer("we can't find customer with this data .!!");
                 }
             }
             else
@@ -97,9 +91,16 @@
                 $errors[] = "Error when Adding Data";
             }
         }
+        else
+        {
+            redirectToReferer("error When Create New Users ... contact administrator");
+        }
         
       }
-  
+      else
+      {
+        redirectToReferer($errors);
+      }
     }
   }
   ?>
@@ -139,6 +140,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3">
+                                <div class="col-md-12">
+                                    <!-- Form Group (phone)-->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputPhone">Phone</label>
+                                        <input class="form-control" id="inputPhone" name="phone" type="tel"
+                                            placeholder="Enter phone " required />
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Form Group (email address)            -->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
@@ -166,25 +178,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3">
-                                <div class="col-md-6">
-                                    <!-- Form Group (phone)-->
-                                    <div class="mb-3">
-                                        <label class="small mb-1" for="inputPhone">Phone</label>
-                                        <input class="form-control" id="inputPhone" name="phone" type="tel"
-                                            placeholder="Enter phone " required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Form Group (card number)-->
-                                    <div class="mb-3">
-                                        <label class="small mb-1" for="inputCardNumber">Card Number</label>
-                                        <input class="form-control" id="inputCardNumber" name="card_number" type="text"
-                                            placeholder="Enter card number" required />
-                                    </div>
-                                </div>
-                            </div>
+
                             <!-- Form Group (create account submit)-->
                             <button name="createAccount" class="btn btn-success" type="submit">Create
                                 Account</button>
