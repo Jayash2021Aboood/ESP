@@ -57,13 +57,13 @@
 <!-- محتوى الصفحة -->
 <main class="page">
 
-    <header class="py-10 mb-0 ">
-        <div class="container-xl px-4 text-center">
+    <header class="py-10 pb-5 mb-0 ">
+        <div class="container-xl px-4">
             <div class="row">
                 <div class="col-12">
                     <div class="text-center ">
                         <h1 class="text-primary"><?php echo $row['first_name'] .' '. $row['last_name']; ?></h1>
-                        <p class="m-auto mb-0 mt-0 col-lg-5"><?php echo $row['specialty']; ?></p>
+
                         <div class="progress col-lg-5 m-auto">
                             <div class="progress-bar  bg-<?php echo getRateColor($total_rate); ?>" role="progressbar"
                                 style="width: <?php echo $total_rate ?>%" aria-valuenow="<?php echo $total_rate ?>"
@@ -72,12 +72,74 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6 col-sm-12 mt-4 text-center">
+                    <h4 class="p-3">Work Information</h4>
+                    <p class="mb-0 mt-0 "> from : <?php echo $row['city']; ?></p>
+                    <p class="mb-0 mt-0 "><?php echo $row['specialty']; ?></p>
+                    <p class="mb-0 mt-0 ">Graduate At: <?php echo $row['date_of_graduate']; ?></p>
+                    <p class="mb-0 mt-0 ">Experience Years: <?php echo $row['experience_years']; ?>
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-12 mt-4 text-center">
+                    <h4 class="p-3">Contact Information</h4>
+                    <p class="mb-0 mt-0 ">mail : <?php echo $row['email']; ?></p>
+                    <p class="mb-0 mt-0 ">tel : <?php echo $row['phone']; ?></p>
+                </div>
             </div>
         </div>
     </header>
-    <hr class="mt-2 mb-4" />
+
     <!-- Main page content-->
     <div class="container-xl px-4">
+        <h2 class="mt-5 mb-0">My Gallary</h2>
+        <p>This is some of my work with previuos customer!</p>
+        <hr class="mt-0 mb-4" />
+        <div class="row">
+            <?php if(isset($row['image1']) && !empty($row['image1'])){ ?>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <a class="d-block lift rounded overflow-hidden mb-2" href="#"><img class="img-fluid"
+                        src="<?php echo $PATH_PHOTOES . $row['image1']; ?>" alt="<?php echo $row['image1']; ?>" /></a>
+            </div>
+            <?php } ?>
+            <?php if(isset($row['image2']) && !empty($row['image2'])){ ?>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <a class="d-block lift rounded overflow-hidden mb-2" href="#"><img class="img-fluid"
+                        src="<?php echo $PATH_PHOTOES . $row['image2']; ?>" alt="<?php echo $row['image2']; ?>" /></a>
+            </div>
+            <?php } ?>
+            <?php if(isset($row['image3']) && !empty($row['image3'])){ ?>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <a class="d-block lift rounded overflow-hidden mb-2" href="#"><img class="img-fluid"
+                        src="<?php echo $PATH_PHOTOES . $row['image3']; ?>" alt="<?php echo $row['image3']; ?>" /></a>
+            </div>
+            <?php } ?>
+            <?php if(isset($row['image4']) && !empty($row['image4'])){ ?>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <a class="d-block lift rounded overflow-hidden mb-2" href="#"><img class="img-fluid"
+                        src="<?php echo $PATH_PHOTOES . $row['image4']; ?>" alt="<?php echo $row['image4']; ?>" /></a>
+            </div>
+            <?php } ?>
+            <?php if(isset($row['image5']) && !empty($row['image5'])){ ?>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <a class="d-block lift rounded overflow-hidden mb-2" href="#"><img class="img-fluid"
+                        src="<?php echo $PATH_PHOTOES . $row['image5']; ?>" alt="<?php echo $row['image5']; ?>" /></a>
+            </div>
+            <?php } ?>
+            <?php if(isset($row['image6']) && !empty($row['image6'])){ ?>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <a class="d-block lift rounded overflow-hidden mb-2" href="#"><img class="img-fluid"
+                        src="<?php echo $PATH_PHOTOES . $row['image6']; ?>" alt="<?php echo $row['image6']; ?>" /></a>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+
+    <!-- Main page content-->
+    <div class="container-xl px-4">
+        <h2 class="mt-5 mb-0">My Services</h2>
+        <p>This is some of my Service Nice to Servie you!</p>
+        <hr class="mt-0 mb-4" />
         <div class="row">
             <?php
                 $all = getAllServicesByEngineerID($row['id']);
