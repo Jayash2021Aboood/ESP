@@ -42,7 +42,7 @@
                     foreach($all as  $row)
                     {
              ?>
-            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="col-md-6 col-xl-4 mb-4 mt-3 mb-xl-0">
                 <div class="card">
                     <div class="card-body text-center pt-5 pb-5">
                         <h3 class="mb-4"><?php echo $row['name']; ?></h3>
