@@ -8,11 +8,9 @@ class Customer
 	public $id;
 	public $first_name;
 	public $last_name;
+	public $phone;
 	public $email;
 	public $password;
-	public $phone;
-	public $card_number;
-	public $state;
 
 	function __construct($row)
 	{
@@ -26,11 +24,9 @@ class Customer
 			$this->id = $row[0];
 			$this->first_name = $row[1];
 			$this->last_name = $row[2];
-			$this->email = $row[3];
-			$this->password = $row[4];
-			$this->phone = $row[5];
-			$this->card_number = $row[6];
-			$this->state = $row[7];
+			$this->phone = $row[3];
+			$this->email = $row[4];
+			$this->password = $row[5];
 		}
 	}
 
@@ -51,24 +47,22 @@ function getCustomerByName($search)
 	return select("SELECT * FROM customer WHERE name like '%$search%' and active = 1");
 }
 
-function addCustomer( $first_name, $last_name, $email, $password, $phone, $card_number, $state)
+function addCustomer( $first_name, $last_name, $phone, $email, $password)
 {
     $sql = 
 		"INSERT INTO customer VALUES(null,
-'$first_name','$last_name','$email','$password','$phone','$card_number','$state')";	return query($sql);
+'$first_name','$last_name','$phone','$email','$password')";	return query($sql);
 }
 
-function updateCustomer( $id, $first_name, $last_name, $email, $password, $phone, $card_number, $state)
+function updateCustomer( $id, $first_name, $last_name, $phone, $email, $password)
 {
     $sql = 
 		"UPDATE customer SET 
 		first_name = '$first_name'
 ,		last_name = '$last_name'
+,		phone = '$phone'
 ,		email = '$email'
 ,		password = '$password'
-,		phone = '$phone'
-,		card_number = '$card_number'
-,		state = '$state'
 		WHERE id = $id ";
     return query($sql);
 }

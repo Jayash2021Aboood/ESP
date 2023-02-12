@@ -69,3 +69,5 @@ function deleteBookingNote($id)
      return query("DELETE FROM booking_note WHERE id = $id");
 }
 ?>
+
+
