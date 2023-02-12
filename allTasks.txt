@@ -77,7 +77,7 @@
     3- working
     4- ready
     5- done
-
+    6- paid
 
     New Task:
     1- Remove State From Customer.
@@ -93,4 +93,14 @@
     7- admin Dashboard .
     8- enginer dashboard.
     9- adding booking details screens for engineer Site.
+
+
+    - admin Must Not accept customer . ========================================= DONE
+    - paid must be after service sommplete.
+    - enginer update service price after finish service.
+    - aading image in Employee profile.  ======================================= DONE
+
+    - adding name , specialty city, and Experiance  in employee Profile ======== DONE
+    - solve problem when create Engineer Account Then Login.
+    - adding city column in engineer page ====================================== DONE
     
