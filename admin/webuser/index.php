@@ -103,6 +103,10 @@
                                     href="delete.php?id=<?php echo($row['id']); ?>">
                                     <i data-feather="trash-2"></i>
                                 </a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark"
+                                    href="detail.php?id=<?php echo($row['id']); ?>">
+                                    <i data-feather="eye"></i>
+                                </a>
                             </td>
                         </tr>
                         <?php }?>
