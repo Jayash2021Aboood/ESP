@@ -88,26 +88,12 @@ if (isset($_SESSION['user']))
             $customers = select("select * from customer where email like '$email' and password like '$password';");
             if(count($customers) > 0)
             {
-                if($customers[0]['state'] == 'reject'){
-                    $_SESSION["message"] = "your account has been rejected ... contact to adminstrator";
-                    $_SESSION["fail"] = "your account has been rejected ... contact to adminstrator";
-                    header('Location: login.php');
-                    exit();
-                }
-                else if($customers[0]['state'] == 'request'){
-                    $_SESSION["message"] = "your account not accepted Yet ... contact to adminstrator";
-                    $_SESSION["fail"] = "your account not accepted Yet ... contact to adminstrator";
-                    header('Location: login.php');
-                    exit();
-                }
-                else if($customers[0]['state'] == 'accept')
-                {
                     $_SESSION["userID"] = $customers[0]['id'];
                     $_SESSION["user"] = $email;
                     $_SESSION["userType"] = 'c';
                     $_SESSION['success'] = "Welcome ".$customers[0]['first_name'] ." ". $customers[0]['last_name'] ;
                     header('Location: customer/index.php');
-                }
+                    exit();
             }
         }
       }
