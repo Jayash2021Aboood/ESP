@@ -18,6 +18,7 @@
 	// HTTP
 	// define('HTTP_SERVER', 'http://localhost:90/ESP/admin/');
 	$PATH_SERVER 			= 'http://localhost:90/ESP/';
+	$PATH_PHOTOES 			= $PATH_SERVER . 'photoes/';
 
 	$PATH_ADMIN 			= $PATH_SERVER . 'admin/';
 	$PATH_CUSTOMER 			= $PATH_SERVER . 'customer/';
@@ -37,6 +38,7 @@
 	$PATH_ADMIN_INCLUDES 			= $PATH_ADMIN . 'includes/';
 	$PATH_ADMIN_TEMPLATE 			= $PATH_ADMIN . 'template/';
 	$PATH_ADMIN_PHOTOES 			= $PATH_ADMIN . 'photoes/';
+	
 
 	// DIR
 	define('DIR_APPLICATION', 'C:/xampp/htdocs/ESP/');
