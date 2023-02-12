@@ -54,12 +54,20 @@
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Phone</th>
                             <th>Email</th>
                             <th>Password</th>
+                            <th>City</th>
                             <th>Specialty</th>
+                            <th>Date of Graduate</th>
+                            <th>Experience Years</th>
                             <th>CV</th>
-                            <th>Date of Birth</th>
-                            <th>Phone</th>
+                            <th>Image1</th>
+                            <th>Image2</th>
+                            <th>Image3</th>
+                            <th>Image4</th>
+                            <th>Image5</th>
+                            <th>Image6</th>
                             <th>State</th>
                             <th>Actions</th>
                         </tr>
@@ -69,12 +77,20 @@
                                             <th>ID</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
+                                            <th>Phone</th>
                                             <th>Email</th>
                                             <th>Password</th>
+                                            <th>City</th>
                                             <th>Specialty</th>
+                                            <th>Date of Graduate</th>
+                                            <th>Experience Years</th>
                                             <th>CV</th>
-                                            <th>Date of Birth</th>
-                                            <th>Phone</th>
+                                            <th>Image1</th>
+                                            <th>Image2</th>
+                                            <th>Image3</th>
+                                            <th>Image4</th>
+                                            <th>Image5</th>
+                                            <th>Image6</th>
                                             <th>State</th>
                                             <th>Actions</th>
                                         </tr>
@@ -107,12 +123,20 @@
                                 <td> <?php echo($row['id']); ?> </td>
                                     <td> <?php echo($row['first_name']); ?> </td>
                                     <td> <?php echo($row['last_name']); ?> </td>
+                                    <td> <?php echo($row['phone']); ?> </td>
                                     <td> <?php echo($row['email']); ?> </td>
                                     <td> <?php echo($row['password']); ?> </td>
+                                    <td> <?php echo($row['city']); ?> </td>
                                     <td> <?php echo($row['specialty']); ?> </td>
+                                    <td> <?php echo($row['date_of_graduate']); ?> </td>
+                                    <td> <?php echo($row['experience_years']); ?> </td>
                                     <td> <?php echo($row['cv']); ?> </td>
-                                    <td> <?php echo($row['date_of_birth']); ?> </td>
-                                    <td> <?php echo($row['phone']); ?> </td>
+                                    <td> <?php echo($row['image1']); ?> </td>
+                                    <td> <?php echo($row['image2']); ?> </td>
+                                    <td> <?php echo($row['image3']); ?> </td>
+                                    <td> <?php echo($row['image4']); ?> </td>
+                                    <td> <?php echo($row['image5']); ?> </td>
+                                    <td> <?php echo($row['image6']); ?> </td>
                                     <td> <?php echo($row['state']); ?> </td>
     
                             <td>

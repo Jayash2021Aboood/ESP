@@ -157,11 +157,11 @@
                                     <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
                                         value="<?php echo $row['detail'];?>" readonly />
                                 </div>
-                                <!-- Form Group (end_date)-->
+                                <!-- Form Group (booking_date)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="end_date">EndDate</label>
-                                    <input class="form-control" id="end_date" name="end_date" type="text" placeholder="EndDate"
-                                        value="<?php echo $row['end_date'];?>" readonly />
+                                    <label class="small mb-1" for="booking_date">BookingDate</label>
+                                    <input class="form-control" id="booking_date" name="booking_date" type="text" placeholder="BookingDate"
+                                        value="<?php echo $row['booking_date'];?>" readonly />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">

@@ -54,11 +54,9 @@
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Phone</th>
                             <th>Email</th>
                             <th>Password</th>
-                            <th>Phone</th>
-                            <th>Card Number</th>
-                            <th>State</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -67,11 +65,9 @@
                                             <th>ID</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
+                                            <th>Phone</th>
                                             <th>Email</th>
                                             <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Card Number</th>
-                                            <th>State</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot> -->
@@ -103,11 +99,9 @@
                                 <td> <?php echo($row['id']); ?> </td>
                                     <td> <?php echo($row['first_name']); ?> </td>
                                     <td> <?php echo($row['last_name']); ?> </td>
+                                    <td> <?php echo($row['phone']); ?> </td>
                                     <td> <?php echo($row['email']); ?> </td>
                                     <td> <?php echo($row['password']); ?> </td>
-                                    <td> <?php echo($row['phone']); ?> </td>
-                                    <td> <?php echo($row['card_number']); ?> </td>
-                                    <td> <?php echo($row['state']); ?> </td>
     
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
@@ -117,6 +111,10 @@
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark"
                                     href="delete.php?id=<?php echo($row['id']); ?>">
                                     <i data-feather="trash-2"></i>
+                                </a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark"
+                                    href="detail.php?id=<?php echo($row['id']); ?>">
+                                    <i data-feather="eye"></i>
                                 </a>
                             </td>
                         </tr>

@@ -130,13 +130,13 @@
                                 <!-- Form Group (email)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
-                                    <input class="form-control" id="email" name="email" type="text" placeholder="Email"
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="Email"
                                         value="<?php echo $email;?>" required />
                                 </div>
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password"
+                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
                                         value="<?php echo $password;?>" required />
                                 </div>
  

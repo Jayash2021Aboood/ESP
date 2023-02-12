@@ -3,6 +3,8 @@
 
   include('../../includes/lib.php');
   include_once('../../includes/service.php');
+  include_once('../../includes/engineer.php');
+  include_once('../../includes/service_type.php');
   checkAdminSession();
 
   $pageTitle = "Edit Service";
@@ -57,7 +59,7 @@
         $name = $_POST['name'];
         $price = $_POST['price'];
         $detail = $_POST['detail'];
-        $image = $_POST['image'];
+      $image = uploadImage('image',DIR_PHOTOES);
       if( empty($engineer_id)){
         $errors[] = "<li>Engineer is requierd.</li>";
         $_SESSION["fail"] .= "<li>Engineer is requierd.</li>";
@@ -77,10 +79,6 @@
       if( empty($detail)){
         $errors[] = "<li>Detail is requierd.</li>";
         $_SESSION["fail"] .= "<li>Detail is requierd.</li>";
-        }
-      if( empty($image)){
-        $errors[] = "<li>Image is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Image is requierd.</li>";
         }
       
       if(count($errors) == 0)
@@ -154,14 +152,24 @@
                                 <!-- Form Group (engineer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="engineer_id">Engineer</label>
-                                    <input class="form-control" id="engineer_id" name="engineer_id" type="text" placeholder="Engineer"
-                                        value="<?php echo $engineer_id;?>" required />
+                                    <select class="form-select" name="engineer_id" id="engineer_id" required>
+                                        <option disabled value="">Select a Engineer:</option>
+                                        <?php foreach(getAllEngineers() as $Engineer) { ?>
+                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?> value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
+                                        </option>
+                                        <?php }?>
+                                    </select>
                                 </div>
                                 <!-- Form Group (service_type_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="service_type_id">ServiceType</label>
-                                    <input class="form-control" id="service_type_id" name="service_type_id" type="text" placeholder="ServiceType"
-                                        value="<?php echo $service_type_id;?>" required />
+                                    <select class="form-select" name="service_type_id" id="service_type_id" required>
+                                        <option disabled value="">Select a ServiceType:</option>
+                                        <?php foreach(getAllServiceTypes() as $ServiceType) { ?>
+                                        <option <?php if($service_type_id == $ServiceType['id']) echo "selected" ?> value="<?php echo $ServiceType['id']; ?>"> <?php echo $ServiceType['name']; ?>
+                                        </option>
+                                        <?php }?>
+                                    </select>
                                 </div>
                                 <!-- Form Group (name)-->
                                 <div class="col-md-4 mb-3">
@@ -184,7 +192,7 @@
                                 <!-- Form Group (image)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image">Image</label>
-                                    <input class="form-control" id="image" name="image" type="text" placeholder="Image"
+                                    <input class="form-control" id="image" name="image" type="file" placeholder="Image"
                                         value="<?php echo $image;?>"  />
                                 </div>
  

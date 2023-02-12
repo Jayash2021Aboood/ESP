@@ -1,40 +1,33 @@
+
 <?php
   session_start();
-
   include('../../includes/lib.php');
   include_once('../../includes/rating.php');
   include_once('../../includes/engineer.php');
   include_once('../../includes/customer.php');
+
   checkAdminSession();
 
-  $pageTitle = "Edit Rating";
-  //$row = new Rating(null);
-   $id =  $engineer_id =  $customer_id =  $rate = "";
-  //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
-  include('../../template/header.php'); 
-  $errors = array();
+  $pageTitle = "Detail Rating";
+  $row = new Rating(null);
+  include('../../template/header.php');
 
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') 
   {
+
     if(isset($_GET['id']))
     {
-      $_SESSION["message"] = '';
       $id = $_GET['id'];
       $result = getRatingById($id);
 
       if( count( $result ) > 0)
-      {
         $row = $result[0];
-        $id = $row['id'];
-        $engineer_id = $row['engineer_id'];
-        $customer_id = $row['customer_id'];
-        $rate = $row['rate'];
-      }
-      else
+
+      if($row == null)
       {
-        $_SESSION["message"] = ' There is No data for this id';
-        $_SESSION["fail"] = ' There is No data for this id';
+          $_SESSION["message"] = 'There is No data for this id';
+          $_SESSION["fail"] = 'There is No data for this id';
       }
 
     }
@@ -42,66 +35,53 @@
     {
       $_SESSION["message"] = 'No data for display';
       $_SESSION["fail"] = 'No data for display';
-      
     }
+
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') 
   {
-    if(isset($_POST['updateRating']))
+    if(isset($_POST['deleteRating']))
     {
-        $id = $_POST['id'];
-        $engineer_id = $_POST['engineer_id'];
-        $customer_id = $_POST['customer_id'];
-        $rate = $_POST['rate'];
-      if( empty($engineer_id)){
-        $errors[] = "<li>Engineer is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Engineer is requierd.</li>";
-        }
-      if( empty($customer_id)){
-        $errors[] = "<li>Customer is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
-        }
-      if( empty($rate)){
-        $errors[] = "<li>Rate is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Rate is requierd.</li>";
-        }
-      
-      if(count($errors) == 0)
+      if(isset($_GET['id']))
       {
-
-        $result = getRatingById($id);
-        if( count( $result ) > 0)
-          $row = $result[0];
-        
-        $update = updateRating( $id,  $engineer_id,  $customer_id,  $rate, );
-        if($update ==  true)
+        $id = $_POST['id'];
+        $delete = deleteRating($id);
+        if($delete ==  true)
         {
   
-          $_SESSION["message"] = "Rating Updated successfuly!";
-          $_SESSION["success"] = "Rating Updated successfuly!";
+          $_SESSION["message"] = "Rating Detaild successfuly!";          
+          $_SESSION["success"] = "Rating Detaild successfuly!";          
           header('Location:'. $PATH_ADMIN_RATING .'index.php');
           exit();
         }
         else
         {
-          $_SESSION["message"] = "Error when Update Data";
-          $_SESSION["fail"] = "Error when Update Data";
-          $errors[] = "Error when Update Data";
+          $_SESSION["message"] = "Error when Detail Data";
+          $_SESSION["fail"] = "Error when Detail Data";
+
+          $errors[] = "Error when Detail Data";
         }
-        
       }
       else
       {
+        $_SESSION["message"] = 'No data for Detail';
+        $_SESSION["fail"] = 'No data for Detail';
       }
-  
     }
+    else
+    {
+      $_SESSION["message"] = 'No data for Detail';
+      $_SESSION["fail"] = 'No data for Detail';
+    }
+
   }
+
 ?>
 
 <?php include('../../template/startNavbar.php'); ?>
 
-
+<!-- Content -->
 <main>
     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
         <div class="container-xl px-4">
@@ -110,7 +90,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fa fa-school"></i></div>
-                            Edit Rating
+                            Detail Rating
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -134,14 +114,14 @@
                         <form action="" method="POST" enctype="multipart/form-data">
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
-                                <input type="hidden" name="id" id="id" value="<?php echo $id;?>" />
+                                <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>" readonly />
                                 <!-- Form Group (engineer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="engineer_id">Engineer</label>
-                                    <select class="form-select" name="engineer_id" id="engineer_id" required>
+                                    <select disabled class="form-select" name="engineer_id" id="engineer_id" required>
                                         <option disabled value="">Select a Engineer:</option>
                                         <?php foreach(getAllEngineers() as $Engineer) { ?>
-                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?> value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
+                                        <option <?php if($row['engineer_id'] == $Engineer['id']) echo "selected" ?> value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -149,10 +129,10 @@
                                 <!-- Form Group (customer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="customer_id">Customer</label>
-                                    <select class="form-select" name="customer_id" id="customer_id" required>
+                                    <select disabled class="form-select" name="customer_id" id="customer_id" required>
                                         <option disabled value="">Select a Customer:</option>
                                         <?php foreach(getAllCustomers() as $Customer) { ?>
-                                        <option <?php if($customer_id == $Customer['id']) echo "selected" ?> value="<?php echo $Customer['id']; ?>"> <?php echo $Customer['first_name']; ?>
+                                        <option <?php if($row['customer_id'] == $Customer['id']) echo "selected" ?> value="<?php echo $Customer['id']; ?>"> <?php echo $Customer['first_name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -161,13 +141,13 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="rate">Rate</label>
                                     <input class="form-control" id="rate" name="rate" type="text" placeholder="Rate"
-                                        value="<?php echo $rate;?>" required />
+                                        value="<?php echo $row['rate'];?>" readonly />
                                 </div>
  
                             </div>
                             <!-- Submit button-->
-                            <button name="updateRating" class="btn btn-success" type="submit">Save</button>
-                            <a href="index.php" class="btn btn-danger" type="button">Back To List</a>
+                            <a href="edit.php?id=<?php echo $row['id'];?>" class="btn btn-success" type="button">Edit</a>
+                            <a href="index.php" class="btn btn-primary" type="button">Back To List</a>
                         </form>
                     </div>
                 </div>
@@ -175,7 +155,6 @@
         </div>
     </div>
 </main>
-
+<!-- Footer -->
 
 <?php include('../../template/footer.php'); ?>
-

@@ -7,7 +7,7 @@
 
   $pageTitle = "Edit Engineer";
   //$row = new Engineer(null);
-   $id =  $first_name =  $last_name =  $email =  $password =  $specialty =  $cv =  $date_of_birth =  $phone =  $state = "";
+   $id =  $first_name =  $last_name =  $phone =  $email =  $password =  $city =  $specialty =  $date_of_graduate =  $experience_years =  $cv =  $image1 =  $image2 =  $image3 =  $image4 =  $image5 =  $image6 =  $state = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -27,12 +27,20 @@
         $id = $row['id'];
         $first_name = $row['first_name'];
         $last_name = $row['last_name'];
+        $phone = $row['phone'];
         $email = $row['email'];
         $password = $row['password'];
+        $city = $row['city'];
         $specialty = $row['specialty'];
+        $date_of_graduate = $row['date_of_graduate'];
+        $experience_years = $row['experience_years'];
         $cv = $row['cv'];
-        $date_of_birth = $row['date_of_birth'];
-        $phone = $row['phone'];
+        $image1 = $row['image1'];
+        $image2 = $row['image2'];
+        $image3 = $row['image3'];
+        $image4 = $row['image4'];
+        $image5 = $row['image5'];
+        $image6 = $row['image6'];
         $state = $row['state'];
       }
       else
@@ -57,12 +65,20 @@
         $id = $_POST['id'];
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
+        $phone = $_POST['phone'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $city = $_POST['city'];
         $specialty = $_POST['specialty'];
-        $cv = $_POST['cv'];
-        $date_of_birth = $_POST['date_of_birth'];
-        $phone = $_POST['phone'];
+        $date_of_graduate = $_POST['date_of_graduate'];
+        $experience_years = $_POST['experience_years'];
+      $cv = uploadImage('cv',DIR_PHOTOES);
+      $image1 = uploadImage('image1',DIR_PHOTOES);
+      $image2 = uploadImage('image2',DIR_PHOTOES);
+      $image3 = uploadImage('image3',DIR_PHOTOES);
+      $image4 = uploadImage('image4',DIR_PHOTOES);
+      $image5 = uploadImage('image5',DIR_PHOTOES);
+      $image6 = uploadImage('image6',DIR_PHOTOES);
         $state = $_POST['state'];
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
@@ -71,6 +87,10 @@
       if( empty($last_name)){
         $errors[] = "<li>Last Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>Last Name is requierd.</li>";
+        }
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
         }
       if( empty($email)){
         $errors[] = "<li>Email is requierd.</li>";
@@ -84,17 +104,17 @@
         $errors[] = "<li>Specialty is requierd.</li>";
         $_SESSION["fail"] .= "<li>Specialty is requierd.</li>";
         }
+      if( empty($date_of_graduate)){
+        $errors[] = "<li>Date of Graduate is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Date of Graduate is requierd.</li>";
+        }
+      if( empty($experience_years)){
+        $errors[] = "<li>Experience Years is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Experience Years is requierd.</li>";
+        }
       if( empty($cv)){
         $errors[] = "<li>CV is requierd.</li>";
         $_SESSION["fail"] .= "<li>CV is requierd.</li>";
-        }
-      if( empty($date_of_birth)){
-        $errors[] = "<li>Date of Birth is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Date of Birth is requierd.</li>";
-        }
-      if( empty($phone)){
-        $errors[] = "<li>Phone is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
         }
       if( empty($state)){
         $errors[] = "<li>State is requierd.</li>";
@@ -108,7 +128,7 @@
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateEngineer( $id,  $first_name,  $last_name,  $email,  $password,  $specialty,  $cv,  $date_of_birth,  $phone,  $state, );
+        $update = updateEngineer( $id,  $first_name,  $last_name,  $phone,  $email,  $password,  $city,  $specialty,  $date_of_graduate,  $experience_years,  $cv,  $image1,  $image2,  $image3,  $image4,  $image5,  $image6,  $state, );
         if($update ==  true)
         {
   
@@ -181,6 +201,12 @@
                                     <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Last Name"
                                         value="<?php echo $last_name;?>" required />
                                 </div>
+                                <!-- Form Group (phone)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="phone">Phone</label>
+                                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone"
+                                        value="<?php echo $phone;?>" required />
+                                </div>
                                 <!-- Form Group (email)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
@@ -193,11 +219,29 @@
                                     <input class="form-control" id="password" name="password" type="password" placeholder="Password"
                                         value="<?php echo $password;?>" required />
                                 </div>
+                                <!-- Form Group (city)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="city">City</label>
+                                    <input class="form-control" id="city" name="city" type="text" placeholder="City"
+                                        value="<?php echo $city;?>"  />
+                                </div>
                                 <!-- Form Group (specialty)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="specialty">Specialty</label>
                                     <input class="form-control" id="specialty" name="specialty" type="text" placeholder="Specialty"
                                         value="<?php echo $specialty;?>" required />
+                                </div>
+                                <!-- Form Group (date_of_graduate)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="date_of_graduate">Date of Graduate</label>
+                                    <input class="form-control" id="date_of_graduate" name="date_of_graduate" type="date" placeholder="Date of Graduate"
+                                        value="<?php echo $date_of_graduate;?>" required />
+                                </div>
+                                <!-- Form Group (experience_years)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="experience_years">Experience Years</label>
+                                    <input class="form-control" id="experience_years" name="experience_years" type="text" placeholder="Experience Years"
+                                        value="<?php echo $experience_years;?>" required />
                                 </div>
                                 <!-- Form Group (cv)-->
                                 <div class="col-md-4 mb-3">
@@ -205,17 +249,41 @@
                                     <input class="form-control" id="cv" name="cv" type="file" placeholder="CV"
                                         value="<?php echo $cv;?>" required />
                                 </div>
-                                <!-- Form Group (date_of_birth)-->
+                                <!-- Form Group (image1)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="date_of_birth">Date of Birth</label>
-                                    <input class="form-control" id="date_of_birth" name="date_of_birth" type="date" placeholder="Date of Birth"
-                                        value="<?php echo $date_of_birth;?>" required />
+                                    <label class="small mb-1" for="image1">Image1</label>
+                                    <input class="form-control" id="image1" name="image1" type="file" placeholder="Image1"
+                                        value="<?php echo $image1;?>"  />
                                 </div>
-                                <!-- Form Group (phone)-->
+                                <!-- Form Group (image2)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="phone">Phone</label>
-                                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone"
-                                        value="<?php echo $phone;?>" required />
+                                    <label class="small mb-1" for="image2">Image2</label>
+                                    <input class="form-control" id="image2" name="image2" type="file" placeholder="Image2"
+                                        value="<?php echo $image2;?>"  />
+                                </div>
+                                <!-- Form Group (image3)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image3">Image3</label>
+                                    <input class="form-control" id="image3" name="image3" type="file" placeholder="Image3"
+                                        value="<?php echo $image3;?>"  />
+                                </div>
+                                <!-- Form Group (image4)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image4">Image4</label>
+                                    <input class="form-control" id="image4" name="image4" type="file" placeholder="Image4"
+                                        value="<?php echo $image4;?>"  />
+                                </div>
+                                <!-- Form Group (image5)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image5">Image5</label>
+                                    <input class="form-control" id="image5" name="image5" type="file" placeholder="Image5"
+                                        value="<?php echo $image5;?>"  />
+                                </div>
+                                <!-- Form Group (image6)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image6">Image6</label>
+                                    <input class="form-control" id="image6" name="image6" type="file" placeholder="Image6"
+                                        value="<?php echo $image6;?>"  />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">

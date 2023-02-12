@@ -127,6 +127,12 @@
                                     <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Last Name"
                                         value="<?php echo $row['last_name'];?>" readonly />
                                 </div>
+                                <!-- Form Group (phone)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="phone">Phone</label>
+                                    <input class="form-control" id="phone" name="phone" type="text" placeholder="Phone"
+                                        value="<?php echo $row['phone'];?>" readonly />
+                                </div>
                                 <!-- Form Group (email)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
@@ -139,11 +145,29 @@
                                     <input class="form-control" id="password" name="password" type="text" placeholder="Password"
                                         value="<?php echo $row['password'];?>" readonly />
                                 </div>
+                                <!-- Form Group (city)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="city">City</label>
+                                    <input class="form-control" id="city" name="city" type="text" placeholder="City"
+                                        value="<?php echo $row['city'];?>" readonly />
+                                </div>
                                 <!-- Form Group (specialty)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="specialty">Specialty</label>
                                     <input class="form-control" id="specialty" name="specialty" type="text" placeholder="Specialty"
                                         value="<?php echo $row['specialty'];?>" readonly />
+                                </div>
+                                <!-- Form Group (date_of_graduate)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="date_of_graduate">Date of Graduate</label>
+                                    <input class="form-control" id="date_of_graduate" name="date_of_graduate" type="text" placeholder="Date of Graduate"
+                                        value="<?php echo $row['date_of_graduate'];?>" readonly />
+                                </div>
+                                <!-- Form Group (experience_years)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="experience_years">Experience Years</label>
+                                    <input class="form-control" id="experience_years" name="experience_years" type="text" placeholder="Experience Years"
+                                        value="<?php echo $row['experience_years'];?>" readonly />
                                 </div>
                                 <!-- Form Group (cv)-->
                                 <div class="col-md-4 mb-3">
@@ -151,17 +175,41 @@
                                     <input class="form-control" id="cv" name="cv" type="text" placeholder="CV"
                                         value="<?php echo $row['cv'];?>" readonly />
                                 </div>
-                                <!-- Form Group (date_of_birth)-->
+                                <!-- Form Group (image1)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="date_of_birth">Date of Birth</label>
-                                    <input class="form-control" id="date_of_birth" name="date_of_birth" type="text" placeholder="Date of Birth"
-                                        value="<?php echo $row['date_of_birth'];?>" readonly />
+                                    <label class="small mb-1" for="image1">Image1</label>
+                                    <input class="form-control" id="image1" name="image1" type="text" placeholder="Image1"
+                                        value="<?php echo $row['image1'];?>" readonly />
                                 </div>
-                                <!-- Form Group (phone)-->
+                                <!-- Form Group (image2)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="phone">Phone</label>
-                                    <input class="form-control" id="phone" name="phone" type="text" placeholder="Phone"
-                                        value="<?php echo $row['phone'];?>" readonly />
+                                    <label class="small mb-1" for="image2">Image2</label>
+                                    <input class="form-control" id="image2" name="image2" type="text" placeholder="Image2"
+                                        value="<?php echo $row['image2'];?>" readonly />
+                                </div>
+                                <!-- Form Group (image3)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image3">Image3</label>
+                                    <input class="form-control" id="image3" name="image3" type="text" placeholder="Image3"
+                                        value="<?php echo $row['image3'];?>" readonly />
+                                </div>
+                                <!-- Form Group (image4)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image4">Image4</label>
+                                    <input class="form-control" id="image4" name="image4" type="text" placeholder="Image4"
+                                        value="<?php echo $row['image4'];?>" readonly />
+                                </div>
+                                <!-- Form Group (image5)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image5">Image5</label>
+                                    <input class="form-control" id="image5" name="image5" type="text" placeholder="Image5"
+                                        value="<?php echo $row['image5'];?>" readonly />
+                                </div>
+                                <!-- Form Group (image6)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="image6">Image6</label>
+                                    <input class="form-control" id="image6" name="image6" type="text" placeholder="Image6"
+                                        value="<?php echo $row['image6'];?>" readonly />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">

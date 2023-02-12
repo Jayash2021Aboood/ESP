@@ -10,7 +10,7 @@
 
   $pageTitle = "Edit Booking";
   //$row = new Booking(null);
-   $id =  $engineer_id =  $service_id =  $customer_id =  $card_number =  $service_price =  $paid_price =  $detail =  $end_date =  $state = "";
+   $id =  $engineer_id =  $service_id =  $customer_id =  $card_number =  $service_price =  $paid_price =  $detail =  $booking_date =  $state = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -35,7 +35,7 @@
         $service_price = $row['service_price'];
         $paid_price = $row['paid_price'];
         $detail = $row['detail'];
-        $end_date = $row['end_date'];
+        $booking_date = $row['booking_date'];
         $state = $row['state'];
       }
       else
@@ -65,7 +65,7 @@
         $service_price = $_POST['service_price'];
         $paid_price = $_POST['paid_price'];
         $detail = $_POST['detail'];
-        $end_date = $_POST['end_date'];
+        $booking_date = $_POST['booking_date'];
         $state = $_POST['state'];
       if( empty($engineer_id)){
         $errors[] = "<li>Engineer is requierd.</li>";
@@ -79,25 +79,13 @@
         $errors[] = "<li>Customer is requierd.</li>";
         $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
         }
-      if( empty($card_number)){
-        $errors[] = "<li>Card Number is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
-        }
       if( empty($service_price)){
         $errors[] = "<li>Service Price is requierd.</li>";
         $_SESSION["fail"] .= "<li>Service Price is requierd.</li>";
         }
-      if( empty($paid_price)){
-        $errors[] = "<li>Paid Price is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Paid Price is requierd.</li>";
-        }
-      if( empty($detail)){
-        $errors[] = "<li>Detail is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Detail is requierd.</li>";
-        }
-      if( empty($end_date)){
-        $errors[] = "<li>EndDate is requierd.</li>";
-        $_SESSION["fail"] .= "<li>EndDate is requierd.</li>";
+      if( empty($booking_date)){
+        $errors[] = "<li>BookingDate is requierd.</li>";
+        $_SESSION["fail"] .= "<li>BookingDate is requierd.</li>";
         }
       if( empty($state)){
         $errors[] = "<li>State is requierd.</li>";
@@ -111,7 +99,7 @@
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateBooking( $id,  $engineer_id,  $service_id,  $customer_id,  $card_number,  $service_price,  $paid_price,  $detail,  $end_date,  $state, );
+        $update = updateBooking( $id,  $engineer_id,  $service_id,  $customer_id,  $card_number,  $service_price,  $paid_price,  $detail,  $booking_date,  $state, );
         if($update ==  true)
         {
   
@@ -209,7 +197,7 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="card_number">Card Number</label>
                                     <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
-                                        value="<?php echo $card_number;?>" required />
+                                        value="<?php echo $card_number;?>"  />
                                 </div>
                                 <!-- Form Group (service_price)-->
                                 <div class="col-md-4 mb-3">
@@ -221,19 +209,19 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="paid_price">Paid Price</label>
                                     <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
-                                        value="<?php echo $paid_price;?>" required />
+                                        value="<?php echo $paid_price;?>"  />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="detail">Detail</label>
                                     <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
-                                        value="<?php echo $detail;?>" required />
+                                        value="<?php echo $detail;?>"  />
                                 </div>
-                                <!-- Form Group (end_date)-->
+                                <!-- Form Group (booking_date)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="end_date">EndDate</label>
-                                    <input class="form-control" id="end_date" name="end_date" type="text" placeholder="EndDate"
-                                        value="<?php echo $end_date;?>" required />
+                                    <label class="small mb-1" for="booking_date">BookingDate</label>
+                                    <input class="form-control" id="booking_date" name="booking_date" type="Date" placeholder="BookingDate"
+                                        value="<?php echo $booking_date;?>" required />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">

@@ -36,7 +36,7 @@
 
       $detail = $_POST['detail'];
 
-      $end_date = $_POST['end_date'];
+      $booking_date = $_POST['booking_date'];
 
       $state = $_POST['state'];
 
@@ -52,25 +52,13 @@
         $errors[] = "<li>Customer is requierd.</li>";
         $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
         }
-      if( empty($card_number)){
-        $errors[] = "<li>Card Number is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
-        }
       if( empty($service_price)){
         $errors[] = "<li>Service Price is requierd.</li>";
         $_SESSION["fail"] .= "<li>Service Price is requierd.</li>";
         }
-      if( empty($paid_price)){
-        $errors[] = "<li>Paid Price is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Paid Price is requierd.</li>";
-        }
-      if( empty($detail)){
-        $errors[] = "<li>Detail is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Detail is requierd.</li>";
-        }
-      if( empty($end_date)){
-        $errors[] = "<li>EndDate is requierd.</li>";
-        $_SESSION["fail"] .= "<li>EndDate is requierd.</li>";
+      if( empty($booking_date)){
+        $errors[] = "<li>BookingDate is requierd.</li>";
+        $_SESSION["fail"] .= "<li>BookingDate is requierd.</li>";
         }
       if( empty($state)){
         $errors[] = "<li>State is requierd.</li>";
@@ -87,7 +75,7 @@
                                     $service_price,
                                     $paid_price,
                                     $detail,
-                                    $end_date,
+                                    $booking_date,
                                     $state,
                                     );
         if($add ==  true)
@@ -184,7 +172,7 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="card_number">Card Number</label>
                                     <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
-                                        value="" required  />
+                                        value=""   />
                                 </div>
                                 <!-- Form Group (service_price)-->
                                 <div class="col-md-4 mb-3">
@@ -196,18 +184,18 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="paid_price">Paid Price</label>
                                     <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
-                                        value="" required  />
+                                        value=""   />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="detail">Detail</label>
                                     <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
-                                        value="" required  />
+                                        value=""   />
                                 </div>
-                                <!-- Form Group (end_date)-->
+                                <!-- Form Group (booking_date)-->
                                 <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="end_date">EndDate</label>
-                                    <input class="form-control" id="end_date" name="end_date" type="Date" placeholder="EndDate"
+                                    <label class="small mb-1" for="booking_date">BookingDate</label>
+                                    <input class="form-control" id="booking_date" name="booking_date" type="Date" placeholder="BookingDate"
                                         value="" required  />
                                 </div>
                                 <!-- Form Group (state)-->

@@ -104,7 +104,7 @@
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password"
+                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
                                         value="" required  />
                                 </div>
                             </div>

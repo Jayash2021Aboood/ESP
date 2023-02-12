@@ -7,7 +7,7 @@
 
   $pageTitle = "Edit Customer";
   //$row = new Customer(null);
-   $id =  $first_name =  $last_name =  $email =  $password =  $phone =  $card_number =  $state = "";
+   $id =  $first_name =  $last_name =  $phone =  $email =  $password = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -27,11 +27,9 @@
         $id = $row['id'];
         $first_name = $row['first_name'];
         $last_name = $row['last_name'];
+        $phone = $row['phone'];
         $email = $row['email'];
         $password = $row['password'];
-        $phone = $row['phone'];
-        $card_number = $row['card_number'];
-        $state = $row['state'];
       }
       else
       {
@@ -55,11 +53,9 @@
         $id = $_POST['id'];
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
+        $phone = $_POST['phone'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $phone = $_POST['phone'];
-        $card_number = $_POST['card_number'];
-        $state = $_POST['state'];
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>First Name is requierd.</li>";
@@ -67,6 +63,10 @@
       if( empty($last_name)){
         $errors[] = "<li>Last Name is requierd.</li>";
         $_SESSION["fail"] .= "<li>Last Name is requierd.</li>";
+        }
+      if( empty($phone)){
+        $errors[] = "<li>Phone is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
         }
       if( empty($email)){
         $errors[] = "<li>Email is requierd.</li>";
@@ -76,18 +76,6 @@
         $errors[] = "<li>Password is requierd.</li>";
         $_SESSION["fail"] .= "<li>Password is requierd.</li>";
         }
-      if( empty($phone)){
-        $errors[] = "<li>Phone is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Phone is requierd.</li>";
-        }
-      if( empty($card_number)){
-        $errors[] = "<li>Card Number is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
-        }
-      if( empty($state)){
-        $errors[] = "<li>State is requierd.</li>";
-        $_SESSION["fail"] .= "<li>State is requierd.</li>";
-        }
       
       if(count($errors) == 0)
       {
@@ -96,7 +84,7 @@
         if( count( $result ) > 0)
           $row = $result[0];
         
-        $update = updateCustomer( $id,  $first_name,  $last_name,  $email,  $password,  $phone,  $card_number,  $state, );
+        $update = updateCustomer( $id,  $first_name,  $last_name,  $phone,  $email,  $password, );
         if($update ==  true)
         {
   
@@ -169,35 +157,23 @@
                                     <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Last Name"
                                         value="<?php echo $last_name;?>" required />
                                 </div>
+                                <!-- Form Group (phone)-->
+                                <div class="col-md-4 mb-3">
+                                    <label class="small mb-1" for="phone">Phone</label>
+                                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone"
+                                        value="<?php echo $phone;?>" required />
+                                </div>
                                 <!-- Form Group (email)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
-                                    <input class="form-control" id="email" name="email" type="text" placeholder="Email"
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="Email"
                                         value="<?php echo $email;?>" required />
                                 </div>
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password"
+                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
                                         value="<?php echo $password;?>" required />
-                                </div>
-                                <!-- Form Group (phone)-->
-                                <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="phone">Phone</label>
-                                    <input class="form-control" id="phone" name="phone" type="text" placeholder="Phone"
-                                        value="<?php echo $phone;?>" required />
-                                </div>
-                                <!-- Form Group (card_number)-->
-                                <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="card_number">Card Number</label>
-                                    <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
-                                        value="<?php echo $card_number;?>" required />
-                                </div>
-                                <!-- Form Group (state)-->
-                                <div class="col-md-4 mb-3">
-                                    <label class="small mb-1" for="state">State</label>
-                                    <input class="form-control" id="state" name="state" type="text" placeholder="State"
-                                        value="<?php echo $state;?>" required />
                                 </div>
  
                             </div>

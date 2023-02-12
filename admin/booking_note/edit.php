@@ -3,6 +3,9 @@
 
   include('../../includes/lib.php');
   include_once('../../includes/booking_note.php');
+  include_once('../../includes/booking.php');
+  include_once('../../includes/engineer.php');
+  include_once('../../includes/customer.php');
   checkAdminSession();
 
   $pageTitle = "Edit BookingNote";
@@ -57,14 +60,6 @@
       if( empty($booking_id)){
         $errors[] = "<li>Booking is requierd.</li>";
         $_SESSION["fail"] .= "<li>Booking is requierd.</li>";
-        }
-      if( empty($engineer_id)){
-        $errors[] = "<li>Engineer is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Engineer is requierd.</li>";
-        }
-      if( empty($customer_id)){
-        $errors[] = "<li>Customer is requierd.</li>";
-        $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
         }
       if( empty($note)){
         $errors[] = "<li>Note is requierd.</li>";
@@ -142,20 +137,35 @@
                                 <!-- Form Group (booking_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="booking_id">Booking</label>
-                                    <input class="form-control" id="booking_id" name="booking_id" type="text" placeholder="Booking"
-                                        value="<?php echo $booking_id;?>" required />
+                                    <select class="form-select" name="booking_id" id="booking_id" required>
+                                        <option disabled value="">Select a Booking:</option>
+                                        <?php foreach(getAllBookings() as $Booking) { ?>
+                                        <option <?php if($booking_id == $Booking['id']) echo "selected" ?> value="<?php echo $Booking['id']; ?>"> <?php echo $Booking['name']; ?>
+                                        </option>
+                                        <?php }?>
+                                    </select>
                                 </div>
                                 <!-- Form Group (engineer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="engineer_id">Engineer</label>
-                                    <input class="form-control" id="engineer_id" name="engineer_id" type="text" placeholder="Engineer"
-                                        value="<?php echo $engineer_id;?>"  />
+                                    <select class="form-select" name="engineer_id" id="engineer_id" >
+                                        <option disabled value="">Select a Engineer:</option>
+                                        <?php foreach(getAllEngineers() as $Engineer) { ?>
+                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?> value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
+                                        </option>
+                                        <?php }?>
+                                    </select>
                                 </div>
                                 <!-- Form Group (customer_id)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="customer_id">Customer</label>
-                                    <input class="form-control" id="customer_id" name="customer_id" type="text" placeholder="Customer"
-                                        value="<?php echo $customer_id;?>"  />
+                                    <select class="form-select" name="customer_id" id="customer_id" >
+                                        <option disabled value="">Select a Customer:</option>
+                                        <?php foreach(getAllCustomers() as $Customer) { ?>
+                                        <option <?php if($customer_id == $Customer['id']) echo "selected" ?> value="<?php echo $Customer['id']; ?>"> <?php echo $Customer['first_name']; ?>
+                                        </option>
+                                        <?php }?>
+                                    </select>
                                 </div>
                                 <!-- Form Group (note)-->
                                 <div class="col-md-4 mb-3">

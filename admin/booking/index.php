@@ -59,7 +59,7 @@
                             <th>Service Price</th>
                             <th>Paid Price</th>
                             <th>Detail</th>
-                            <th>EndDate</th>
+                            <th>BookingDate</th>
                             <th>State</th>
                             <th>Actions</th>
                         </tr>
@@ -74,7 +74,7 @@
                                             <th>Service Price</th>
                                             <th>Paid Price</th>
                                             <th>Detail</th>
-                                            <th>EndDate</th>
+                                            <th>BookingDate</th>
                                             <th>State</th>
                                             <th>Actions</th>
                                         </tr>
@@ -112,7 +112,7 @@
                                     <td> <?php echo($row['service_price']); ?> </td>
                                     <td> <?php echo($row['paid_price']); ?> </td>
                                     <td> <?php echo($row['detail']); ?> </td>
-                                    <td> <?php echo($row['end_date']); ?> </td>
+                                    <td> <?php echo($row['booking_date']); ?> </td>
                                     <td> <?php echo($row['state']); ?> </td>
     
                             <td>
@@ -123,6 +123,10 @@
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark"
                                     href="delete.php?id=<?php echo($row['id']); ?>">
                                     <i data-feather="trash-2"></i>
+                                </a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark"
+                                    href="detail.php?id=<?php echo($row['id']); ?>">
+                                    <i data-feather="eye"></i>
                                 </a>
                             </td>
                         </tr>
