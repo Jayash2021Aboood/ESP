@@ -3,7 +3,6 @@
   session_start();
   include('../../includes/lib.php');
   include_once('../../includes/engineer.php');
-
   checkAdminSession();
 
   $pageTitle = "Engineers";
@@ -121,24 +120,45 @@
 
                         <tr>
                                 <td> <?php echo($row['id']); ?> </td>
-                                    <td> <?php echo($row['first_name']); ?> </td>
-                                    <td> <?php echo($row['last_name']); ?> </td>
-                                    <td> <?php echo($row['phone']); ?> </td>
-                                    <td> <?php echo($row['email']); ?> </td>
-                                    <td> <?php echo($row['password']); ?> </td>
-                                    <td> <?php echo($row['city']); ?> </td>
-                                    <td> <?php echo($row['specialty']); ?> </td>
-                                    <td> <?php echo($row['date_of_graduate']); ?> </td>
-                                    <td> <?php echo($row['experience_years']); ?> </td>
-                                    <td> <?php echo($row['cv']); ?> </td>
-                                    <td> <?php echo($row['image1']); ?> </td>
-                                    <td> <?php echo($row['image2']); ?> </td>
-                                    <td> <?php echo($row['image3']); ?> </td>
-                                    <td> <?php echo($row['image4']); ?> </td>
-                                    <td> <?php echo($row['image5']); ?> </td>
-                                    <td> <?php echo($row['image6']); ?> </td>
-                                    <td> <?php echo($row['state']); ?> </td>
-    
+                                  <td> <?php echo($row['first_name']); ?> </td>
+                                  <td> <?php echo($row['last_name']); ?> </td>
+                                  <td> <?php echo($row['phone']); ?> </td>
+                                  <td> <?php echo($row['email']); ?> </td>
+                                  <td> <?php echo($row['password']); ?> </td>
+                                  <td> <?php echo($row['city']); ?> </td>
+                                  <td> <?php echo($row['specialty']); ?> </td>
+                                  <td> <?php echo($row['date_of_graduate']); ?> </td>
+                                  <td> <?php echo($row['experience_years']); ?> </td>
+                                  <td> <?php if(!empty($row['cv'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['cv']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php if(!empty($row['image1'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image1']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php if(!empty($row['image2'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image2']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php if(!empty($row['image3'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image3']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php if(!empty($row['image4'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image4']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php if(!empty($row['image5'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image5']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php if(!empty($row['image6'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image6']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+                                <td> <?php echo($row['state']); ?> </td>
+  
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                     href="edit.php?id=<?php echo($row['id']); ?>">

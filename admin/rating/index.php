@@ -3,7 +3,8 @@
   session_start();
   include('../../includes/lib.php');
   include_once('../../includes/rating.php');
-
+  include_once('../../includes/engineer.php');
+  include_once('../../includes/customer.php');
   checkAdminSession();
 
   $pageTitle = "Ratings";
@@ -93,10 +94,18 @@
 
                         <tr>
                                 <td> <?php echo($row['id']); ?> </td>
-                                    <td> <?php echo($row['engineer_id']); ?> </td>
-                                    <td> <?php echo($row['customer_id']); ?> </td>
-                                    <td> <?php echo($row['rate']); ?> </td>
-    
+                                  <td> <?php
+                                    $Engineer = getEngineerById($row['engineer_id']) [0];
+                                    echo$Engineer['first_name']; 
+                                    ?>
+                            </td>
+                                <td> <?php
+                                    $Customer = getCustomerById($row['customer_id']) [0];
+                                    echo$Customer['first_name']; 
+                                    ?>
+                            </td>
+                                <td> <?php echo($row['rate']); ?> </td>
+  
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                     href="edit.php?id=<?php echo($row['id']); ?>">

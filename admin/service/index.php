@@ -3,7 +3,8 @@
   session_start();
   include('../../includes/lib.php');
   include_once('../../includes/service.php');
-
+  include_once('../../includes/engineer.php');
+  include_once('../../includes/service_type.php');
   checkAdminSession();
 
   $pageTitle = "Services";
@@ -99,13 +100,24 @@
 
                         <tr>
                                 <td> <?php echo($row['id']); ?> </td>
-                                    <td> <?php echo($row['engineer_id']); ?> </td>
-                                    <td> <?php echo($row['service_type_id']); ?> </td>
-                                    <td> <?php echo($row['name']); ?> </td>
-                                    <td> <?php echo($row['price']); ?> </td>
-                                    <td> <?php echo($row['detail']); ?> </td>
-                                    <td> <?php echo($row['image']); ?> </td>
-    
+                                  <td> <?php
+                                    $Engineer = getEngineerById($row['engineer_id']) [0];
+                                    echo$Engineer['first_name']; 
+                                    ?>
+                            </td>
+                                <td> <?php
+                                    $ServiceType = getServiceTypeById($row['service_type_id']) [0];
+                                    echo$ServiceType['name']; 
+                                    ?>
+                            </td>
+                                <td> <?php echo($row['name']); ?> </td>
+                                  <td> <?php echo($row['price']); ?> </td>
+                                  <td> <?php echo($row['detail']); ?> </td>
+                                  <td> <?php if(!empty($row['image'])){ ?> <a href="<?php echo($PATH_PHOTOES  . $row['image']); ?>"
+                                    target="_blank">View</a>
+                                 <?php }?>
+                            </td>
+
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                     href="edit.php?id=<?php echo($row['id']); ?>">

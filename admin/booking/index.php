@@ -1,9 +1,10 @@
-
 <?php
   session_start();
   include('../../includes/lib.php');
   include_once('../../includes/booking.php');
-
+  include_once('../../includes/engineer.php');
+  include_once('../../includes/service.php');
+  include_once('../../includes/customer.php');
   checkAdminSession();
 
   $pageTitle = "Bookings";
@@ -104,17 +105,45 @@
                                         ?>
 
                         <tr>
-                                <td> <?php echo($row['id']); ?> </td>
-                                    <td> <?php echo($row['engineer_id']); ?> </td>
-                                    <td> <?php echo($row['service_id']); ?> </td>
-                                    <td> <?php echo($row['customer_id']); ?> </td>
-                                    <td> <?php echo($row['card_number']); ?> </td>
-                                    <td> <?php echo($row['service_price']); ?> </td>
-                                    <td> <?php echo($row['paid_price']); ?> </td>
-                                    <td> <?php echo($row['detail']); ?> </td>
-                                    <td> <?php echo($row['booking_date']); ?> </td>
-                                    <td> <?php echo($row['state']); ?> </td>
-    
+                            <td> <?php echo($row['id']); ?> </td>
+                            <td> <?php
+                                    $Engineer = getEngineerById($row['engineer_id']) [0];
+                                    echo$Engineer['first_name']; 
+                                    ?>
+                            </td>
+                            <td> <?php
+                                    $Service = getServiceById($row['service_id']) [0];
+                                    echo$Service['name']; 
+                                    ?>
+                            </td>
+                            <td> <?php
+                                    $Customer = getCustomerById($row['customer_id']) [0];
+                                    echo$Customer['first_name']; 
+                                    ?>
+                            </td>
+                            <td> <?php echo($row['card_number']); ?> </td>
+                            <td> <?php echo($row['service_price']); ?> </td>
+                            <td> <?php echo($row['paid_price']); ?> </td>
+                            <td> <?php echo($row['detail']); ?> </td>
+                            <td> <?php echo($row['booking_date']); ?> </td>
+                            <td>
+                                <?php
+                                            if($row['state'] == 'request')
+                                                echo /*html*/'<span class="badge bg-light text-dark">'.$row['state'].'</span>';
+                                            else if($row['state'] == 'reject')
+                                                echo /*html*/'<span class="badge bg-red-soft text-red">'.$row['state'].'</span>';
+                                            else if($row['state'] == 'working')
+                                                echo /*html*/'<span class="badge bg-purple-soft text-purple">'.$row['state'].'</span>';
+                                            else if($row['state'] == 'ready')
+                                                echo /*html*/'<span class="badge bg-blue-soft text-blue">'.$row['state'].'</span>';
+                                            else if($row['state'] == 'done')
+                                                echo /*html*/'<span class="badge bg-green-soft text-green">'.$row['state'].'</span>';
+                                            else if($row['state'] == 'paid')
+                                                echo /*html*/'<span class="badge bg-yellow-soft text-yellow">'.$row['state'].'</span>';
+
+                                        ?>
+                            </td>
+
                             <td>
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                     href="edit.php?id=<?php echo($row['id']); ?>">
@@ -139,8 +168,8 @@
         </div>
     </div>
     <!-- Create Booking modal-->
-    <div class="modal fade" id="createBookingModal" tabindex="-1" role="dialog" aria-labelledby="createBookingModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="createBookingModal" tabindex="-1" role="dialog"
+        aria-labelledby="createBookingModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -200,5 +229,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
-
