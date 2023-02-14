@@ -9,7 +9,7 @@
 
   $pageTitle = "Edit Service";
   //$row = new Service(null);
-   $id =  $engineer_id =  $service_type_id =  $name =  $price =  $detail =  $image = "";
+   $id =  $engineer_id =  $service_type_id =  $name =  $price =  $detail =  $image = $image_old = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -59,7 +59,8 @@
         $name = $_POST['name'];
         $price = $_POST['price'];
         $detail = $_POST['detail'];
-      $image = uploadImage('image',DIR_PHOTOES);
+      $image_old = $_POST['image_old'];
+      $image = uploadImage('image', DIR_PHOTOES, $image_old);
       if( empty($engineer_id)){
         $errors[] = "<li>Engineer is requierd.</li>";
         $_SESSION["fail"] .= "<li>Engineer is requierd.</li>";
@@ -192,6 +193,7 @@
                                 <!-- Form Group (image)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image">Image</label>
+                                    <input id="image_old" name="image_old" type="hidden" value="<?php echo $image;?>" />
                                     <input class="form-control" id="image" name="image" type="file" placeholder="Image"
                                         value="<?php echo $image;?>"  />
                                 </div>
