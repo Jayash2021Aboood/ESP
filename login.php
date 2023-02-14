@@ -7,13 +7,23 @@ if (isset($_SESSION['user']))
     if(isset($_SESSION['userType']))
     {
         if($_SESSION['userType'] == 'a')
+        {
             header('Location: admin/index.php');
+            exit();
+        }
         else if($_SESSION['userType'] == 'e')
+        {
             header('Location: engineer/index.php');
+            exit();
+        }
         else if($_SESSION['userType'] == 'c')
+        {
             header('Location: customer/index.php');
+            exit();
+        }
     }
     header('Location: index.php');
+    exit();
   }
   
   include('includes/lib.php');
@@ -53,6 +63,13 @@ if (isset($_SESSION['user']))
                 $_SESSION["userType"] = 'a';
                 $_SESSION['success'] = "Welcome ".$admins[0]['email'];
                 header('Location: admin/index.php');
+                exit();
+            }
+            else
+            {
+                $_SESSION["message"] = "No Admin found with this data";
+                $_SESSION["fail"] = "No Admin found with this data";
+                $errors[] = "No Admin found with this data";
             }
         }
         else if($userType == 'e')
@@ -81,6 +98,18 @@ if (isset($_SESSION['user']))
                     $_SESSION['success'] = "Welcome ".$engineers[0]['first_name'] ." ". $engineers[0]['last_name'] ;
                     header('Location: engineer/index.php');
                 }
+                else
+                {
+                    $_SESSION["message"] = "UnKnow engineer state ... contact admininstrator";
+                    $_SESSION["fail"] = "UnKnow engineer state ... contact admininstrator";
+                    $errors[] = "UnKnow engineer state ... contact admininstrator";
+                }
+            }
+            else
+            {
+                $_SESSION["message"] = "No Enginner found with this data";
+                $_SESSION["fail"] = "No Enginner found with this data";
+                $errors[] = "No Enginner found with this data";
             }
         }
         else if($userType == 'c')
@@ -95,6 +124,18 @@ if (isset($_SESSION['user']))
                     header('Location: customer/index.php');
                     exit();
             }
+            else
+            {
+                $_SESSION["message"] = "No Customer found with this data";
+                $_SESSION["fail"] = "No Customer found with this data";
+                $errors[] = "No Customer found with this data";
+            }
+        }
+        else
+        {
+            $_SESSION["message"] = "UnKnow user state ... contact admininstrator";
+            $_SESSION["fail"] = "UnKnow user state ... contact admininstrator";
+            $errors[] = "UnKnow user state ... contact admininstrator";
         }
       }
       else
