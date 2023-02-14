@@ -78,6 +78,8 @@
                                         echo /*html*/'<span class="badge bg-blue-soft text-blue">'.$row['state'].'</span>';
                                     else if($row['state'] == 'done')
                                         echo /*html*/'<span class="badge bg-green-soft text-green">'.$row['state'].'</span>';
+                                    else if($row['state'] == 'paid')
+                                        echo /*html*/'<span class="badge bg-yellow-soft text-yellow">'.$row['state'].'</span>';
 
                                  ?>
                             </td>
