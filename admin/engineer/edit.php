@@ -7,7 +7,7 @@
 
   $pageTitle = "Edit Engineer";
   //$row = new Engineer(null);
-   $id =  $first_name =  $last_name =  $phone =  $email =  $password =  $city =  $specialty =  $date_of_graduate =  $experience_years =  $cv =  $image1 =  $image2 =  $image3 =  $image4 =  $image5 =  $image6 =  $state = "";
+   $id =  $first_name =  $last_name =  $phone =  $email =  $password =  $city =  $specialty =  $date_of_graduate =  $experience_years =  $cv = $cv_old =  $image1 = $image1_old =  $image2 = $image2_old =  $image3 = $image3_old =  $image4 = $image4_old =  $image5 = $image5_old =  $image6 = $image6_old =  $state = "";
   //$id = $name = $manager = $managerPhone = $agent = $agentPhone = $kindergarten = $earlyChildhood = $elementary = $intermediate = $secondary = $active = "";
   include('../../template/header.php'); 
   $errors = array();
@@ -72,13 +72,20 @@
         $specialty = $_POST['specialty'];
         $date_of_graduate = $_POST['date_of_graduate'];
         $experience_years = $_POST['experience_years'];
-      $cv = uploadImage('cv',DIR_PHOTOES);
-      $image1 = uploadImage('image1',DIR_PHOTOES);
-      $image2 = uploadImage('image2',DIR_PHOTOES);
-      $image3 = uploadImage('image3',DIR_PHOTOES);
-      $image4 = uploadImage('image4',DIR_PHOTOES);
-      $image5 = uploadImage('image5',DIR_PHOTOES);
-      $image6 = uploadImage('image6',DIR_PHOTOES);
+      $cv_old = $_POST['cv_old'];
+      $cv = uploadImage('cv', DIR_PHOTOES, $cv_old);
+      $image1_old = $_POST['image1_old'];
+      $image1 = uploadImage('image1', DIR_PHOTOES, $image1_old);
+      $image2_old = $_POST['image2_old'];
+      $image2 = uploadImage('image2', DIR_PHOTOES, $image2_old);
+      $image3_old = $_POST['image3_old'];
+      $image3 = uploadImage('image3', DIR_PHOTOES, $image3_old);
+      $image4_old = $_POST['image4_old'];
+      $image4 = uploadImage('image4', DIR_PHOTOES, $image4_old);
+      $image5_old = $_POST['image5_old'];
+      $image5 = uploadImage('image5', DIR_PHOTOES, $image5_old);
+      $image6_old = $_POST['image6_old'];
+      $image6 = uploadImage('image6', DIR_PHOTOES, $image6_old);
         $state = $_POST['state'];
       if( empty($first_name)){
         $errors[] = "<li>First Name is requierd.</li>";
@@ -192,14 +199,14 @@
                                 <!-- Form Group (first_name)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="first_name">First Name</label>
-                                    <input class="form-control" id="first_name" name="first_name" type="text" placeholder="First Name"
-                                        value="<?php echo $first_name;?>" required />
+                                    <input class="form-control" id="first_name" name="first_name" type="text"
+                                        placeholder="First Name" value="<?php echo $first_name;?>" required />
                                 </div>
                                 <!-- Form Group (last_name)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="last_name">Last Name</label>
-                                    <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Last Name"
-                                        value="<?php echo $last_name;?>" required />
+                                    <input class="form-control" id="last_name" name="last_name" type="text"
+                                        placeholder="Last Name" value="<?php echo $last_name;?>" required />
                                 </div>
                                 <!-- Form Group (phone)-->
                                 <div class="col-md-4 mb-3">
@@ -216,85 +223,105 @@
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
-                                        value="<?php echo $password;?>" required />
+                                    <input class="form-control" id="password" name="password" type="password"
+                                        placeholder="Password" value="<?php echo $password;?>" required />
                                 </div>
                                 <!-- Form Group (city)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="city">City</label>
                                     <input class="form-control" id="city" name="city" type="text" placeholder="City"
-                                        value="<?php echo $city;?>"  />
+                                        value="<?php echo $city;?>" />
                                 </div>
                                 <!-- Form Group (specialty)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="specialty">Specialty</label>
-                                    <input class="form-control" id="specialty" name="specialty" type="text" placeholder="Specialty"
-                                        value="<?php echo $specialty;?>" required />
+                                    <input class="form-control" id="specialty" name="specialty" type="text"
+                                        placeholder="Specialty" value="<?php echo $specialty;?>" required />
                                 </div>
                                 <!-- Form Group (date_of_graduate)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="date_of_graduate">Date of Graduate</label>
-                                    <input class="form-control" id="date_of_graduate" name="date_of_graduate" type="date" placeholder="Date of Graduate"
+                                    <input class="form-control" id="date_of_graduate" name="date_of_graduate"
+                                        type="date" placeholder="Date of Graduate"
                                         value="<?php echo $date_of_graduate;?>" required />
                                 </div>
                                 <!-- Form Group (experience_years)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="experience_years">Experience Years</label>
-                                    <input class="form-control" id="experience_years" name="experience_years" type="text" placeholder="Experience Years"
+                                    <input class="form-control" id="experience_years" name="experience_years"
+                                        type="text" placeholder="Experience Years"
                                         value="<?php echo $experience_years;?>" required />
                                 </div>
                                 <!-- Form Group (cv)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="cv">CV</label>
+                                    <input id="cv_old" name="cv_old" type="hidden" value="<?php echo $cv;?>" />
                                     <input class="form-control" id="cv" name="cv" type="file" placeholder="CV"
-                                        value="<?php echo $cv;?>" required />
+                                        value="<?php echo $cv;?>"
+                                        <?php if( !isset($cv) || empty($cv)) echo 'required';?> />
                                 </div>
                                 <!-- Form Group (image1)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image1">Image1</label>
-                                    <input class="form-control" id="image1" name="image1" type="file" placeholder="Image1"
-                                        value="<?php echo $image1;?>"  />
+                                    <input id="image1_old" name="image1_old" type="hidden"
+                                        value="<?php echo $image1;?>" />
+                                    <input class="form-control" id="image1" name="image1" type="file"
+                                        placeholder="Image1" value="<?php echo $image1;?>" />
                                 </div>
                                 <!-- Form Group (image2)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image2">Image2</label>
-                                    <input class="form-control" id="image2" name="image2" type="file" placeholder="Image2"
-                                        value="<?php echo $image2;?>"  />
+                                    <input id="image2_old" name="image2_old" type="hidden"
+                                        value="<?php echo $image2;?>" />
+                                    <input class="form-control" id="image2" name="image2" type="file"
+                                        placeholder="Image2" value="<?php echo $image2;?>" />
                                 </div>
                                 <!-- Form Group (image3)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image3">Image3</label>
-                                    <input class="form-control" id="image3" name="image3" type="file" placeholder="Image3"
-                                        value="<?php echo $image3;?>"  />
+                                    <input id="image3_old" name="image3_old" type="hidden"
+                                        value="<?php echo $image3;?>" />
+                                    <input class="form-control" id="image3" name="image3" type="file"
+                                        placeholder="Image3" value="<?php echo $image3;?>" />
                                 </div>
                                 <!-- Form Group (image4)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image4">Image4</label>
-                                    <input class="form-control" id="image4" name="image4" type="file" placeholder="Image4"
-                                        value="<?php echo $image4;?>"  />
+                                    <input id="image4_old" name="image4_old" type="hidden"
+                                        value="<?php echo $image4;?>" />
+                                    <input class="form-control" id="image4" name="image4" type="file"
+                                        placeholder="Image4" value="<?php echo $image4;?>" />
                                 </div>
                                 <!-- Form Group (image5)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image5">Image5</label>
-                                    <input class="form-control" id="image5" name="image5" type="file" placeholder="Image5"
-                                        value="<?php echo $image5;?>"  />
+                                    <input id="image5_old" name="image5_old" type="hidden"
+                                        value="<?php echo $image5;?>" />
+                                    <input class="form-control" id="image5" name="image5" type="file"
+                                        placeholder="Image5" value="<?php echo $image5;?>" />
                                 </div>
                                 <!-- Form Group (image6)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image6">Image6</label>
-                                    <input class="form-control" id="image6" name="image6" type="file" placeholder="Image6"
-                                        value="<?php echo $image6;?>"  />
+                                    <input id="image6_old" name="image6_old" type="hidden"
+                                        value="<?php echo $image6;?>" />
+                                    <input class="form-control" id="image6" name="image6" type="file"
+                                        placeholder="Image6" value="<?php echo $image6;?>" />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="state">State</label>
                                     <input class="form-control" id="state" name="state" type="text" placeholder="State"
-                                        value="<?php echo $state;?>" required />
+                                        value="<?php echo $state;?>" required readonly />
                                 </div>
- 
+
                             </div>
                             <!-- Submit button-->
                             <button name="updateEngineer" class="btn btn-success" type="submit">Save</button>
+                            <button name="changeStateToAccept" class="btn btn-info" type="submit"
+                                formaction="engineerStateManager.php?id=<?php echo $id;?>">Accept</button>
+                            <button name="changeStateToReject" class="btn btn-pink" type="submit"
+                                formaction="engineerStateManager.php?id=<?php echo $id;?>">Reject</button>
                             <a href="index.php" class="btn btn-danger" type="button">Back To List</a>
                         </form>
                     </div>
@@ -306,4 +333,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
