@@ -101,6 +101,8 @@
     - aading image in Employee profile.  ======================================= DONE
 
     - adding name , specialty city, and Experiance  in employee Profile ======== DONE
-    - solve problem when create Engineer Account Then Login.
+    - solve problem when create Engineer Account Then Login.  ================== DONE
     - adding city column in engineer page ====================================== DONE
-    
+    - Fixing nullable numric column default value to be 0
+    - email send.
+    - profile page
