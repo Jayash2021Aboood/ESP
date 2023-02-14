@@ -166,7 +166,9 @@
                                     <select class="form-select" name="engineer_id" id="engineer_id" required>
                                         <option disabled value="">Select a Engineer:</option>
                                         <?php foreach(getAllEngineers() as $Engineer) { ?>
-                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?> value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
+                                        <option <?php if($engineer_id == $Engineer['id']) echo "selected" ?>
+                                            value="<?php echo $Engineer['id']; ?>">
+                                            <?php echo $Engineer['first_name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -177,7 +179,8 @@
                                     <select class="form-select" name="service_id" id="service_id" required>
                                         <option disabled value="">Select a Service:</option>
                                         <?php foreach(getAllServices() as $Service) { ?>
-                                        <option <?php if($service_id == $Service['id']) echo "selected" ?> value="<?php echo $Service['id']; ?>"> <?php echo $Service['name']; ?>
+                                        <option <?php if($service_id == $Service['id']) echo "selected" ?>
+                                            value="<?php echo $Service['id']; ?>"> <?php echo $Service['name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -188,7 +191,9 @@
                                     <select class="form-select" name="customer_id" id="customer_id" required>
                                         <option disabled value="">Select a Customer:</option>
                                         <?php foreach(getAllCustomers() as $Customer) { ?>
-                                        <option <?php if($customer_id == $Customer['id']) echo "selected" ?> value="<?php echo $Customer['id']; ?>"> <?php echo $Customer['first_name']; ?>
+                                        <option <?php if($customer_id == $Customer['id']) echo "selected" ?>
+                                            value="<?php echo $Customer['id']; ?>">
+                                            <?php echo $Customer['first_name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -196,44 +201,54 @@
                                 <!-- Form Group (card_number)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="card_number">Card Number</label>
-                                    <input class="form-control" id="card_number" name="card_number" type="text" placeholder="Card Number"
-                                        value="<?php echo $card_number;?>"  />
+                                    <input class="form-control" id="card_number" name="card_number" type="text"
+                                        placeholder="Card Number" value="<?php echo $card_number;?>" />
                                 </div>
                                 <!-- Form Group (service_price)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="service_price">Service Price</label>
-                                    <input class="form-control" id="service_price" name="service_price" type="text" placeholder="Service Price"
-                                        value="<?php echo $service_price;?>" required />
+                                    <input class="form-control" id="service_price" name="service_price" type="text"
+                                        placeholder="Service Price" value="<?php echo $service_price;?>" required />
                                 </div>
                                 <!-- Form Group (paid_price)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="paid_price">Paid Price</label>
-                                    <input class="form-control" id="paid_price" name="paid_price" type="text" placeholder="Paid Price"
-                                        value="<?php echo $paid_price;?>"  />
+                                    <input class="form-control" id="paid_price" name="paid_price" type="number"
+                                        placeholder="Paid Price" default="0" value="<?php echo $paid_price;?>" />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="detail">Detail</label>
-                                    <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
-                                        value="<?php echo $detail;?>"  />
+                                    <input class="form-control" id="detail" name="detail" type="text"
+                                        placeholder="Detail" value="<?php echo $detail;?>" />
                                 </div>
                                 <!-- Form Group (booking_date)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="booking_date">BookingDate</label>
-                                    <input class="form-control" id="booking_date" name="booking_date" type="Date" placeholder="BookingDate"
-                                        value="<?php echo $booking_date;?>" required />
+                                    <input class="form-control" id="booking_date" name="booking_date" type="Date"
+                                        placeholder="BookingDate" value="<?php echo $booking_date;?>" required />
                                 </div>
                                 <!-- Form Group (state)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="state">State</label>
                                     <input class="form-control" id="state" name="state" type="text" placeholder="State"
-                                        value="<?php echo $state;?>" required />
+                                        value="<?php echo $state;?>" required readonly />
                                 </div>
- 
+
                             </div>
                             <!-- Submit button-->
-                            <button name="updateBooking" class="btn btn-success" type="submit">Save</button>
-                            <a href="index.php" class="btn btn-danger" type="button">Back To List</a>
+                            <button name="updateBooking" class="mb-1 btn btn-success" type="submit">Save</button>
+                            <button name="changeStateToAccept" class="mb-1 btn btn-info" type="submit"
+                                formaction="bookingStateManager.php?id=<?php echo $id;?>">Accept</button>
+                            <button name="changeStateToReject" class="mb-1 btn btn-pink" type="submit"
+                                formaction="bookingStateManager.php?id=<?php echo $id;?>">Reject</button>
+                            <button name="changeStateToReady" class="mb-1 btn btn-primary" type="submit"
+                                formaction="bookingStateManager.php?id=<?php echo $id;?>">Ready</button>
+                            <button name="changeStateToDone" class="mb-1 btn btn-success" type="submit"
+                                formaction="bookingStateManager.php?id=<?php echo $id;?>">Done</button>
+                            <button name="changeStateToPaid" class="mb-1 btn btn-warning" type="submit"
+                                formaction="bookingStateManager.php?id=<?php echo $id;?>">Paid</button>
+                            <a href="index.php" class="mb-1 btn btn-danger" type="button">Back To List</a>
                         </form>
                     </div>
                 </div>
@@ -244,4 +259,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
