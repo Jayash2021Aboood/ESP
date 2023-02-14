@@ -1,5 +1,5 @@
 <?php
-function uploadImage($filedName, $dirctoryPath)
+function uploadImage($filedName, $dirctoryPath, $old_value = null)
   {
     if(!empty($_FILES[$filedName]['tmp_name']))
     {
@@ -10,6 +10,17 @@ function uploadImage($filedName, $dirctoryPath)
       if(move_uploaded_file($_FILES[$filedName]['tmp_name'], $path)) 
       {
         return $file;
+      }
+      else
+      {
+        return null;
+      }
+    }
+    else
+    {
+      if(isset($old_value) && !empty($old_value))
+      {
+        return $old_value;
       }
       else
       {
@@ -47,6 +58,23 @@ function uploadImage($filedName, $dirctoryPath)
       }
       else{
         $_SESSION['fail'] .= $error;
+      }
+    }
+     
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+  }
+
+  function redirectToRefererSuccess($message = null)
+  {
+    if(isset($message))
+    {
+      if(empty($_SESSION['fail']))
+      {
+        $_SESSION['success'] = $message;
+      }
+      else{
+        $_SESSION['success'] .= $message;
       }
     }
      
