@@ -80,10 +80,11 @@
                                         echo /*html*/'<span class="badge bg-green-soft text-green">'.$row['state'].'</span>';
                                     else if($row['state'] == 'paid')
                                         echo /*html*/'<span class="badge bg-yellow-soft text-yellow">'.$row['state'].'</span>';
-
+                                    else if($row['state'] == 'canceled')
+                                        echo /*html*/'<span class="badge bg-red-soft text-red">'.$row['state'].'</span>';
                                  ?>
                             </td>
-                            <td>20 Jun 2021</td>
+                            <td><?php echo($row['booking_date']); ?></td>
                         </tr>
                         <?php }?>
                     </tbody>
