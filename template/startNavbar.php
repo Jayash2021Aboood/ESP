@@ -224,7 +224,7 @@
                         </div>
                     </h6>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo $PATH_SERVER; ?>profile.php">
+                    <a class="dropdown-item" href="<?php echo $mainPage; ?>profile.php">
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
@@ -259,6 +259,11 @@
                     <div class="nav accordion" id="accordionSidenav">
 
                         <?php if(isLogin()){ ?>
+
+
+                        <!-- ============================================================  -->
+                        <!-- ==============   Admin Pages Link      ==================  -->
+                        <!-- ============================================================  -->
                         <?php if(isAdmin()){ ?>
                         <!-- Sidenav Menu Heading (Account)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
@@ -328,7 +333,36 @@
                             Admin
                         </a>
 
+                        <!-- ============================================================  -->
+                        <!-- ==============   Engineer Pages Link      ==================  -->
+                        <!-- ============================================================  -->
+
                         <?php }else if(isEngineer()){ ?>
+
+                        <a class="nav-link" href="<?php echo $PATH_ENGINEER; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Home
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ENGINEER_SERVICE; ?>">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Service
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_ENGINEER; ?>my_bookings.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Booking
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER; ?>faq.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            FAQ
+                        </a>
+                        <a class="nav-link" href="<?php echo $PATH_SERVER; ?>about_us.php">
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            About Us
+                        </a>
+
+                        <!-- ============================================================  -->
+                        <!-- ==============   Customer Pages Link      ==================  -->
+                        <!-- ============================================================  -->
 
                         <?php }else if(isCustomer()){ ?>
                         <!-- Sidenav Menu Heading (Account)-->
@@ -376,6 +410,12 @@
 
                         <?php } ?>
 
+
+
+
+                        <!-- ============================================================  -->
+                        <!-- ==============   Visitor Pages Link      ==================  -->
+                        <!-- ============================================================  -->
                         <?php }else{ ?>
 
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>index.php">
