@@ -21,10 +21,6 @@
                 <div class="col-12">
                     <div class="text-center ">
                         <h1 class="text-primary">Our Services</h1>
-                        <p class="m-auto mb-0 mt-0 col-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.Nuncquam urna,dignissim
-                            nec auctor in, mattis vitae leo.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -54,7 +50,7 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small fw-bold text-primary mb-1"><?php echo $row['name']; ?></div>
-                                <div class="h5">$<?php echo $row['price']; ?></div>
+                                <div class="h5">R.S <?php echo $row['price']; ?></div>
                                 <div class="text-xs fw-bold d-inline-flex align-items-center">
                                     <?php echo $row['detail']; ?>
                                 </div>
