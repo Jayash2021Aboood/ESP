@@ -60,7 +60,7 @@
 <!-- محتوى الصفحة -->
 <main class="page">
 
-    <header class="py-10 mb-0 ">
+    <header class="py-10 mb-0 pb-4 ">
         <div class="container-xl px-4 text-center">
             <div class="row">
                 <div class="col-12">
@@ -82,10 +82,6 @@
                             <a class="nav-link active" id="overview-tab" href="#overview" data-bs-toggle="tab"
                                 role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="payment-tab" href="#payment" data-bs-toggle="tab" role="tab"
-                                aria-controls="payment" aria-selected="false">Payment</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="card-body p-5">
@@ -93,7 +89,7 @@
                         <div class="tab-pane fade show active" id="overview" role="tabpanel"
                             aria-labelledby="overview-tab">
                             <h5 class="card-title text-primary"><?php echo $row['name']; ?></h5>
-                            <h5>$<?php echo $row['price']; ?></h5>
+                            <h5>R.S <?php echo $row['price']; ?></h5>
                             <div class="text-s fw-bold d-inline-flex align-items-center">
                                 <?php echo $row['detail']; ?>
                             </div>
@@ -104,9 +100,9 @@
                             <p class="card-text"> Category :
                                 <span class="text-success"><?php echo $service_type['name'] ;?></span>
                             </p>
-                        </div>
-                        <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                            <h5 class="card-title">Payment and Notes</h5>
+
+                            <hr class="mb-3" />
+                            <h5 class="card-title">Create Booking Know for this Service!</h5>
                             <p class="card-text"></p>
                             <form action="bookingManager.php" method="POST" enctype="multipart/form-data">
                                 <!-- Form Row-->
@@ -120,14 +116,6 @@
                                     <input type="hidden" name="service_id" id="service_id"
                                         value="<?php echo $row['id'];?>" required>
                                     </input>
-
-
-                                    <!-- Form Group (card_number)-->
-                                    <div class="col-md-4 mb-3">
-                                        <label class="small mb-1" for="card_number">Card Number</label>
-                                        <input class="form-control" id="card_number" name="card_number" type="text"
-                                            placeholder="Card Number" value="" required />
-                                    </div>
                                     <!-- Form Group (service_price)-->
                                     <div class="col-md-4 mb-3">
                                         <label class="small mb-1" for="service_price">Service Price</label>
@@ -135,27 +123,25 @@
                                             placeholder="Service Price" value="<?php echo $row['price'];?>" required
                                             readonly />
                                     </div>
-                                    <!-- Form Group (paid_price)-->
+
+                                    <!-- Form Group (booking_date)-->
                                     <div class="col-md-4 mb-3">
-                                        <label class="small mb-1" for="paid_price">Paid Price</label>
-                                        <input class="form-control" id="paid_price" name="paid_price" type="text"
-                                            placeholder="Paid Price" value="" required />
+                                        <label class="small mb-1" for="booking_date">Booking Date</label>
+                                        <input class="form-control" id="booking_date" name="booking_date" type="Date"
+                                            placeholder="Booking Date" value="" required />
                                     </div>
                                     <!-- Form Group (detail)-->
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-12 mb-3">
                                         <label class="small mb-1" for="detail">Detail</label>
-                                        <input class="form-control" id="detail" name="detail" type="text"
-                                            placeholder="Detail" value="" required />
+                                        <textarea class="lh-base form-control" id="detail" name="detail" rows="4"
+                                            placeholder="Enter your booking  details"></textarea>
                                     </div>
-                                    <!-- Form Group (end_date)-->
-                                    <div class="col-md-4 mb-3">
-                                        <label class="small mb-1" for="end_date">EndDate</label>
-                                        <input class="form-control" id="end_date" name="end_date" type="Date"
-                                            placeholder="EndDate" value="" required />
-                                    </div>
+
+
+
                                 </div>
                                 <!-- Submit button-->
-                                <button name="customerAddBooking" class="btn btn-success" type="submit">Process</button>
+                                <button name="customerAddBooking" class="btn btn-success" type="submit">Book</button>
                             </form>
                         </div>
                     </div>
