@@ -21,10 +21,6 @@
                 <div class="col-12">
                     <div class="text-center ">
                         <h1 class="text-primary">About Us</h1>
-                        <p class="m-auto mb-0 mt-0 col-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.Nuncquam urna,dignissim
-                            nec auctor in, mattis vitae leo.
-                        </p>
                     </div>
                 </div>
             </div>
