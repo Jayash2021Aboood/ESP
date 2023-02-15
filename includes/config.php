@@ -22,7 +22,10 @@
 
 	$PATH_ADMIN 			= $PATH_SERVER . 'admin/';
 	$PATH_CUSTOMER 			= $PATH_SERVER . 'customer/';
+
 	$PATH_ENGINEER 			= $PATH_SERVER . 'engineer/';
+	$PATH_ENGINEER_BOOKING 			= $PATH_ENGINEER . 'booking/';
+	$PATH_ENGINEER_SERVICE 			= $PATH_ENGINEER . 'service/';
 
 	$PATH_ADMIN_ADMIN 	= $PATH_ADMIN . 'admin/';
 	$PATH_ADMIN_SCHOOL 	= $PATH_ADMIN . 'school/';
@@ -83,6 +86,22 @@
 				header('Location:'. $path . $page);
 			} 
 			if($_SESSION['userType'] != 'a')
+			{
+				header('Location:'. $path . $page);
+			}
+  }
+
+  function checkEngineerSession($path = "http://localhost:90/ESP/" , $page = "login.php")
+  {
+            if (!isset($_SESSION['user']))
+            {
+				header('Location:'. $path . $page);
+            }
+			if (!(isset($_SESSION['userType'])))
+			{
+				header('Location:'. $path . $page);
+			} 
+			if($_SESSION['userType'] != 'e')
 			{
 				header('Location:'. $path . $page);
 			}
