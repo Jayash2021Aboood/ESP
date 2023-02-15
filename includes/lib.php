@@ -132,6 +132,28 @@ function getAllBookingsWithDetails($customer_id = null)
 }
 
 
+function getAllBookingsWithDetailsByEngineer($engineer_id = null)
+{
+    if(isset( $engineer_id) && !empty($engineer_id))
+    {
+        return select(' SELECT b.* , s.name as service, CONCAT( c.first_name,\' \',c.last_name)  as customer
+                        FROM booking AS b
+                        LEFT JOIN service AS s ON s.id = b.service_id
+                        LEFT JOIN customer AS c ON c.id = b.customer_id
+                        WHERE b.engineer_id = '.$engineer_id.'
+                        ;');
+    }
+    else
+    {
+        return select(' SELECT b.* , s.name as service, CONCAT( c.first_name,\' \',c.last_name)  as customer
+                        FROM booking AS b
+                        LEFT JOIN service AS s ON s.id = b.service_id
+                        LEFT JOIN customer AS c ON c.id = b.customer_id;');
+    }
+}
+
+
+
 function getAllBookingNote($booking_id)
 {
     return select("SELECT * FROM booking_note WHERE booking_id = $booking_id;");
