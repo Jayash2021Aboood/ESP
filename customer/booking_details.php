@@ -84,11 +84,13 @@
                             <a class="nav-link active" id="overview-tab" href="#overview" data-bs-toggle="tab"
                                 role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                         </li>
+                        <?php if( !($row['state'] == 'request' || $row['state'] == 'reject' || $row['state'] == 'canceled') && $row['service_price'] !=  $row['paid_price']){  ?>
                         <li class="nav-item">
                             <a class="nav-link" id="payment-tab" href="#payment" data-bs-toggle="tab" role="tab"
                                 aria-controls="payment" aria-selected="false">Payment</a>
                         </li>
-                        <?php if( !($row['state'] == 'request' || $row['state'] == 'reject') ){  ?>
+                        <?php }  ?>
+                        <?php if( !($row['state'] == 'request' || $row['state'] == 'reject' ) ){  ?>
                         <li class="nav-item">
                             <a class="nav-link" id="notes-tab" href="#notes" data-bs-toggle="tab" role="tab"
                                 aria-controls="notes" aria-selected="false">Notes</a>
@@ -107,6 +109,10 @@
                                 echo /*html*/'<span class="badge bg-blue">'.$row['state'].'</span>';
                             else if($row['state'] == 'done')
                                 echo /*html*/'<span class="badge bg-green">'.$row['state'].'</span>';
+                            else if($row['state'] == 'paid')
+                                echo /*html*/'<span class="badge bg-yellow-soft text-yellow">'.$row['state'].'</span>';
+                            else if($row['state'] == 'canceled')
+                                echo /*html*/'<span class="badge bg-red-soft text-red">'.$row['state'].'</span>';
 
                             ?>
                     </div>
@@ -115,8 +121,12 @@
                     <div class="tab-content" id="cardTabContent">
                         <div class="tab-pane fade show active" id="overview" role="tabpanel"
                             aria-labelledby="overview-tab">
-                            <h5 class="card-title text-primary"><?php echo $service['name']; ?></h5>
-                            <h5>$<?php echo $row['service_price']; ?></h5>
+                            <h5 class="card-title "> Booking NO: <?php echo $row['id']; ?></h5>
+                            <h5 class="card-title "> Booking Date: <?php echo $row['booking_date']; ?>
+                            </h5>
+                            <h5 class="card-title text-primary">Service Name : <?php echo $service['name']; ?></h5>
+                            <h5>Service Price : R.S <?php echo $row['service_price']; ?></h5>
+                            <h5>Paid Price : R.S <?php echo $row['paid_price'] ?? 0; ?></h5>
                             <div class="text-s fw-bold d-inline-flex align-items-center">
                                 <?php echo $row['detail']; ?>
                             </div>
@@ -133,36 +143,41 @@
                                 </input>
                                 <!-- Submit button-->
                                 <button name="customerAcceptBookingDone" class="btn btn-success" type="submit">
-                                    Service Completed!</button>
+                                    Service Completed</button>
+                                <button name="customerBackBookingToEnginner" class="btn btn-primary" type="submit">
+                                    Back To Engineer</button>
+                                <button name="customerCanceledBooking" class="btn btn-danger" type="submit">
+                                    Cancel Service</button>
                             </form>
 
-                            <form class="d-inline-block mb-2" action="bookingManager.php" method="POST"
-                                enctype="multipart/form-data">
-                                <!-- Form Group (booking_id)-->
-                                <input type="hidden" name="booking_id" id="booking_id" value="<?php echo $row['id'];?>"
+                            <!-- <form class="d-inline-block mb-2" action="bookingManager.php" method="POST"
+                                enctype="multipart/form-data"> -->
+                            <!-- Form Group (booking_id)-->
+                            <!-- <input type="hidden" name="booking_id" id="booking_id" value="<?php //echo $row['id'];?>"
                                     required>
-                                </input>
-                                <!-- Submit button-->
-                                <button name="customerBackBookingToEnginner" class="btn btn-primary" type="submit">
-                                    Back To Engineer!</button>
-                            </form>
+                                </input> -->
+                            <!-- Submit button-->
+                            <!-- </form> -->
                             <?php } ?>
                         </div>
                         <!--  Start Payment Tab  -->
                         <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
                             <h5 class="card-title">Payment and Notes</h5>
                             <p class="card-text"></p>
-                            <form action="" method="GET" enctype="multipart/form-data">
+                            <form action="bookingManager.php" method="POST" enctype="multipart/form-data">
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (engineer_id)-->
+
+                                    <input type="hidden" name="id" id="id" value="<?php echo $row['id'];?>" required>
+                                    </input>
 
                                     <input class="form-control" type="hidden" name="engineer_id" id="engineer_id"
                                         value="<?php echo $engineer['id'];?>" required>
                                     </input>
                                     <!-- Form Group (service_id)-->
                                     <input type="hidden" name="service_id" id="service_id"
-                                        value="<?php echo $row['id'];?>" required>
+                                        value="<?php echo $row['service_id'];?>" required>
                                     </input>
 
 
@@ -170,8 +185,7 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="small mb-1" for="card_number">Card Number</label>
                                         <input class="form-control" id="card_number" name="card_number" type="text"
-                                            placeholder="Card Number" value="<?php echo $row['card_number'];?>"
-                                            readonly />
+                                            placeholder="Card Number" value="<?php echo $row['card_number'];?>" />
                                     </div>
                                     <!-- Form Group (service_price)-->
                                     <div class="col-md-4 mb-3">
@@ -184,8 +198,7 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="small mb-1" for="paid_price">Paid Price</label>
                                         <input class="form-control" id="paid_price" name="paid_price" type="text"
-                                            placeholder="Paid Price" value="<?php echo $row['paid_price'];?>"
-                                            readonly />
+                                            placeholder="Paid Price" value="<?php echo $row['paid_price'];?>" />
                                     </div>
                                     <!-- Form Group (detail)-->
                                     <div class="col-md-4 mb-3">
@@ -193,56 +206,27 @@
                                         <input class="form-control" id="detail" name="detail" type="text"
                                             placeholder="Detail" value="<?php echo $row['detail'];?>" readonly />
                                     </div>
-                                    <!-- Form Group (end_date)-->
+                                    <!-- Form Group (booking_date)-->
                                     <div class="col-md-4 mb-3">
-                                        <label class="small mb-1" for="end_date">EndDate</label>
-                                        <input class="form-control" id="end_date" name="end_date" type="Date"
-                                            placeholder="EndDate" value="<?php echo $row['end_date'];?>" readonly />
+                                        <label class="small mb-1" for="booking_date">Booking Date</label>
+                                        <input class="form-control" id="booking_date" name="booking_date" type="Date"
+                                            placeholder="Booking Date" value="<?php echo $row['booking_date'];?>"
+                                            readonly />
                                     </div>
                                 </div>
                                 <!-- Submit button-->
-                                <!-- <button name="customerAddBooking" class="btn btn-success" type="submit">Process</button> -->
+                                <button name="customerPaidBooking" class="btn btn-success"
+                                    type="submit">Payment</button>
                             </form>
                         </div>
                         <!-- End Payment Tab -->
 
 
-                        <?php if( !($row['state'] == 'request' || $row['state'] == 'reject') ){  ?>
+                        <?php if( !($row['state'] == 'request' || $row['state'] == 'reject' ) ){  ?>
                         <!--  Start Notes Tab  -->
                         <div class="tab-pane fade h-100" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-                            <?php if($row['state'] != 'done' && $row['state'] != 'working'){  ?>
-                            <form action="bookingManager.php" method="POST" enctype="multipart/form-data">
-                                <!-- Form Row-->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (customer_id)-->
 
-                                    <input class="form-control" type="hidden" name="customer_id" id="customer_id"
-                                        value="<?php if(isCustomer()) echo $_SESSION['userID'];?>" required>
-                                    </input>
-                                    <!-- Form Group (booking_id)-->
-                                    <input type="hidden" name="booking_id" id="booking_id"
-                                        value="<?php echo $row['id'];?>" required>
-                                    </input>
-
-
-                                    <!-- Form Group (note)-->
-                                    <div class="col-10 mb-3">
-                                        <!-- <label class="small mb-1" for="note">Note</label> -->
-                                        <input class="form-control" id="note" name="note" type="text"
-                                            placeholder="Enter Your Note" value="" required />
-                                    </div>
-
-                                    <div class="col-2">
-
-                                        <!-- Submit button-->
-                                        <button name="customerAddBookingNote" class="btn btn-success"
-                                            type="submit">Send</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <?php }  ?>
-
-                            <?php if($row['state'] == 'done'){  ?>
+                            <?php if($row['state'] == 'done' || $row['state'] == 'paid' ){  ?>
                             <!-- Rating Form -->
                             <form action="bookingManager.php" method="POST" enctype="multipart/form-data">
                                 <!-- Form Row-->
@@ -275,6 +259,41 @@
                             </form>
                             <!-- End Rating Form -->
                             <?php } ?>
+
+                            <?php if($row['state'] != 'canceled'){  ?>
+                            <form action="bookingManager.php" method="POST" enctype="multipart/form-data">
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (customer_id)-->
+
+                                    <input class="form-control" type="hidden" name="customer_id" id="customer_id"
+                                        value="<?php if(isCustomer()) echo $_SESSION['userID'];?>" required>
+                                    </input>
+                                    <!-- Form Group (booking_id)-->
+                                    <input type="hidden" name="booking_id" id="booking_id"
+                                        value="<?php echo $row['id'];?>" required>
+                                    </input>
+
+
+                                    <!-- Form Group (note)-->
+                                    <div class="col-10 mb-3">
+                                        <!-- <label class="small mb-1" for="note">Note</label> -->
+                                        <input class="form-control" id="note" name="note" type="text"
+                                            placeholder="Enter Your Note" value="" required />
+                                    </div>
+
+                                    <div class="col-2">
+
+                                        <!-- Submit button-->
+                                        <button name="customerAddBookingNote" class="btn btn-success"
+                                            type="submit">Send</button>
+
+                                    </div>
+                                </div>
+                            </form>
+                            <?php }  ?>
+
+
 
                             <div class="col-12 noteMessage">
                                 <?php 
