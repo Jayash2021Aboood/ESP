@@ -78,9 +78,10 @@
     4- ready
     5- done
     6- paid
+    7- canceled
 
     New Task:
-    1- Remove State From Customer.
+    1- Remove State From Customer. 
     2- Update Engineer Display Page In Customer Site.
         a: make Date Of Grade Column.
         a: add column ( Experiance Years, 6 images, )
@@ -96,8 +97,8 @@
 
 
     - admin Must Not accept customer . ========================================= DONE
-    - paid must be after service sommplete.
-    - enginer update service price after finish service.
+    - paid must be after service ommplete. ===================================== DONE
+    - enginer update service price after finish service. ======================= DONE
     - aading image in Employee profile.  ======================================= DONE
 
     - adding name , specialty city, and Experiance  in employee Profile ======== DONE
@@ -105,4 +106,4 @@
     - adding city column in engineer page ====================================== DONE
     - Fixing nullable numric column default value to be 0
     - email send.
-    - profile page
+    - profile page    ========================================================== DONE
