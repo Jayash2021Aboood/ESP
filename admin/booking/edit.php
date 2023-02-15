@@ -248,6 +248,8 @@
                                 formaction="bookingStateManager.php?id=<?php echo $id;?>">Done</button>
                             <button name="changeStateToPaid" class="mb-1 btn btn-warning" type="submit"
                                 formaction="bookingStateManager.php?id=<?php echo $id;?>">Paid</button>
+                            <button name="changeStateToCanceled" class="mb-1 btn btn-danger" type="submit"
+                                formaction="bookingStateManager.php?id=<?php echo $id;?>">Canceled</button>
                             <a href="index.php" class="mb-1 btn btn-danger" type="button">Back To List</a>
                         </form>
                     </div>
