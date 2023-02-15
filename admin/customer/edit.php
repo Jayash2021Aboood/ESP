@@ -148,14 +148,14 @@
                                 <!-- Form Group (first_name)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="first_name">First Name</label>
-                                    <input class="form-control" id="first_name" name="first_name" type="text" placeholder="First Name"
-                                        value="<?php echo $first_name;?>" required />
+                                    <input class="form-control" id="first_name" name="first_name" type="text"
+                                        placeholder="First Name" value="<?php echo $first_name;?>" required />
                                 </div>
                                 <!-- Form Group (last_name)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="last_name">Last Name</label>
-                                    <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Last Name"
-                                        value="<?php echo $last_name;?>" required />
+                                    <input class="form-control" id="last_name" name="last_name" type="text"
+                                        placeholder="Last Name" value="<?php echo $last_name;?>" required />
                                 </div>
                                 <!-- Form Group (phone)-->
                                 <div class="col-md-4 mb-3">
@@ -167,15 +167,15 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
                                     <input class="form-control" id="email" name="email" type="email" placeholder="Email"
-                                        value="<?php echo $email;?>" required />
+                                        value="<?php echo $email;?>" required readonly />
                                 </div>
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
-                                        value="<?php echo $password;?>" required />
+                                    <input class="form-control" id="password" name="password" type="password"
+                                        placeholder="Password" value="<?php echo $password;?>" required />
                                 </div>
- 
+
                             </div>
                             <!-- Submit button-->
                             <button name="updateCustomer" class="btn btn-success" type="submit">Save</button>
@@ -190,4 +190,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
