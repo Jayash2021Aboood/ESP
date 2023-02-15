@@ -131,15 +131,15 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="email">Email</label>
                                     <input class="form-control" id="email" name="email" type="email" placeholder="Email"
-                                        value="<?php echo $email;?>" required />
+                                        value="<?php echo $email;?>" required readonly />
                                 </div>
                                 <!-- Form Group (password)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="password">Password</label>
-                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"
-                                        value="<?php echo $password;?>" required />
+                                    <input class="form-control" id="password" name="password" type="password"
+                                        placeholder="Password" value="<?php echo $password;?>" required />
                                 </div>
- 
+
                             </div>
                             <!-- Submit button-->
                             <button name="updateAdmin" class="btn btn-success" type="submit">Save</button>
@@ -154,4 +154,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
