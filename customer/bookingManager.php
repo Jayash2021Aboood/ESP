@@ -32,15 +32,15 @@
 
       $customer_id = $_SESSION["userID"];
 
-      $card_number = $_POST['card_number'];
+      $card_number = "NULL";
 
       $service_price = $_POST['service_price'];
 
-      $paid_price = $_POST['paid_price'];
-
+      $paid_price = "NULL";
+      
       $detail = $_POST['detail'];
 
-      $end_date = $_POST['end_date'];
+      $booking_date = $_POST['booking_date'];
       
 
       if( empty($engineer_id)){
@@ -86,7 +86,7 @@
                                     $service_price,
                                     $paid_price,
                                     $detail,
-                                    $end_date,
+                                    $booking_date,
                                     'request',
                                     );
         if($add ==  true)
@@ -316,6 +316,107 @@
       }
   
     }
+
+
+    // =======================================================================
+    // ======================== Customer Change Booking State To working =================
+    // =======================================================================
+
+    if(isset($_POST['customerPaidBooking']))
+    {
+
+      $id = $_POST['id'];
     
+      $engineer_id = $_POST['engineer_id'];
+
+      $service_id = $_POST['service_id'];
+
+      $customer_id = $_SESSION["userID"];
+
+      $card_number = $_POST['card_number'];
+
+      $service_price = $_POST['service_price'];
+
+      $paid_price = $_POST['paid_price'];
+      
+      $detail = $_POST['detail'];
+
+      $booking_date = $_POST['booking_date'];
+
+      if(!isset($id) || empty($id)){
+        $errors[] = "<li>Booking  is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Booking is requierd.</li>";
+        }
+
+      if( empty($engineer_id)){
+        $errors[] = "<li>Engineer is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Engineer is requierd.</li>";
+        }
+      if( empty($service_id)){
+        $errors[] = "<li>Service is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Service is requierd.</li>";
+        }
+      if( empty($customer_id)){
+        $errors[] = "<li>Customer is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Customer is requierd.</li>";
+        }
+      if( empty($card_number)){
+        $errors[] = "<li>Card Number is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Card Number is requierd.</li>";
+        }
+      if( empty($service_price)){
+        $errors[] = "<li>Service Price is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Service Price is requierd.</li>";
+        }
+      if( empty($paid_price) || is_null($paid_price)){
+        $errors[] = "<li>Paid Price is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Paid Price is requierd.</li>";
+        }     
+        if(!empty($service_price) && !empty($paid_price)){
+            if($service_price > $paid_price){
+                $errors[] = "<li>Paid Price is Must be the same Service Price</li>";
+                $_SESSION["fail"] .= "<li>Paid Price is Must be the same Service Price</li>";
+            }
+        }
+
+
+      if(count($errors) > 0)
+        redirectToReferer();
+
+      $booking = getBookingById($id);
+      if(count($booking) == 0)
+        redirectToReferer("No Booking Found to Update");
+
+      $row = $booking[0];
+      $customer_id = $row['customer_id'];
+      
+      if($customer_id != $_SESSION['userID']) 
+        redirectToReferer("you dont have permission to modify this data!");
+
+      // if($row['state'] != "ready")
+      //   redirectToReferer("you cant update booking state, work Must be ready to return it to Engineer");
+
+      if(count($errors) == 0)
+      {
+        
+        $add = updateBooking($id, $engineer_id, $service_id, $customer_id, $card_number, $service_price, $paid_price, $detail, $booking_date, 'paid');
+        if($add ==  true)
+        {
+          $_SESSION["message"] = "Booking Updated successfuly!";
+          $_SESSION["success"] = "Booking Updated successfuly!";
+          header('Location: ' . $_SERVER['HTTP_REFERER']);
+          exit();
+        }
+        else
+        {
+          redirectToReferer("Error when Adding Data");
+        }
+        
+      }
+  
+    }
+   
+    redirectToReferer();
   }
+  redirectToReferer();
 ?>
