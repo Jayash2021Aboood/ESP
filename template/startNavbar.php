@@ -267,26 +267,26 @@
                         <?php if(isAdmin()){ ?>
                         <!-- Sidenav Menu Heading (Account)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                        <div class="sidenav-menu-heading d-sm-none">Account</div>
+                        <!-- <div class="sidenav-menu-heading d-sm-none">Account</div> -->
                         <!-- Sidenav Link (Alerts)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                        <a class="nav-link d-sm-none" href="#!">
+                        <!-- <a class="nav-link d-sm-none" href="#!">
                             <div class="nav-link-icon"><i data-feather="bell"></i></div>
                             Alerts
                             <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
-                        </a>
+                        </a> -->
                         <!-- Sidenav Link (Messages)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                        <a class="nav-link d-sm-none" href="#!">
+                        <!-- <a class="nav-link d-sm-none" href="#!">
                             <div class="nav-link-icon"><i data-feather="mail"></i></div>
                             Messages
                             <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
-                        </a>
+                        </a> -->
                         <!-- Sidenav Menu Heading (Core)-->
-                        <div class="sidenav-menu-heading">Core</div>
+                        <div class="sidenav-menu-heading">Control Panel</div>
 
                         <!-- Sidenav Accordion (Dashboard)-->
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        <!-- <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                             data-bs-target="#collapseDashboards" aria-expanded="false"
                             aria-controls="collapseDashboards">
                             <div class="nav-link-icon"><i data-feather="activity"></i></div>
@@ -302,35 +302,36 @@
                                 <a class="nav-link" href="dashboard-2.html">Multipurpose</a>
                                 <a class="nav-link" href="dashboard-3.html">Affiliate</a>
                             </nav>
-                        </div>
+                        </div> -->
 
+                        <a class="nav-link" href="<?php echo $PATH_ADMIN; ?>">
+                            <div class="nav-link-icon"><i class="fa fa-home fa-lg"></i>
+                            </div>
+                            Home
+                        </a>
                         <a class="nav-link" href="<?php echo $PATH_ADMIN_BOOKING; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>
                             Booking
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ADMIN_RATING; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
                             Rating
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ADMIN_CUSTOMER; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
                             Customer
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ADMIN_ENGINEER; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-helmet-safety"></i> </div>
                             Engineer
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ADMIN_SERVICE; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-hand-holding-droplet"></i></div>
                             Service
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ADMIN_SERVICE_TYPE; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"> <i class="fa fa-list"></i></div>
                             Service Type
-                        </a>
-                        <a class="nav-link" href="<?php echo $PATH_ADMIN_ADMIN; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                            Admin
                         </a>
 
                         <!-- ============================================================  -->
@@ -339,24 +340,26 @@
 
                         <?php }else if(isEngineer()){ ?>
 
+                        <div class="sidenav-menu-heading">Control Panel</div>
                         <a class="nav-link" href="<?php echo $PATH_ENGINEER; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa fa-home fa-lg"></i>
+                            </div>
                             Home
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ENGINEER_SERVICE; ?>">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-hand-holding-droplet"></i></div>
                             Service
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_ENGINEER; ?>my_bookings.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                            Booking
+                            <div class="nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                            My Booking
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>faq.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-question"></i></div>
                             FAQ
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>about_us.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-circle-info"></i></div>
                             About Us
                         </a>
 
@@ -367,44 +370,51 @@
                         <?php }else if(isCustomer()){ ?>
                         <!-- Sidenav Menu Heading (Account)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                        <div class="sidenav-menu-heading d-sm-none">Account</div>
+                        <!-- <div class="sidenav-menu-heading d-sm-none">Account</div> -->
                         <!-- Sidenav Link (Alerts)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                        <a class="nav-link d-sm-none" href="#!">
+                        <!-- <a class="nav-link d-sm-none" href="#!">
                             <div class="nav-link-icon"><i data-feather="bell"></i></div>
                             Alerts
                             <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
-                        </a>
+                        </a> -->
                         <!-- Sidenav Link (Messages)-->
                         <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                        <a class="nav-link d-sm-none" href="#!">
+                        <!-- <a class="nav-link d-sm-none" href="#!">
                             <div class="nav-link-icon"><i data-feather="mail"></i></div>
                             Messages
                             <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
-                        </a>
+                        </a> -->
+                        <div class="sidenav-menu-heading">Control Panel</div>
 
                         <a class="nav-link" href="<?php echo $PATH_CUSTOMER;?>index.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa fa-home fa-lg"></i>
+                            </div>
                             Home
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>service_type.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"> <i class="fa fa-list"></i>
+                            </div>
                             Categories
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>service_list.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-hand-holding-droplet"></i></div>
                             Services
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>engineer_list.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-helmet-safety"></i> </div>
                             Engineer
                         </a>
+                        <a class="nav-link" href="<?php echo $mainPage; ?>my_bookings.php">
+                            <div class="nav-link-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                            My Booking
+                        </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>faq.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-question"></i></div>
                             FAQ
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>about_us.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-circle-info"></i></div>
                             About Us
                         </a>
 
@@ -417,33 +427,36 @@
                         <!-- ==============   Visitor Pages Link      ==================  -->
                         <!-- ============================================================  -->
                         <?php }else{ ?>
+                        <div class="sidenav-menu-heading">Fast Access</div>
 
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>index.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa fa-home fa-lg"></i>
+                            </div>
                             Home
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>service_type.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"> <i class="fa fa-list"></i>
+                            </div>
                             Categories
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>service_list.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-hand-holding-droplet"></i></div>
                             Services
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER;?>engineer_list.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-helmet-safety"></i> </div>
                             Engineer
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>faq.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-question"></i></div>
                             FAQ
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>about_us.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-circle-info"></i></div>
                             About Us
                         </a>
                         <a class="nav-link" href="<?php echo $PATH_SERVER; ?>login.php">
-                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            <div class="nav-link-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
                             Login
                         </a>
                         <?php } ?>
