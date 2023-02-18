@@ -64,6 +64,14 @@
         $errors[] = "<li>Email is requierd.</li>";
         $_SESSION["fail"] .= "<li>Email is requierd.</li>";
         }
+        else
+        {
+            if(isUserExist($email))
+            {
+                $errors[] = "<li>try again with another email.</li>";
+                $_SESSION["fail"] .= "<li>try again with another email.</li>";
+            }
+        }
       if( empty($password)){
         $errors[] = "<li>Password is requierd.</li>";
         $_SESSION["fail"] .= "<li>Password is requierd.</li>";
@@ -129,8 +137,8 @@
                 {
 
                     if($engineers[0]['state'] != 'accept'){
-                        $_SESSION["message"] = "create account successfuly wait for admin to accept your account";
-                        $_SESSION["success"] = "create account successfuly wait for admin to accept your account";
+                        $_SESSION["message"] = "create account successfuly your account will accept in next 24 hours";
+                        $_SESSION["success"] = "create account successfuly your account will accept in next 24 hours";
                         header('Location: index.php');
                         exit();
                     }

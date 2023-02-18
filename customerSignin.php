@@ -44,6 +44,14 @@
         $errors[] = "<li>Email is requierd.</li>";
         $_SESSION["fail"] .= "<li>Email is requierd.</li>";
         }
+        else
+        {
+            if(isUserExist($email))
+            {
+                $errors[] = "<li>try again with another email.</li>";
+                $_SESSION["fail"] .= "<li>try again with another email.</li>";
+            }
+        }
       if( empty($password)){
         $errors[] = "<li>Password is requierd.</li>";
         $_SESSION["fail"] .= "<li>Password is requierd.</li>";
@@ -59,6 +67,7 @@
         $_SESSION["fail"] .= "<li>passwords must be matched </li>";
         }
 
+        
         
       if(count($errors) == 0)
       {
