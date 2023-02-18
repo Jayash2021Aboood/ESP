@@ -1,5 +1,3 @@
-
-
 <?php
   session_start();
   include('../../includes/lib.php');
@@ -127,7 +125,8 @@
                                     <select class="form-select" name="engineer_id" id="engineer_id" required>
                                         <option selected disabled value="">Select a Engineer:</option>
                                         <?php foreach(getAllEngineers() as $Engineer) { ?>
-                                        <option value="<?php echo $Engineer['id']; ?>"> <?php echo $Engineer['first_name']; ?>
+                                        <option value="<?php echo $Engineer['id']; ?>">
+                                            <?php echo $Engineer['first_name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -138,7 +137,8 @@
                                     <select class="form-select" name="service_type_id" id="service_type_id" required>
                                         <option selected disabled value="">Select a ServiceType:</option>
                                         <?php foreach(getAllServiceTypes() as $ServiceType) { ?>
-                                        <option value="<?php echo $ServiceType['id']; ?>"> <?php echo $ServiceType['name']; ?>
+                                        <option value="<?php echo $ServiceType['id']; ?>">
+                                            <?php echo $ServiceType['name']; ?>
                                         </option>
                                         <?php }?>
                                     </select>
@@ -147,25 +147,25 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="name">Name</label>
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Name"
-                                        value="" required  />
+                                        value="" required />
                                 </div>
                                 <!-- Form Group (price)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="price">Price</label>
                                     <input class="form-control" id="price" name="price" type="text" placeholder="Price"
-                                        value="" required  />
+                                        value="" required />
                                 </div>
                                 <!-- Form Group (detail)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="detail">Detail</label>
-                                    <input class="form-control" id="detail" name="detail" type="text" placeholder="Detail"
-                                        value="" required  />
+                                    <input class="form-control" id="detail" name="detail" type="text"
+                                        placeholder="Detail" value="" required />
                                 </div>
                                 <!-- Form Group (image)-->
                                 <div class="col-md-4 mb-3">
                                     <label class="small mb-1" for="image">Image</label>
                                     <input class="form-control" id="image" name="image" type="file" placeholder="Image"
-                                        value=""   />
+                                        value="" />
                                 </div>
                             </div>
                             <!-- Submit button-->
@@ -181,6 +181,3 @@
 
 
 <?php include('../../template/footer.php'); ?>
-
-
-
