@@ -1,7 +1,7 @@
             <footer class="footer-admin mt-auto footer-light">
                 <div class="container-xl px-4">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright © Your Website 2021</div>
+                        <div class="col-md-6 small">Copyright © ESP 2023</div>
                         <div class="col-md-6 text-md-end small">
                             <a href="#!">Privacy Policy</a>
                             ·
@@ -31,6 +31,7 @@
             <script src="<?php echo $PATH_SERVER ?>assets/demo/chart-pie-demo.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
             <script src="<?php echo $PATH_SERVER ?>js/litepicker.js"></script>
+            <!-- Include Rich Textbox Editor -->
 
             <script>
 $(document).ready(function() {
@@ -40,6 +41,8 @@ $(document).ready(function() {
 
 });
             </script>
+
+
             </body>
 
             </html>
