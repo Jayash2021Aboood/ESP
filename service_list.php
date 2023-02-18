@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small fw-bold text-primary mb-1"><?php echo $row['name']; ?></div>
+                                <div class=" fs-3 fw-bold text-primary mb-1"><?php echo $row['name']; ?></div>
                                 <div class="h5">R.S <?php echo $row['price']; ?></div>
                                 <div class="text-xs fw-bold d-inline-flex align-items-center">
                                     <?php echo $row['detail']; ?>
