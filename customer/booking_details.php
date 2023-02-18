@@ -134,7 +134,7 @@
                                 <span
                                     class="text-success"><?php echo $engineer['first_name'] . ' ' . $engineer['last_name'];?></span>
                             </p>
-                            <?php if( $row['state'] == 'ready'){  ?>
+                            <?php if( $row['state'] == 'ready' || $row['state'] == 'working'){  ?>
                             <form class="d-inline-block mb-2" action="bookingManager.php" method="POST"
                                 enctype="multipart/form-data">
                                 <!-- Form Group (booking_id)-->
@@ -142,10 +142,12 @@
                                     required>
                                 </input>
                                 <!-- Submit button-->
+                                <?php if( $row['state'] == 'ready'){  ?>
                                 <button name="customerAcceptBookingDone" class="btn btn-success" type="submit">
                                     Service Completed</button>
                                 <button name="customerBackBookingToEnginner" class="btn btn-primary" type="submit">
                                     Back To Engineer</button>
+                                <?php } ?>
                                 <button name="customerCanceledBooking" class="btn btn-danger" type="submit">
                                     Cancel Service</button>
                             </form>
