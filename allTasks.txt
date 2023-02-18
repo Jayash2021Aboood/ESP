@@ -107,3 +107,27 @@
     - Fixing nullable numric column default value to be 0
     - email send.
     - profile page    ========================================================== DONE
+    - total booking in engineer site
+    - My Rate in engineer site
+    - total Service in engineer site.
+    - change Create Engineer Message "Your Account Will Be Acttivated in 24 hours." DONE
+    - admin Control Panel:
+        - toatl Enginner. ========================================================= DONE
+        - toatl Customer. ========================================================= DONE
+        - toatl Service.  ========================================================= DONE
+        - toatl Categories. ======================================================= DONE
+    - make user unique .    ======================================================= DONE
+    - make service detail column as rich textbox.
+    - Remove additional task from admin site .
+    - remove admin screens from control panel. ==================================== DONE
+    - make delete cascasde in database.  ========================================== DONE.
+    - create password validation constraint. 
+    
+
+
+
+
+    Vistor
+    admin
+    customer
+    engineer
