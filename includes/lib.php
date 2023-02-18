@@ -158,4 +158,27 @@ function getAllBookingNote($booking_id)
 {
     return select("SELECT * FROM booking_note WHERE booking_id = $booking_id;");
 }
+
+function isUserExist($email)
+{
+    $webusers =  select("SELECT COUNT(id) as total FROM webuser WHERE email = '$email';");
+    $admins =  select("SELECT COUNT(id) as total FROM admin WHERE email = '$email';");
+    $customers =  select("SELECT COUNT(id) as total FROM customer WHERE email = '$email';");
+    $engineers =  select("SELECT COUNT(id) as total FROM engineer WHERE email = '$email';");
+
+    if( $webusers[0]["total"] > 0  ||
+        $admins[0]["total"] > 0 ||
+        $customers[0]["total"] > 0 ||
+        $engineers[0]["total"] > 0) 
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+
+    }
+
+
+}
 ?>
