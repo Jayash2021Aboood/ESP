@@ -9,17 +9,8 @@
 <?php include('../template/header.php'); ?>
 
 
-
-
-
 <?php include('../template/startNavbar.php'); ?>
 
-
-<?php
-
- //echo '<script> window.location.replace("school/"); </script>' ;
- 
- ?>
 
 <main>
     <!-- Main page content-->
@@ -66,7 +57,9 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small fw-bold text-primary mb-1">Earnings (monthly)</div>
-                                <div class="h5">$4,390</div>
+                                <div class="h5">R.S
+                                    <?php echo (select("select sum(paid_price) as total from booking;")[0])['total']; ?>
+                                </div>
                                 <div class="text-xs fw-bold text-success d-inline-flex align-items-center">
                                     <i class="me-1" data-feather="trending-up"></i>
                                     12%
@@ -77,24 +70,112 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 2-->
+                <div class="card border-start-lg border-start-pink h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="fw-bold text-pink mb-3 text-center">Bookings (count)</div>
+                                <div class="h5 text-center">
+                                    <?php echo (select("select count(id) as total from booking;")[0])['total']; ?>
+                                </div>
+                                <!-- <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                                    <i class="me-1" data-feather="trending-down"></i>
+                                    3%
+                                </div> -->
+                            </div>
+                            <!-- <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xl-3 col-md-6 mb-4">
                 <!-- Dashboard info widget 2-->
                 <div class="card border-start-lg border-start-secondary h-100">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small fw-bold text-secondary mb-1">Average sale price</div>
-                                <div class="h5">$27.00</div>
-                                <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                                <div class="fw-bold text-secondary mb-3 text-center">Engineers (count)</div>
+                                <div class="h5 text-center">
+                                    <?php echo (select("select count(id) as total from engineer;")[0])['total']; ?>
+                                </div>
+                                <!-- <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
                                     <i class="me-1" data-feather="trending-down"></i>
                                     3%
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div>
+                            <!-- <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div> -->
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 2-->
+                <div class="card border-start-lg border-start-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="fw-bold text-success mb-3 text-center">Csutomers (count)</div>
+                                <div class="h5 text-center">
+                                    <?php echo (select("select count(id) as total from customer;")[0])['total']; ?>
+                                </div>
+                                <!-- <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                                    <i class="me-1" data-feather="trending-down"></i>
+                                    3%
+                                </div> -->
+                            </div>
+                            <!-- <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard orange widget 2-->
+                <div class="card border-start-lg border-start-orange h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="fw-bold text-orange mb-3 text-center">Categories (count)</div>
+                                <div class="h5 text-center">
+                                    <?php echo (select("select count(id) as total from service_type;")[0])['total']; ?>
+                                </div>
+                                <!-- <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                                    <i class="me-1" data-feather="trending-down"></i>
+                                    3%
+                                </div> -->
+                            </div>
+                            <!-- <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 2-->
+                <div class="card border-start-lg border-start-info h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="fw-bold text-info mb-3 text-center">Services (count)</div>
+                                <div class="h5 text-center">
+                                    <?php echo (select("select count(id) as total from service;")[0])['total']; ?>
+                                </div>
+                                <!-- <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                                    <i class="me-1" data-feather="trending-down"></i>
+                                    3%
+                                </div> -->
+                            </div>
+                            <!-- <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xl-3 col-md-6 mb-4">
                 <!-- Dashboard info widget 3-->
                 <div class="card border-start-lg border-start-success h-100">
