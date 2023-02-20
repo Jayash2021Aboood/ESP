@@ -120,9 +120,16 @@
     - make service detail column as rich textbox.
     - Remove additional task from admin site .
     - remove admin screens from control panel. ==================================== DONE
-    - make delete cascasde in database.  ========================================== DONE.
+    - make delete cascasde in database.  ========================================== DONE
     - create password validation constraint. 
     
+    - create booking_attachment table  ============================================ DONE
+    - create CRUD for booking_attachment Table . ================================== DONE
+    - adding upload attachment in customer site in booking details page. ========== DONE
+    - display attachment in Customer site in booking details page. ================ DONE
+
+    - display upload attachment in Engineer site in booking details page. ========= DONE
+    - display attachment in Engineer site in booking details page. ================ DONE
 
 
 
