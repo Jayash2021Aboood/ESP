@@ -6,6 +6,7 @@
   include('../includes/service_type.php');
   include('../includes/booking.php');
   include('../includes/booking_note.php');
+  include('../includes/booking_attachment.php');
   
   checkEngineerSession();
 
@@ -284,6 +285,136 @@
 
         </div>
     </div>
+
+
+    <!-- =============================================== -->
+    <!-- ============ Booking Attachment Start ========= -->
+    <!-- =============================================== -->
+
+    <header class="pt-5 mt-4 mb-0 ">
+        <div class="container-xl  text-center">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center ">
+                        <h1 class="text-primary">Booking Attachments</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <hr class="mb-1" />
+    <!-- Main page content-->
+    <div class="container-xl px-4">
+        <div class="row">
+            <div class="card border-start-lg border-start-primary card-header-actions card-scrollable">
+                <div class="card-header border-bottom ">
+                    <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="attachments-tab" href="#attachments" data-bs-toggle="tab"
+                                role="tab" aria-controls="attachments" aria-selected="false">Attachments</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <?php
+                            if($row['state'] == 'request')
+                                echo /*html*/'<span class="badge bg-gray-600">'.$row['state'].'</span>';
+                            else if($row['state'] == 'reject')
+                                echo /*html*/'<span class="badge bg-red ">'.$row['state'].'</span>';
+                            else if($row['state'] == 'working')
+                                echo /*html*/'<span class="badge bg-purple ">'.$row['state'].'</span>';
+                            else if($row['state'] == 'ready')
+                                echo /*html*/'<span class="badge bg-blue">'.$row['state'].'</span>';
+                            else if($row['state'] == 'done')
+                                echo /*html*/'<span class="badge bg-green">'.$row['state'].'</span>';
+                            else if($row['state'] == 'paid')
+                                echo /*html*/'<span class="badge bg-yellow-soft text-yellow">'.$row['state'].'</span>';
+                            else if($row['state'] == 'canceled')
+                                echo /*html*/'<span class="badge bg-red-soft text-red">'.$row['state'].'</span>';
+
+                            ?>
+                    </div>
+                </div>
+                <div class="card-body p-5">
+                    <div class="tab-content" id="cardTabContent">
+                        <!--  Start Attachments Tab  -->
+                        <div class="tab-pane fade show active" id="attachments" role="tabpanel"
+                            aria-labelledby="attachments-tab">
+
+                            <form action="bookingManager.php" method="POST" enctype="multipart/form-data">
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (engineer_id)-->
+
+                                    <input class="form-control" type="hidden" name="engineer_id" id="engineer_id"
+                                        value="<?php if(isEngineer()) echo $_SESSION['userID'];?>" required>
+                                    </input>
+                                    <!-- Form Group (booking_id)-->
+                                    <input type="hidden" name="booking_id" id="booking_id"
+                                        value="<?php echo $row['id'];?>" required>
+                                    </input>
+
+
+                                    <!-- Form Group (attachment)-->
+                                    <div class="col-10 mb-3">
+                                        <!-- <label class="small mb-1" for="attachment">Attachment</label> -->
+                                        <input class="form-control" id="attachment" name="attachment" type="file"
+                                            placeholder="Enter Your Attachment" value="" required />
+                                    </div>
+
+                                    <div class="col-2">
+
+                                        <!-- Submit button-->
+                                        <button name="engineerAddBookingAttachment" class="btn btn-success"
+                                            type="submit">Upload</button>
+
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+                            <div class="col-12 attachmentMessage">
+                                <?php 
+                                    $allAttachments = getAllBookingAttachments($row['id']);
+                                    if(count($allAttachments ) > 0)
+                                    {
+                                        foreach($allAttachments as $attachment)
+                                        {                                    
+                                ?>
+                                <?php if(isEngineer() && $attachment['engineer_id'] == $_SESSION['userID']){ ?>
+                                <div>
+                                    <p class="bg-blue-soft p-2 rounded-1 d-inline-block">
+                                        <?php if(!empty($attachment['attachment'])) { ?>
+                                        <a target="_blank"
+                                            href="<?php echo $PATH_ATTACHMENTS . $attachment['attachment'];?>"><?php echo $attachment['attachment'];?></a>
+                                        <?php }?>
+                                    </p>
+                                </div>
+                                <?php } else {?>
+                                <div style="text-align: right;">
+                                    <p class="bg-cyan-soft p-2 rounded-1 d-inline-block">
+                                        <?php if(!empty($attachment['attachment'])) { ?>
+                                        <a target="_blank"
+                                            href="<?php echo $PATH_ATTACHMENTS . $attachment['attachment'];?>">
+                                            <?php echo $attachment['attachment'];?></a>
+                                        <?php }?>
+                                    </p>
+                                </div>
+                                <?php } ?>
+                                <?php } }?>
+                            </div>
+                        </div>
+                        <!-- End Attachments Tab -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =============================================== -->
+    <!-- ============ Booking Attachment End =========== -->
+    <!-- =============================================== -->
 </main>
 
 

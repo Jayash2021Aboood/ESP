@@ -6,6 +6,7 @@
   include_once('../includes/service.php');
   include_once('../includes/booking.php');
   include_once('../includes/booking_note.php');
+  include_once('../includes/booking_attachment.php');
   include_once('../includes/rating.php');
   checkEngineerSession();
 
@@ -269,6 +270,61 @@
       }
   
     }
+
+
+    // =======================================================================
+    // ======================== Engineer Adding Booking Attachment =================
+    // =======================================================================
+
+    if(isset($_POST['engineerAddBookingAttachment']))
+    {
+      $booking_id = $_POST['booking_id'];
+      $attachment = uploadImage('attachment',DIR_ATTACHMENTS);
+      $engineer_id = $customer_id = "";
+      
+      if( empty($_POST['booking_id'])){
+        $errors[] = "<li>You Cant adding attachment before you select buy service </li>";
+        $_SESSION["fail"] .= "<li>You adding  attachment before you select buy servise </li>";
+        }
+      if( empty($attachment)){
+        $errors[] = "<li>Attachment value is requierd.</li>";
+        $_SESSION["fail"] .= "<li>Attachment value is requierd.</li>";
+        }
+
+      if(count($errors) > 0)
+        redirectToReferer();
+
+      $booking = getBookingById($booking_id);
+      if(count($booking) == 0)
+        redirectToReferer("No Booking Found to Adding Attachment");
+
+      $row = $booking[0];
+      $engineer_id = $row['engineer_id'];
+      $customer_id = $row['customer_id'];
+      
+      if($engineer_id != $_SESSION['userID']) 
+        redirectToReferer("you dont have permission to modify this data!");
+
+      if(count($errors) == 0)
+      {
+        $add = addBookingAttachment($booking_id, $engineer_id, "NULL", $attachment);
+        if($add ==  true)
+        {
+          $_SESSION["message"] = "Attachment Updated successfuly!";
+          $_SESSION["success"] = "Attachment Updated successfuly!";
+          header('Location: ' . $_SERVER['HTTP_REFERER']);
+          exit();
+        }
+        else
+        {
+          redirectToReferer("Error when Adding Data");
+        }
+        
+      }
+  
+    }
+
+
     // // =======================================================================
     // // ======================== Customer Change Booking State To done =================
     // // =======================================================================
