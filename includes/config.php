@@ -19,6 +19,7 @@
 	// define('HTTP_SERVER', 'http://localhost:90/ESP/admin/');
 	$PATH_SERVER 			= 'http://localhost:90/ESP/';
 	$PATH_PHOTOES 			= $PATH_SERVER . 'photoes/';
+	$PATH_ATTACHMENTS 		= $PATH_SERVER . 'attachments/';
 
 	$PATH_ADMIN 			= $PATH_SERVER . 'admin/';
 	$PATH_CUSTOMER 			= $PATH_SERVER . 'customer/';
@@ -50,6 +51,7 @@
 	define('DIR_ADMIN_TEMPLATE', 'C:/xampp/htdocs/ESP/admin/template/');
 	define('DIR_ADMIN_PHOTOES', 'C:/xampp/htdocs/ESP/admin/photoes/');
 	define('DIR_PHOTOES', 'C:/xampp/htdocs/ESP/photoes/');
+	define('DIR_ATTACHMENTS', 'C:/xampp/htdocs/ESP/attachments/');
 
 
 
